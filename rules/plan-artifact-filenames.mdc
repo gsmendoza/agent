@@ -1,5 +1,5 @@
 ---
-description: Plans and similar saved artifacts use dash-separated slugs; no spaces in filenames
+description: Plan-like saved filenames use a ticket prefix (from branch when known) plus hyphenated ASCII slugs; no spaces
 alwaysApply: true
 ---
 
@@ -8,10 +8,12 @@ alwaysApply: true
 When creating or saving **plans**, **specs**, **walkthroughs**, **design notes**, **ADRs**, or other **agent-produced documents** as files:
 
 1. **Do not use spaces** in the basename.
-2. **Use a single hyphen (`-`)** between words: lowercase, word boundaries as hyphens, no consecutive separators, no leading or trailing hyphens.
+2. **Use a single hyphen (`-`)** between segments: after any leading ticket id, use a lowercase hyphenated slug for the descriptive portion; no consecutive separators, no leading or trailing hyphens on the whole basename.
 3. **Prefer ASCII** in filenames; avoid raw punctuation that `parameterize` would strip or replace (underscores are acceptable when the project already uses them consistently, but default to hyphenated slugs).
+4. **Prefix with the ticket id** when the branch supplies one: if the current git branch starts with a Jira-style key (letters, hyphen, digits—e.g. `ATC-2363` on `ATC-2363-telemarketer-dropdown`), the basename **must** begin with that key, a hyphen, then the descriptive slug. Use read-only `git branch --show-current` when the branch name is not already in context. If the branch has no such prefix (e.g. `main`), **do not invent** a ticket—**ask once** for the id or use one the user already stated in the thread. The basename shape is `{TICKET}-{descriptive-slug}.md` (one hyphen between ticket and slug, then hyphens inside the slug only as needed).
 
 **Examples**
 
-- Prefer: `activity-history-telemarketer-dropdown.md`
-- Avoid: `Activity History Telemarketer Dropdown.md`, `activity history.md`
+- Prefer: `ATC-2363-activity-history-telemarketer-dropdown.md`
+- Prefer: `activity-history-telemarketer-dropdown.md` only when the branch has no ticket-style prefix, you asked once for a ticket (if appropriate) and none applies, or the user explicitly asked for a non-ticket filename.
+- Avoid: `Activity History Telemarketer Dropdown.md`, `activity history.md`, `ATC-2363--duplicate-hyphens.md`
