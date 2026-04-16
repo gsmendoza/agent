@@ -1,0 +1,31 @@
+---
+description: Git commit subject line format (ticket, type, message)
+alwaysApply: true
+---
+
+# Git commit message format
+
+When the user **does** ask for a commit, use this **subject line** shape (one line, ~72 characters or less when practical):
+
+```text
+<TICKET> <TYPE>: <short imperative description>
+```
+
+## Parts
+
+- **`<TICKET>`** — Issue id from context (e.g. `ATC-2363`). Prefer the branch name (`ATC-2363-FEATURE-…`) or what the user/Jira ticket states. If unknown, ask once instead of inventing a number.
+- **`<TYPE>`** — Short uppercase category, e.g. `FEATURE`, `FIX`, `REFACTOR`, `MODEL`, `DEV ENV`, `INTERNAL`, `DOCS`, `TEST`. Match types already used on the branch when obvious.
+- **`<description>`** — Imperative, specific, no trailing period unless it is a full sentence the team already uses.
+
+## Examples
+
+```text
+ATC-2363 FEATURE: Activity History - Telemarketer Dropdown
+ATC-2363 DEV ENV: Add telemarketer seeds
+ATC-2363 REFACTOR: Extract quote activity history edit policy load
+ATC-2363 MODEL: Add telemarketer associations on computed and fact models
+```
+
+**Do not** switch to unrelated formats (e.g. Conventional Commits `feat:` only) unless the user explicitly requests that repo’s alternate convention for this task.
+
+**Body:** Add a blank line after the subject if you need bullets or context; keep the subject line compliant with the format above.

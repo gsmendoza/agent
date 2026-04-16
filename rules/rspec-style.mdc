@@ -1,0 +1,34 @@
+---
+description: RSpec structure and fixture style (nested describe, let/context, hook order)
+globs: "**/*_spec.rb"
+alwaysApply: false
+---
+
+# RSpec style
+
+## Describe layout for instance/class methods
+
+- Use **nested** describes: outer `RSpec.describe SomeClass do`, inner `describe "#instance_method"` or `describe ".class_method"`.
+- Do **not** use the comma form: `RSpec.describe SomeClass, "#method"` (avoid).
+
+## Example group ordering
+
+Inside a `describe` or `context`, use this **top-to-bottom** order:
+
+1. **Helper methods** (`def`) used by examples — first in the block.
+2. **`let` / `let!`** — shared data and paths.
+3. **`before`** hooks — setup and invoking the subject.
+4. **`after`** hooks — cleanup (e.g. temp dirs).
+5. Nested **`context`** / **`it`** blocks.
+
+## Fixtures and DRY
+
+- Prefer **`context`** plus **`let`** for varying inputs: only the `let`s that differ per case (e.g. `let(:csv_body)`) should change between contexts; shared paths and options use shared `let`s.
+- Use **`before`** for imperative side effects shared by that group (write files, call the method under test), not one-off `let` blocks that duplicate the same steps in every example.
+- Use **`after`** for teardown when needed (e.g. `FileUtils.remove_entry(tmpdir)`).
+- Keep **`before` above `after`** in the source file.
+- Keep examples **structurally parallel** where behavior overlaps; extract small **matcher helpers** or `shared_examples` only for repeated *expectations*, not for setup orchestration.
+
+## Dependencies
+
+- **`require`** libraries needed only by the spec (e.g. `zip`, `fileutils`) at the **top of that spec file** (or a dedicated support file), not in `spec_helper`, unless the whole suite needs them.

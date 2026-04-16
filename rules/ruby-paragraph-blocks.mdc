@@ -1,0 +1,41 @@
+---
+description: Ruby paragraph-style spacing; group related single-line blocks (e.g. lets)
+globs: "**/*.rb"
+alwaysApply: false
+---
+
+# Ruby: paragraph blocks and grouped single-line blocks
+
+## Paragraph spacing
+
+Treat logical units as paragraphs: separate them with one blank line.
+
+- Between method / helper definitions
+- Between unrelated sections (e.g. helpers vs. `let` / hooks vs. `context` / `describe` blocks)
+- Inside examples, between distinct steps when it improves clarity (e.g. file assertion vs. opening a zip)
+
+Do not add extra blank lines inside a small, cohesive block (e.g. between every line inside a `def`).
+
+## Group related single-line blocks
+
+Consecutive **single-line** declarations that belong together should **not** be separated by blank lines. Put one blank line **after** the group to separate it from the next paragraph.
+
+**RSpec:** Group related `let` / `let!` lines with no blank lines between them. After the last `let` in that group, use a blank line before `before`, `after`, `subject`, or nested groups.
+
+```ruby
+# ✅ GOOD — lets form one group; blank line before hooks
+let(:tmpdir) { Dir.mktmpdir }
+let(:csv_path) { File.join(tmpdir, "estimates.csv") }
+let(:ods_path) { File.join(tmpdir, "chart.ods") }
+
+before do
+  # ...
+end
+
+# ❌ AVOID — unnecessary blank lines between related single-line lets
+let(:tmpdir) { Dir.mktmpdir }
+
+let(:csv_path) { File.join(tmpdir, "estimates.csv") }
+```
+
+For non-RSpec Ruby, apply the same idea to other one-line related declarations (e.g. several `attr_reader` lines, or grouped `alias` lines) when they are clearly one conceptual unit.

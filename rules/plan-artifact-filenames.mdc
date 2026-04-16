@@ -1,0 +1,17 @@
+---
+description: Plans and similar saved artifacts use dash-separated slugs; no spaces in filenames
+alwaysApply: true
+---
+
+# Filenames for plans and similar artifacts
+
+When creating or saving **plans**, **specs**, **walkthroughs**, **design notes**, **ADRs**, or other **agent-produced documents** as files:
+
+1. **Do not use spaces** in the basename.
+2. **Use a single hyphen (`-`)** between words: lowercase, word boundaries as hyphens, no consecutive separators, no leading or trailing hyphens.
+3. **Prefer ASCII** in filenames; avoid raw punctuation that `parameterize` would strip or replace (underscores are acceptable when the project already uses them consistently, but default to hyphenated slugs).
+
+**Examples**
+
+- Prefer: `activity-history-telemarketer-dropdown.md`
+- Avoid: `Activity History Telemarketer Dropdown.md`, `activity history.md`
