@@ -1,0 +1,25 @@
+---
+description: Lint and format Ruby with Standard Ruby (standardrb)
+globs:
+  - "**/*.rb"
+  - "Gemfile"
+  - "Rakefile"
+alwaysApply: false
+---
+
+# Standard Ruby for Ruby files
+
+Use **Standard Ruby** (`standardrb`) as the linter/formatter for Ruby in this repo—not ad-hoc RuboCop invocations unless a task explicitly requires RuboCop.
+
+## Commands
+
+- Check: `bin/standardrb`
+- Check paths: `bin/standardrb app/models/foo.rb test/foo_test.rb`
+- Auto-fix: `bin/standardrb --fix` (optionally pass paths)
+- `standard-rails` is bundled; Rails-specific rules apply where configured.
+
+## Agent behavior
+
+- After meaningful Ruby edits, run `bin/standardrb` on changed files (or the whole project if scope is small) and fix reported offenses.
+- Prefer `standardrb --fix` when corrections are mechanical.
+- Do not replace Standard with `rubocop` for routine Ruby linting unless the user or an existing script requires it.

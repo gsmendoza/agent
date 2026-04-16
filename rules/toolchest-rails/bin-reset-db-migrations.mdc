@@ -1,0 +1,20 @@
+---
+description: Prefer bin/reset_db when running or redoing migrations and refreshing schema
+alwaysApply: true
+---
+
+# Running and redoing migrations
+
+When the goal is to **run migrations**, **redo migrations**, or **refresh `db/schema.rb` / `db/structure.sql`** so the repo reflects the canonical database shape, prefer:
+
+```bash
+bin/reset_db
+```
+
+over ad hoc `bin/rails db:migrate`, `db:rollback`, or host-specific database commands.
+
+**Why:** `bin/reset_db` is slower but runs through Docker Compose, migrates, seeds, and runs `bin/cleanup_structure_sql`, so schema artifacts stay consistent and avoid machine-specific steps.
+
+**Note:** The script prompts for confirmation before dropping the database. For non-interactive use only when the user explicitly wants that, you can pipe confirmation (for example `printf 'y\n' | bin/reset_db`); otherwise run it interactively or ask the user to confirm.
+
+Use other migration commands only when the task clearly requires something `bin/reset_db` does not cover (for example a targeted rollback in an environment that does not use this script).
