@@ -9,13 +9,15 @@ alwaysApply: true
 
 This rule does **not** replace Cursor `globs` or project `alwaysApply` rules. It adds a **deliberate step**: when a scenario matches, use the **Read** tool on the listed paths **before** substantive edits or recommendations (unless you already read them this session for the same scenario).
 
-If a path is missing in the current workspace (e.g. project rule in another repo), skip that path.
+If a path is missing (e.g. another repo’s workspace, or a file not installed on this machine), skip that path.
 
 **Last reviewed:** 2026-04-16
 
 ## How to match
 
 Quickly classify the user’s latest request and thread. If **one or more** rows fit, read the **union** of linked files (dedupe). If none fit, do not bulk-read this table.
+
+**Where paths live:** shared rules under `~/.cursor/rules/`; toolchest-specific pack under `~/.cursor/rules/toolchest-rails/`; team rules committed in the app repo under workspace `.cursor/rules/` (e.g. `rails.mdc`).
 
 ## Scenarios
 
@@ -25,7 +27,7 @@ Quickly classify the user’s latest request and thread. If **one or more** rows
 
 **Read:**
 
-- `.cursor/rules/bin-reset-db-migrations.mdc` (project; skip if absent)
+- `~/.cursor/rules/toolchest-rails/bin-reset-db-migrations.mdc` (skip if absent)
 
 ---
 
@@ -35,7 +37,7 @@ Quickly classify the user’s latest request and thread. If **one or more** rows
 
 **Read:**
 
-- `.cursor/rules/documentation-scope.mdc` (project; skip if absent)
+- `~/.cursor/rules/documentation-scope.mdc` (skip if absent)
 
 ---
 
@@ -45,9 +47,10 @@ Quickly classify the user’s latest request and thread. If **one or more** rows
 
 **Read:**
 
-- `.cursor/rules/standard-ruby.mdc` (project; skip if absent)
+- `~/.cursor/rules/toolchest-rails/standard-ruby.mdc` (skip if absent)
+- `.cursor/rules/rails.mdc` (workspace / in-repo; skip if absent)
 
-Do **not** also pull `ruby-paragraph-blocks.mdc` and `ruby-string-present-blank.mdc` here unless globs did not attach them and the session is clearly style-heavy; those stay glob-first to limit duplicate reads.
+Do **not** also pull `~/.cursor/rules/ruby-paragraph-blocks.mdc` and `~/.cursor/rules/ruby-string-present-blank.mdc` here unless globs did not attach them and the session is clearly style-heavy; those stay glob-first to limit duplicate reads.
 
 ---
 
@@ -57,7 +60,17 @@ Do **not** also pull `ruby-paragraph-blocks.mdc` and `ruby-string-present-blank.
 
 **Read:**
 
-- `.cursor/rules/rspec-style-spec-structure.mdc` (project; skip if absent)
+- `~/.cursor/rules/rspec-style-spec-structure.mdc` (shared global; skip if absent)
+
+---
+
+### 5. Rails CLI, binstubs, Docker Compose for Rails
+
+**Triggers (examples):** running `bin/rails`, `bin/rake`, tests via binstubs; task explicitly needs the Docker Compose Rails wrapper.
+
+**Read:**
+
+- `~/.cursor/rules/toolchest-rails/binstubs-rails.mdc` (skip if absent)
 
 ---
 
