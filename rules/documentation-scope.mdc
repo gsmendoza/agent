@@ -1,0 +1,22 @@
+---
+description: Documentation describes current scope only; omit superseded out-of-scope alternatives
+alwaysApply: true
+---
+
+# Documentation: current scope only
+
+When writing specs, READMEs, ADRs, PR descriptions, walkthroughs, or Jira-ready summaries:
+
+1. **Describe what the system is and does** using affirmative, in-scope language.
+
+2. **Do not** mention abandoned, superseded, or never-implemented alternatives solely for contrast (e.g. "not user IDs", "instead of Memcached", "we no longer use X") unless at least one of the following applies:
+   - The negative is still an **explicit, active requirement** (normative "must not", security/compliance constraint, or product rule reviewers still enforce).
+   - The wrong path is a **likely recurring mistake** readers will make without a one-line warning (document the pitfall briefly, then the correct approach).
+
+3. If an earlier draft was wrong, **correct the doc in place**; do not preserve the old option as a foil. Prefer one clear sentence over "X, not Y" when Y is out of scope.
+
+4. **Examples**
+   - Bad: "Dropdown options are account-scoped telemarketer entities, not arbitrary user IDs."
+   - Good: "Dropdown options are account-scoped telemarketer entities."
+
+5. **Acceptable contrast** when still in scope: requirements that forbid real behaviors (e.g. "Editing one policy does not cascade to other policies in the household") — those are product rules, not obsolete design notes.
