@@ -14,7 +14,7 @@ Create a walkthrough of the branch by analyzing all updated tests. For each asse
 
 1. Find the base branch (e.g. `main` or `master`).
 2. Run `git diff <base_branch> -- test/` to list changed files under the test directory (paths relative to the repo root). Default to the whole `test/` tree so factories, `ApplicationSystemTestCase`, and tests outside `test/system/` are included. You may narrow the path when the branch truly only touches a subtree, but **do not** omit shared harness or factory files that support the feature.
-3. Read the full changed test-related files so you can cite exact line ranges. **Do not** put file paths or line ranges in **headings** (`#`, `##`, `####`); use citations in the body as specified under **Visible citations**, **Application code references**, and **Test Walkthroughs**.
+3. Resolve the absolute repository root **once** before writing citations (prefer `git rev-parse --show-toplevel`; if git is unavailable and the session cwd is the repository root, use the normalized absolute `pwd`). Use this root to build every **Source:** link. Read the full changed test-related files so you can cite exact line ranges. **Do not** put file paths or line ranges in **headings** (`#`, `##`, `####`); use citations in the body as specified under **Visible citations**, **Application code references**, and **Test Walkthroughs**.
 4. For each changed file that defines a **test class with examples** (typically `class SomethingTest` in `test/**/*_test.rb`), walk through each new or modified test case.
 5. For changed files under `test/` that are **not** a test class with examples (e.g. `ApplicationSystemTestCase`, factories under `test/factories/`, `test/support/**`), do **not** add a `# <TestClassName>` section. Summarize them under **Supporting Infrastructure Changes** (optionally grouped as "Test harness / factories") using the same citation rules.
 6. Within each test case, break down the code into logical steps: setup, actions, and assertions.
@@ -28,7 +28,7 @@ When the walkthrough is complete, **persist the full markdown document to disk**
 - After saving, briefly confirm the path (relative or absolute) in your reply.
 - **Filename:** follow @rules/plan-artifact-filenames.mdc for the basename (walkthroughs are in scope there). Use descriptive slug `branch-walkthrough` for the hyphenated portion after any ticket prefix (e.g. `ATC-2363-branch-walkthrough.md` when the branch supplies `ATC-2363`).
 
-Citation paths inside the document (**Source:** lines, navigable fences) stay **relative to the repository root** as described under **Output Format**; the saved file usually lives at that same root when `pwd` is the repo.
+**Source:** lines use **absolute** paths as markdown link text and `file://` URLs so readers can **right-click → Copy link** and paste into an editor Open File dialog. **Navigable citation fences** stay **repo-relative** paths as under **Output Format**; the saved file usually lives at the repo root when `pwd` is the repo.
 
 ## Output Format
 
@@ -52,15 +52,16 @@ Whenever you refer to **application** code (models, services, controllers, queri
 **Visible citations (HTML and external renders)**
 
 - Immediately **before** every application code block, add two plain body lines (not inside headings):
-  - `**Source:** \`relative/path/from/repo/root\`` (backticks around the path)
+  - `**Source:**` followed by a **markdown link**: link text is the **full absolute file path** (join repository root + path relative to repo root, POSIX-style); link URL is `file:///absolute/path/to/file` with the same path **percent-encoded** where the URL requires it (e.g. spaces as `%20`). Example: `**Source:** [`/home/you/proj/app/models/foo.rb`](file:///home/you/proj/app/models/foo.rb)` so **Copy link** in a preview yields a pasteable location. Remote HTML hosts (e.g. GitHub) often strip or block `file://`; treat **local preview / copy-link** as the main workflow for these links.
   - `**Lines:** m-n` where `m` and `n` are inclusive line numbers (use an en dash `–` or hyphen `-` consistently).
+- If an Open File dialog rejects a `file://` URL, strip the `file://` prefix and paste the plain absolute path (leading `/` on Unix).
 
 **Navigable citations (Cursor)**
 
-- On its own line after **Source:** / **Lines:**, open a fenced block using the **` ```startLine:endLine:filepath `** form (path relative to the repo root, e.g. `app/services/foo.rb`). Include a minimal snippet (e.g. the `class` / `module` line, or the `def` line and signature).
+- On its own line after **Source:** / **Lines:**, open a fenced block using the **` ```startLine:endLine:filepath `** form (path **relative to the repo root**, e.g. `app/services/foo.rb`). Include a minimal snippet (e.g. the `class` / `module` line, or the `def` line and signature).
 - Apply at the **first substantive mention** of each app class or module within a walkthrough section (per test case or infrastructure subsection).
 - For every **App change:** paragraph that names a specific method (e.g. `FooController#update`, `BarService#call`), include a citation to that method's definition (`def ...`).
-- Prose may still name the constant normally; the citation block is what makes it clickable in Cursor. Do not rely on `file://` URLs for this.
+- Prose may still name the constant normally; the citation block is what makes it clickable in Cursor. **Do not** put `file://` URLs or absolute host paths inside citation **fences**—keep fences repo-relative only. **`file://` markdown links are allowed on the `**Source:**` line** for copy-link and viewers that support local file URLs.
 
 ### Test Walkthroughs (middle)
 
@@ -75,9 +76,11 @@ Whenever you refer to **application** code (models, services, controllers, queri
 
 After all test walkthroughs, add a **Supporting Infrastructure Changes** section listing only noteworthy secondary or optional changes -- things that are nice-to-have, improve consistency, or support edge cases but are not strictly required for the core feature to work (e.g. UUID refresh callbacks, post-merge backfill jobs, test helper refactors, factories, base test case flag toggles). Use the same **Application code references** rules (including **Visible citations**) when naming app code or citing test harness files.
 
-**Convention:** Paths in **Source:** are relative to the repository root; **Lines** ranges are inclusive.
+**Convention:** **`Source:`** uses full absolute paths as link text and `file://` URLs; **navigable fences** use paths relative to the repository root; **Lines** ranges are inclusive.
 
 ## Example
+
+(Placeholder repo root `/home/you/repos/example-app`—replace with the real absolute root from `git rev-parse --show-toplevel` when generating a walkthrough.)
 
 ---
 
@@ -87,7 +90,7 @@ After all test walkthroughs, add a **Supporting Infrastructure Changes** section
 
 #### Setup: 3 items, one with an unlinked rewrite
 
-**Source:** `test/system/dashboard_retention/terminations_test.rb`  
+**Source:** [`/home/you/repos/example-app/test/system/dashboard_retention/terminations_test.rb`](file:///home/you/repos/example-app/test/system/dashboard_retention/terminations_test.rb)  
 **Lines:** 560–562
 
 ```560:562:test/system/dashboard_retention/terminations_test.rb
@@ -102,7 +105,7 @@ Creates 3 termination task items and a `PolicyRewrite` that is not yet linked to
 
 #### Assert: all 3 items visible before linking
 
-**Source:** `test/system/dashboard_retention/terminations_test.rb`  
+**Source:** [`/home/you/repos/example-app/test/system/dashboard_retention/terminations_test.rb`](file:///home/you/repos/example-app/test/system/dashboard_retention/terminations_test.rb)  
 **Lines:** 566–567
 
 ```566:567:test/system/dashboard_retention/terminations_test.rb
@@ -116,7 +119,7 @@ With no link established, all 3 items are visible.
 
 #### Action: select the terminated policy and save
 
-**Source:** `test/system/dashboard_retention/terminations_test.rb`  
+**Source:** [`/home/you/repos/example-app/test/system/dashboard_retention/terminations_test.rb`](file:///home/you/repos/example-app/test/system/dashboard_retention/terminations_test.rb)  
 **Lines:** 576–577
 
 ```576:577:test/system/dashboard_retention/terminations_test.rb
@@ -128,7 +131,7 @@ The user selects the terminated policy from the dropdown and saves.
 
 **App change:** After a successful save, `DashboardQuoteActivityHistoryController#update` calls `assign_original_policy`, which delegates to `AgentTransactionRuns::RewritePolicyLinkService` with `origin: "manual"`.
 
-**Source:** `app/controllers/dashboard_quote_activity_history_controller.rb`  
+**Source:** [`/home/you/repos/example-app/app/controllers/dashboard_quote_activity_history_controller.rb`](file:///home/you/repos/example-app/app/controllers/dashboard_quote_activity_history_controller.rb)  
 **Lines:** 57–58
 
 ```57:58:app/controllers/dashboard_quote_activity_history_controller.rb
@@ -136,14 +139,14 @@ The user selects the terminated policy from the dropdown and saves.
     original_policy = (params[:source] == "sale") ? PolicySale.includes(:household).find_by(id: params[:id]) : PolicyQuote.find_by(id: params[:id])
 ```
 
-**Source:** `app/controllers/dashboard_quote_activity_history_controller.rb`  
+**Source:** [`/home/you/repos/example-app/app/controllers/dashboard_quote_activity_history_controller.rb`](file:///home/you/repos/example-app/app/controllers/dashboard_quote_activity_history_controller.rb)  
 **Lines:** 92–92
 
 ```92:92:app/controllers/dashboard_quote_activity_history_controller.rb
       assign_original_policy(policy)
 ```
 
-**Source:** `app/services/agent_transaction_runs/rewrite_policy_link_service.rb`  
+**Source:** [`/home/you/repos/example-app/app/services/agent_transaction_runs/rewrite_policy_link_service.rb`](file:///home/you/repos/example-app/app/services/agent_transaction_runs/rewrite_policy_link_service.rb)  
 **Lines:** 1–2
 
 ```1:2:app/services/agent_transaction_runs/rewrite_policy_link_service.rb
@@ -151,7 +154,7 @@ class AgentTransactionRuns::RewritePolicyLinkService
   extend Dry::Initializer
 ```
 
-**Source:** `app/services/agent_transaction_runs/rewrite_policy_link_service.rb`  
+**Source:** [`/home/you/repos/example-app/app/services/agent_transaction_runs/rewrite_policy_link_service.rb`](file:///home/you/repos/example-app/app/services/agent_transaction_runs/rewrite_policy_link_service.rb)  
 **Lines:** 16–17
 
 ```16:17:app/services/agent_transaction_runs/rewrite_policy_link_service.rb
@@ -163,7 +166,7 @@ class AgentTransactionRuns::RewritePolicyLinkService
 
 #### Assert: linked item is now hidden
 
-**Source:** `test/system/dashboard_retention/terminations_test.rb`  
+**Source:** [`/home/you/repos/example-app/test/system/dashboard_retention/terminations_test.rb`](file:///home/you/repos/example-app/test/system/dashboard_retention/terminations_test.rb)  
 **Lines:** 579–581
 
 ```579:581:test/system/dashboard_retention/terminations_test.rb
@@ -176,7 +179,7 @@ After linking, the item is filtered out (count drops from 3 to 2).
 
 **App change:** `Retentions::RetentionTaskItems::TerminationQuery` JOIN logic on `policy_rewrites` was tightened to also match on `original_policy_type_id`.
 
-**Source:** `app/queries/retentions/retention_task_items/termination_query.rb`  
+**Source:** [`/home/you/repos/example-app/app/queries/retentions/retention_task_items/termination_query.rb`](file:///home/you/repos/example-app/app/queries/retentions/retention_task_items/termination_query.rb)  
 **Lines:** 1–2
 
 ```1:2:app/queries/retentions/retention_task_items/termination_query.rb
