@@ -17,3 +17,5 @@ When creating or saving **plans**, **specs**, **walkthroughs**, **design notes**
 - Prefer: `ATC-2363-activity-history-telemarketer-dropdown.md`
 - Prefer: `activity-history-telemarketer-dropdown.md` only when the branch has no ticket-style prefix, you asked once for a ticket (if appropriate) and none applies, or the user explicitly asked for a non-ticket filename.
 - Avoid: `Activity History Telemarketer Dropdown.md`, `activity history.md`, `ATC-2363--duplicate-hyphens.md`
+
+When the user cites an existing spec file path for **planning** and that file cannot be read, follow `planning-missing-spec-path.mdc` in this directory (do not substitute an invented spec).
