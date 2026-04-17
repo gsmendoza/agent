@@ -3,7 +3,7 @@ name: gsm-walkthrough
 description: >-
   Create a branch walkthrough from updated tests: map assertions and interactions
   to application changes, with navigable Cursor citations and visible Source/Lines
-  for HTML export.
+  for HTML export; write the result to a markdown file in the current working directory.
 ---
 
 # GSM: Walkthrough
@@ -20,6 +20,15 @@ Create a walkthrough of the branch by analyzing all updated tests. For each asse
 6. Within each test case, break down the code into logical steps: setup, actions, and assertions.
 7. For each step, identify the corresponding application change in the diff and explain the intention.
 8. When naming application classes, modules, or methods, locate their definitions under `app/` (search/read as needed) and include a navigable citation (see **Application code references** below).
+
+## Deliverable
+
+When the walkthrough is complete, **persist the full markdown document to disk** in the **shell current working directory** (`pwd` for the session—typically the repository root in Cursor). Use a file write (for example the **Write** tool) with a **relative path** `./<basename>.md` so the file is created in that directory.
+
+- After saving, briefly confirm the path (relative or absolute) in your reply.
+- **Filename:** follow @rules/plan-artifact-filenames.mdc for the basename (walkthroughs are in scope there). Use descriptive slug `branch-walkthrough` for the hyphenated portion after any ticket prefix (e.g. `ATC-2363-branch-walkthrough.md` when the branch supplies `ATC-2363`).
+
+Citation paths inside the document (**Source:** lines, navigable fences) stay **relative to the repository root** as described under **Output Format**; the saved file usually lives at that same root when `pwd` is the repo.
 
 ## Output Format
 
