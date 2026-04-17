@@ -1,5 +1,7 @@
 ---
-description: Git commit subject line format (ticket, type, message)
+description: >-
+  Git commit format: TICKET TYPE subject (~72 chars); optional body as tight
+  bullets; brief commit-shaped summaries in chat when summarizing commits.
 alwaysApply: true
 ---
 
@@ -28,4 +30,16 @@ ATC-2363 MODEL: Add telemarketer associations on computed and fact models
 
 **Do not** switch to unrelated formats (e.g. Conventional Commits `feat:` only) unless the user explicitly requests that repo’s alternate convention for this task.
 
-**Body:** Add a blank line after the subject if you need bullets or context; keep the subject line compliant with the format above.
+## Brevity
+
+- For **commit messages** and for **summaries of a commit** in chat, treat the **subject as the whole story** when it can stand alone.
+- Avoid multi-paragraph prose unless the user asks for more depth.
+- If you need more than the subject, prefer a short **body** (see below)—about **3–6 tight bullets** of what changed, not narrative.
+
+## Body (optional)
+
+- Add a **blank line** after the subject, then **bullets** starting with `- `.
+- Each bullet: **imperative**, narrow scope (area or file + behavior). No trailing period unless a full sentence is required.
+- **Omit the body** when the subject is enough; keep the subject line compliant with the format above.
+
+When wrapping up right after a commit, mirror this style (**subject + optional bullets**), not a mini–pull-request essay.
