@@ -3,6 +3,7 @@ name: gsm-walkthrough-outline
 description: >-
   Builds a branch walkthrough outline from test diffs: Meta, critical
   infrastructure, per-flow Setup/Action/Assert, and supporting test changes.
+  Saves as *-branch-walkthrough-outline.md; run gsm-walkthrough next for citations.
   Use when the user wants a reorganizable outline (nested list or markdown)
   before a full GSM walkthrough, or when they ask for a branch walkthrough
   outline, test-to-app map at high level, or /gsm-walkthrough-outline.
@@ -66,12 +67,12 @@ Factories, test support, schema-only comment updates in tests, harness refactors
 - **Flows ≠ infrastructure** — A dedicated endpoint or UI path (e.g. lookups for a dropdown) is a **vertical slice**, not necessarily “infrastructure,” even when untested.
 - **Action vs Assert** — **Action** describes what the test drives and what the server does on the way in (including the PR’s persistence chain). **Assert** describes what is observed afterward; **response shape** belongs here and maps naturally to **serialization/templates**.
 - **Tight coupling to the PR** — Prefer tracing **controller (or API) changes → the domain/reporting layer the ticket cares about** over listing every model the stack touches.
-- **Outline vs full walkthrough** — This artifact is for structure and intent; the full `gsm-walkthrough` skill adds per-step citations, fences, and deeper **App change** prose.
+- **Outline vs full walkthrough** — This artifact is for structure and intent; the full `gsm-walkthrough` skill adds per-step citations, fences, and deeper **App change** prose. Save this outline as `{TICKET}-branch-walkthrough-outline.md` (slug **`branch-walkthrough-outline`**); the full walkthrough uses `{TICKET}-branch-walkthrough.md` so both can sit in the same directory.
 
 ## Deliverable
 
 - Write the outline to disk in the **current working directory** (typically the repo root) as `./<basename>.md`.
-- **Filename:** follow the project’s plan-artifact naming rules when a ticket id is available (e.g. `{TICKET}-branch-walkthrough.md` with a descriptive slug such as `branch-walkthrough`).
+- **Filename:** follow the project’s plan-artifact naming rules when a ticket id is available. Use descriptive slug **`branch-walkthrough-outline`** (e.g. `ATC-2363-branch-walkthrough-outline.md` when the branch supplies `ATC-2363`). The sibling full walkthrough from `gsm-walkthrough` uses slug **`branch-walkthrough`**.
 - Confirm the saved path in the reply.
 
 ## Optional: outline-only reply

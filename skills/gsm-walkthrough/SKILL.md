@@ -1,32 +1,49 @@
 ---
 name: gsm-walkthrough
 description: >-
-  Create a branch walkthrough from updated tests: map assertions and interactions
-  to application changes, with navigable Cursor citations and visible Source/Lines
-  for HTML export; write the result to a markdown file in the current working directory.
+  Full branch walkthrough from updated tests: expand gsm-walkthrough-outline (or
+  standalone) with navigable Cursor citations, visible Source/Lines for HTML export,
+  and App change prose; write markdown to the current working directory. Prefer
+  running gsm-walkthrough-outline first when both outline and walkthrough are wanted.
 ---
 
 # GSM: Walkthrough
 
-Create a walkthrough of the branch by analyzing all updated tests. For each assertion or critical interaction, identify the corresponding change in the application and explain the possible intention behind the change.
+Create a walkthrough of the branch by analyzing updated tests. For each assertion or critical interaction, identify the corresponding application change and explain the likely intention.
+
+## Relationship to gsm-walkthrough-outline
+
+When the user wants **both** artifacts, run **`gsm-walkthrough-outline` first**. That skill owns **discovery rules**, **Meta**, **critical vs supporting infrastructure**, **feature flows**, and **principles** (flows vs infrastructure, Action vs Assert, tight coupling to the PR). This skill **adds** line-accurate **`Source:` / `Lines:`** lines, **navigable citation fences**, and deeper **App change** paragraphs citing `app/` code.
+
+**Using an outline file**
+
+- If the user gives a path to an outline markdown file, use it as the **skeleton**: section order, scope note, flow boundaries, narrative focus.
+- Otherwise, if the shell cwd contains a file matching plan-artifact naming with slug **`branch-walkthrough-outline`** (e.g. `ATC-2363-branch-walkthrough-outline.md` when the branch supplies `ATC-2363`), treat it as the outline when present.
+- Reconcile with current `git diff`; if the branch changed since the outline was written, prefer the diff.
+
+**No outline**
+
+- Follow **Instructions** and **Output structure** in [`gsm-walkthrough-outline`](/home/gsmendoza/.cursor/skills/gsm-walkthrough-outline/SKILL.md) for base branch, test delta, app delta, and grouping. Do not duplicate that skill’s prose here.
+
+**Why read whole files**
+
+- The outline may rely on **`git diff`** alone; this skill needs **exact line numbers** for fences. Read **full** changed test-related files (and harness/support when cited) where citations apply.
 
 ## Instructions
 
-1. Find the base branch (e.g. `main` or `master`).
-2. Run `git diff <base_branch> -- test/` to list changed files under the test directory (paths relative to the repo root). Default to the whole `test/` tree so factories, `ApplicationSystemTestCase`, and tests outside `test/system/` are included. You may narrow the path when the branch truly only touches a subtree, but **do not** omit shared harness or factory files that support the feature.
-3. Resolve the absolute repository root **once** before writing citations (prefer `git rev-parse --show-toplevel`; if git is unavailable and the session cwd is the repository root, use the normalized absolute `pwd`). Use this root to build every **Source:** link. Read the full changed test-related files so you can cite exact line ranges. **Do not** put file paths or line ranges in **headings** (`#`, `##`, `####`); use citations in the body as specified under **Visible citations**, **Application code references**, and **Test Walkthroughs**.
-4. For each changed file that defines a **test class with examples** (typically `class SomethingTest` in `test/**/*_test.rb`), walk through each new or modified test case.
-5. For changed files under `test/` that are **not** a test class with examples (e.g. `ApplicationSystemTestCase`, factories under `test/factories/`, `test/support/**`), do **not** add a `# <TestClassName>` section. Summarize them under **Supporting Infrastructure Changes** (optionally grouped as "Test harness / factories") using the same citation rules.
-6. Within each test case, break down the code into logical steps: setup, actions, and assertions.
-7. For each step, identify the corresponding application change in the diff and explain the intention.
-8. When naming application classes, modules, or methods, locate their definitions under `app/` (search/read as needed) and include a navigable citation (see **Application code references** below).
+1. **Discovery** — Same base branch and diff scope as [`gsm-walkthrough-outline`](/home/gsmendoza/.cursor/skills/gsm-walkthrough-outline/SKILL.md): include factories, `ApplicationSystemTestCase`, `test/support/**`, and tests outside `test/system/` unless the branch truly only touches a subtree (do not drop shared harness that supports the feature).
+2. **Repository root** — Resolve once before writing citations (`git rev-parse --show-toplevel`, or normalized absolute `pwd` if cwd is the repo root). Build every **`Source:`** link from this root.
+3. **Read files** — Read full changed test and harness files as needed for exact **`Lines:`** ranges and fences.
+4. **Test classes** — For each changed file that defines a **test class with examples** (`test/**/*_test.rb`), walk through each new or modified test case using **Setup / Action / Assert** (see **Output Format**). If an outline lists flows or cases, follow that order unless the diff disagrees.
+5. **Non-class test paths** — For changed `test/` paths that are **not** a test class with examples (factories, `test/support/**`, etc.), do **not** add a duplicate `# <TestClassName>` section per file; summarize under **Supporting Infrastructure Changes** with the same citation rules.
+6. **Application symbols** — When naming classes, modules, or methods, locate definitions under `app/` (search/read as needed) and include navigable citations (**Application code references**).
 
 ## Deliverable
 
-When the walkthrough is complete, **persist the full markdown document to disk** in the **shell current working directory** (`pwd` for the session—typically the repository root in Cursor). Use a file write (for example the **Write** tool) with a **relative path** `./<basename>.md` so the file is created in that directory.
+When the walkthrough is complete, **persist the full markdown document to disk** in the **shell current working directory** (`pwd`—typically the repository root). Use a file write (for example the **Write** tool) with a **relative path** `./<basename>.md`.
 
 - After saving, briefly confirm the path (relative or absolute) in your reply.
-- **Filename:** follow @rules/plan-artifact-filenames.mdc for the basename (walkthroughs are in scope there). Use descriptive slug `branch-walkthrough` for the hyphenated portion after any ticket prefix (e.g. `ATC-2363-branch-walkthrough.md` when the branch supplies `ATC-2363`).
+- **Filename:** follow @rules/plan-artifact-filenames.mdc. Use descriptive slug **`branch-walkthrough`** for the full document (e.g. `ATC-2363-branch-walkthrough.md` when the branch supplies `ATC-2363`). The **outline** sibling uses slug **`branch-walkthrough-outline`** so both files can live in the same directory.
 
 **Source:** lines use **absolute** paths as markdown link text and `file://` URLs so readers can **right-click → Copy link** and paste into an editor Open File dialog. **Navigable citation fences** stay **repo-relative** paths as under **Output Format**; the saved file usually lives at the repo root when `pwd` is the repo.
 
@@ -65,8 +82,8 @@ Whenever you refer to **application** code (models, services, controllers, queri
 
 ### Test Walkthroughs (middle)
 
-- Use **`# <TestClassName>`** as the top-level heading (one section per test class). Do **not** use the test file path in headings.
-- Use **`## <test description / name>`** as the second-level heading for each test case. Do **not** include line numbers or file paths in any walkthrough headings.
+- Use **`# <TestClassName>`** as the top-level heading (one section per test class).
+- Use **`## <test description / name>`** as the second-level heading for each test case.
 - Each test case is broken into labeled steps with a code block followed by an explanation. Use `#### Setup:`, `#### Action:`, and `#### Assert:` prefixes to label each step.
 - For **test** code blocks, use the same pattern as application code: **Visible citations** (`**Source:**`, `**Lines:**`) immediately before the fence, then the **` ```startLine:endLine:filepath `** navigable fence with the exact lines from the test file.
 - When a step has a corresponding application change, add an **App change:** paragraph below the explanation, with **Visible citations** and **navigable citations** for the application symbols you name.
