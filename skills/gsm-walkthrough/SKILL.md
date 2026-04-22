@@ -1,8 +1,8 @@
 ---
 name: gsm-walkthrough
 description: >-
-  Full branch walkthrough from updated tests: expand gsm-walkthrough-outline (or
-  standalone) with navigable Cursor citations, visible Source/Lines for HTML export,
+  Full branch walkthrough from updated tests: follow gsm-walkthrough-outline
+  structure with navigable Cursor citations, visible Source/Lines for HTML export,
   and App change prose; write markdown to the current working directory. Prefer
   running gsm-walkthrough-outline first when both outline and walkthrough are wanted.
 ---
@@ -11,19 +11,21 @@ description: >-
 
 Create a walkthrough of the branch by analyzing updated tests. For each assertion or critical interaction, identify the corresponding application change and explain the likely intention.
 
+**Document shape is not fixed here**—it comes from the **outline** ([`gsm-walkthrough-outline`](/home/gsmendoza/.cursor/skills/gsm-walkthrough-outline/SKILL.md)): section order, flow boundaries, where cross-cutting notes sit (usually inside the main flow), **Unrelated changes**, and per-case **Setup** / **Action** (**Request** / **Response**) / **Assert**. This skill adds line-accurate **`Source:` / `Lines:`**, **navigable citation fences**, and **App change** paragraphs citing `app/` code.
+
 ## Relationship to gsm-walkthrough-outline
 
-When the user wants **both** artifacts, run **`gsm-walkthrough-outline` first**. That skill owns **discovery rules**, **Meta**, **critical vs supporting infrastructure**, **feature flows**, and **principles** (flows vs infrastructure, Action vs Assert, tight coupling to the PR). This skill **adds** line-accurate **`Source:` / `Lines:`** lines, **navigable citation fences**, and deeper **App change** paragraphs citing `app/` code.
+When the user wants **both** artifacts, run **`gsm-walkthrough-outline` first**. That skill owns **discovery rules**, **Meta**, **feature flows** (main flow first), per-case structure, **Unrelated changes**, and grouping principles.
 
 **Using an outline file**
 
-- If the user gives a path to an outline markdown file, use it as the **skeleton**: section order, scope note, flow boundaries, narrative focus.
+- If the user gives a path to an outline markdown file, use it as the **skeleton**: headings, section order, flow boundaries, narrative focus, and any **Request** / **Response** split under **Action**.
 - Otherwise, if the shell cwd contains a file matching plan-artifact naming with slug **`branch-walkthrough-outline`** (e.g. `ATC-2363-branch-walkthrough-outline.md` when the branch supplies `ATC-2363`), treat it as the outline when present.
 - Reconcile with current `git diff`; if the branch changed since the outline was written, prefer the diff.
 
 **No outline**
 
-- Follow **Instructions** and **Output structure** in [`gsm-walkthrough-outline`](/home/gsmendoza/.cursor/skills/gsm-walkthrough-outline/SKILL.md) for base branch, test delta, app delta, and grouping. Do not duplicate that skill’s prose here.
+- Before writing the walkthrough, apply the **Output structure** from [`gsm-walkthrough-outline`](/home/gsmendoza/.cursor/skills/gsm-walkthrough-outline/SKILL.md) (same as producing an outline in the same pass): **Meta**, flows with **main flow first**, per-case **Setup** / **Action** / **Assert**, **Unrelated changes**. Do **not** substitute a legacy template (e.g. global “critical” vs “supporting” sections) unless the user explicitly asks for that shape.
 
 **Why read whole files**
 
@@ -34,8 +36,8 @@ When the user wants **both** artifacts, run **`gsm-walkthrough-outline` first**.
 1. **Discovery** — Same base branch and diff scope as [`gsm-walkthrough-outline`](/home/gsmendoza/.cursor/skills/gsm-walkthrough-outline/SKILL.md): include factories, `ApplicationSystemTestCase`, `test/support/**`, and tests outside `test/system/` unless the branch truly only touches a subtree (do not drop shared harness that supports the feature).
 2. **Repository root** — Resolve once before writing citations (`git rev-parse --show-toplevel`, or normalized absolute `pwd` if cwd is the repo root). Build every **`Source:`** link from this root.
 3. **Read files** — Read full changed test and harness files as needed for exact **`Lines:`** ranges and fences.
-4. **Test classes** — For each changed file that defines a **test class with examples** (`test/**/*_test.rb`), walk through each new or modified test case using **Setup / Action / Assert** (see **Output Format**). If an outline lists flows or cases, follow that order unless the diff disagrees.
-5. **Non-class test paths** — For changed `test/` paths that are **not** a test class with examples (factories, `test/support/**`, etc.), do **not** add a duplicate `# <TestClassName>` section per file; summarize under **Supporting Infrastructure Changes** with the same citation rules.
+4. **Test cases** — Walk each new or modified test case the outline calls out (or that the diff implies when there is no outline). **Order** matches the outline; **within** each case, follow the outline’s **Setup** / **Action** / **Assert** steps—and **Action** sub-bullets **Request** then **Response** when the outline uses that split. If the outline groups by flow rather than by test class, keep that grouping; if it lists cases under a class name, mirror that. Use **Output Format** below for citations and step layout, not for imposing top-level document sections.
+5. **Non-class test paths** — For changed `test/` paths that are **not** a test class with examples (factories, `test/support/**`, etc.), do **not** invent a parallel `# <TestClassName>` tree unless the outline does. Place harness notes where the outline puts them (e.g. **main flow**, **Unrelated changes**). With no outline, follow the outline skill’s placement (fold into the relevant flow or **Unrelated changes**).
 6. **Application symbols** — When naming classes, modules, or methods, locate definitions under `app/` (search/read as needed) and include navigable citations (**Application code references**).
 
 ## Deliverable
@@ -49,18 +51,18 @@ When the walkthrough is complete, **persist the full markdown document to disk**
 
 ## Output Format
 
-Use the following structure:
+### Document structure (outline-driven)
 
-### Critical Infrastructure Changes (at the start)
+- **Mirror the outline’s headings and order.** Promote or demote markdown heading levels only as needed so the saved file has a sensible hierarchy (e.g. one top-level `#` document title is optional; avoid skipping levels).
+- Expand each outline bullet into prose plus **Visible citations**, fences, and **App change** paragraphs as needed. Do **not** insert extra top-level buckets (such as “Critical infrastructure” / “Supporting infrastructure”) unless they appear in the outline or the user asked for them.
+- When there is **no** outline file, structure the document like a written-out [`gsm-walkthrough-outline`](/home/gsmendoza/.cursor/skills/gsm-walkthrough-outline/SKILL.md) artifact (Meta → flows → Unrelated), still using the mechanical rules below for each test case.
 
-Before the test walkthroughs, add a **Critical Infrastructure Changes** section listing major cross-cutting changes that are necessary for the feature but don't map directly to a single test assertion. This includes:
+### Per-step layout (within each test case)
 
-- Database migrations (new columns, indexes, table changes)
-- Dependency updates (new gems, version bumps)
-- Configuration changes (feature flags, environment settings)
-- Major model relationship changes (new associations, foreign keys)
-
-For each item, briefly explain what changed and why it's needed. When you name a concrete class, module, or migration-backed model, add a **navigable citation** to its definition (same rules as **Application code references**), including **Visible citations** before each code block.
+- Break each case into labeled steps: **`#### Setup:`**, **`#### Action:`**, and **`#### Assert:`** (or the labels the outline uses). If the outline splits **Action** into **Request** and **Response**, use **`#### Action — Request:`** and **`#### Action — Response:`** (or equivalent clear subheadings).
+- For **test** code blocks, use **Visible citations** (`**Source:**`, `**Lines:**`) immediately before the fence, then the **` ```startLine:endLine:filepath `** navigable fence with the exact lines from the test file.
+- When a step has a corresponding application change, add an **App change:** paragraph below the explanation, with **Visible citations** and **navigable citations** for the application symbols you name.
+- Separate every step with a horizontal rule (`---`).
 
 ### Application code references
 
@@ -76,26 +78,15 @@ Whenever you refer to **application** code (models, services, controllers, queri
 **Navigable citations (Cursor)**
 
 - On its own line after **Source:** / **Lines:**, open a fenced block using the **` ```startLine:endLine:filepath `** form (path **relative to the repo root**, e.g. `app/services/foo.rb`). Include a minimal snippet (e.g. the `class` / `module` line, or the `def` line and signature).
-- Apply at the **first substantive mention** of each app class or module within a walkthrough section (per test case or infrastructure subsection).
+- Apply at the **first substantive mention** of each app class or module within the current walkthrough section (per test case or outline subsection).
 - For every **App change:** paragraph that names a specific method (e.g. `FooController#update`, `BarService#call`), include a citation to that method's definition (`def ...`).
 - Prose may still name the constant normally; the citation block is what makes it clickable in Cursor. **Do not** put `file://` URLs or absolute host paths inside citation **fences**—keep fences repo-relative only. **`file://` markdown links are allowed on the `**Source:**` line** for copy-link and viewers that support local file URLs.
-
-### Test Walkthroughs (middle)
-
-- Use **`# <TestClassName>`** as the top-level heading (one section per test class).
-- Use **`## <test description / name>`** as the second-level heading for each test case.
-- Each test case is broken into labeled steps with a code block followed by an explanation. Use `#### Setup:`, `#### Action:`, and `#### Assert:` prefixes to label each step.
-- For **test** code blocks, use the same pattern as application code: **Visible citations** (`**Source:**`, `**Lines:**`) immediately before the fence, then the **` ```startLine:endLine:filepath `** navigable fence with the exact lines from the test file.
-- When a step has a corresponding application change, add an **App change:** paragraph below the explanation, with **Visible citations** and **navigable citations** for the application symbols you name.
-- Separate every step with a horizontal rule (`---`).
-
-### Supporting Infrastructure Changes (at the end)
-
-After all test walkthroughs, add a **Supporting Infrastructure Changes** section listing only noteworthy secondary or optional changes -- things that are nice-to-have, improve consistency, or support edge cases but are not strictly required for the core feature to work (e.g. UUID refresh callbacks, post-merge backfill jobs, test helper refactors, factories, base test case flag toggles). Use the same **Application code references** rules (including **Visible citations**) when naming app code or citing test harness files.
 
 **Convention:** **`Source:`** uses full absolute paths as link text and `file://` URLs; **navigable fences** use paths relative to the repository root; **Lines** ranges are inclusive.
 
 ## Example
+
+The fragment below shows **citations and Setup / Action / Assert** only. **Headings** (`# TerminationsTest`, etc.) illustrate one possible outline shape (grouping by test class); if the outline groups by **flow**, use flow headings instead and keep the same fence and **App change** rules.
 
 (Placeholder repo root `/home/you/repos/example-app`—replace with the real absolute root from `git rev-parse --show-toplevel` when generating a walkthrough.)
 
@@ -205,7 +196,3 @@ class Retentions::RetentionTaskItems::TerminationQuery
 ```
 
 ---
-
-## Final Section
-
-End with **Supporting Infrastructure Changes** listing only noteworthy secondary or optional changes (see Output Format above).

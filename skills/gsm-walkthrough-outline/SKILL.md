@@ -1,8 +1,8 @@
 ---
 name: gsm-walkthrough-outline
 description: >-
-  Builds a branch walkthrough outline from test diffs: Meta, critical
-  infrastructure, per-flow Setup/Action/Assert, and supporting test changes.
+  Builds a branch walkthrough outline from test diffs: Meta, main flow first,
+  per-flow Setup / Action (Request + Response) / Assert, and unrelated changes.
   Saves as *-branch-walkthrough-outline.md; run gsm-walkthrough next for citations.
   Use when the user wants a reorganizable outline (nested list or markdown)
   before a full GSM walkthrough, or when they ask for a branch walkthrough
@@ -24,8 +24,9 @@ This is **not** the full walkthrough: skip exhaustive **Source:/Lines:** blocks 
 
 1. **Base branch** — Resolve the comparison base (e.g. `main` / `master`) with `git merge-base` or team convention.
 2. **Test delta** — Run `git diff <base> -- test/` (list and optionally patch). Prefer identifying **new or modified** test cases via the diff, not by re-reading entire files, so the outline stays tied to what actually changed.
-3. **App delta (high level)** — Skim `git diff <base> --` for non-test paths that matter to the feature: migrations, views/materialized views, serializers/templates, controllers, domain models. Use this only to name **infrastructure** and **per-flow** behavior; do not duplicate the full diff in the outline.
+3. **App delta (high level)** — Skim `git diff <base> --` for non-test paths that matter to the feature: migrations, views/materialized views, serializers/templates, controllers, domain models. Use this only to name behavior and tie it to flows; do not duplicate the full diff in the outline.
 4. **Repository root** — Resolve once with `git rev-parse --show-toplevel` for any paths you mention in the saved file.
+5. **Main flow first** — Explicitly decide which flow is the **main** flow for the branch (the primary user- or API-meaningful path the ticket centers on). List that flow **first** among feature flows. Secondary flows follow.
 
 ## Output structure
 
@@ -34,39 +35,66 @@ Use headings and bullets the author can rearrange. A practical template:
 ### Meta
 
 - Base branch, current branch, and a one-line **scope note** (what the test diff actually covers vs what exists only in app code).
-
-### Critical infrastructure changes
-
-List **horizontal** work that many assertions depend on: schema/migrations, view or snapshot refreshes, dependency or config toggles, **shared** domain shape (e.g. columns projected through reporting or activity pipelines).
-
-Keep this for **truly cross-cutting** mechanics. Do **not** park every feature here.
+- **Main flow** — One line naming which flow section is the main one and why (ticket thread / dominant test).
 
 ### Feature flows (vertical slices)
 
 For each **user- or API-meaningful flow** (e.g. a specific endpoint, import path, dropdown), add a section **even if there are no tests** on this branch. State that the flow is **untested** or **manual** when applicable.
 
-Within each flow that has tests, for **each new or materially changed** test case:
+**Order:** Put the **main flow** first. Order remaining flows by importance or dependency.
 
-- **Setup** — Data and parameters the test prepares.
-- **Action** — The test’s driving interaction (e.g. HTTP request, job, click) plus the **application thread that matters for the PR**:
-  - Entry points: controller/route, strong params, service or job if that is where the branch focuses.
-  - **Primary narrative:** emphasize how the change propagates along the **domain thread the PR cares about** (for example: persisted attributes on core records → activity or reporting projections → serializers). **De-emphasize** incidental models unless they are part of the PR story.
-  - **Reads vs writes:** state what is **persisted or updated** vs what is **loaded for the response** when that distinction helps.
-- **Assert** — Split when useful:
-  - **Response / serialization:** assertions on the parsed response body; tie them explicitly to **templates or serializers** that build that JSON/HTML (these checks are effectively exercising the view/serialization layer).
-  - **Persistence / side effects:** direct checks on records, mail, jobs, etc., when present.
+**Cross-cutting work belongs inside flows** — Do **not** use separate top-level sections for “critical” or “supporting” infrastructure. Fold schema/migrations, materialized views, config toggles, shared domain shape, factories, test harness refactors, and similar into the **first flow they materially apply to**, which is **usually the main flow**. When something truly serves multiple flows, mention it under the main flow (or earliest flow) and **cross-reference** briefly in later flows if a one-line reminder helps.
 
-Add a short **Narrative focus** note at the document or section level if the branch has a clear **primary story** (e.g. “controller/permitted params → policy rows → activity views → revenue models”). In **Action**, foreground that chain; mention other touched models only when relevant.
+Within each flow that has tests, for **each new or materially changed** test case, use this sequence:
 
-### Supporting infrastructure changes
+#### a. Setup
 
-Factories, test support, schema-only comment updates in tests, harness refactors—**without** new test cases. Group briefly.
+- Data and parameters the test prepares.
+- When setup **creates or loads records**, surface **model and database** changes that affect that creation (migrations, new columns, validations, associations) **here** if they apply to this setup—not as a detached “infrastructure” list.
+
+#### b. Action
+
+Two parts; describe app changes in the **order** below when tracing the thread (skip layers that do not exist for this stack, e.g. no frontend for a pure API test).
+
+**i. Request (outside in)** — Data received and processed inbound:
+
+1. Frontend (if in scope)
+2. Views / templates
+3. Controllers (routes, strong params)
+4. Jobs
+5. Services, queries
+6. Models
+7. Database, infrastructure (writes, constraints, external systems)
+
+**ii. Response (inside out)** — Data assembled and returned outbound:
+
+1. Database, infrastructure (reads, snapshots)
+2. Models
+3. Services, queries
+4. Jobs
+5. Controllers
+6. Views / templates
+7. Frontend (if in scope)
+
+**Narrative focus:** Emphasize the **domain thread the PR cares about** (e.g. permitted params → persisted attributes → projections → serializers). **De-emphasize** incidental layers unless they are part of the ticket story. When useful, call out **persisted/updated** vs **loaded only for the response**.
+
+#### c. Assert
+
+- Assertions usually **verify the response** (body, status, headers) and tie to **templates or serializers** when relevant.
+- When present, add **persistence / side effects** (records, mail, enqueued jobs) as additional assert bullets.
+
+Add a short **Narrative focus** note at the flow level when the branch has a clear primary chain through the stack.
+
+### Unrelated changes
+
+- A section for **diff-backed changes that do not map** to any feature flow above (orphan refactors, tooling-only edits, docs with no test anchor, etc.). Keep it brief; prefer empty if everything ties to a flow.
 
 ## Principles (lessons)
 
-- **Flows ≠ infrastructure** — A dedicated endpoint or UI path (e.g. lookups for a dropdown) is a **vertical slice**, not necessarily “infrastructure,” even when untested.
-- **Action vs Assert** — **Action** describes what the test drives and what the server does on the way in (including the PR’s persistence chain). **Assert** describes what is observed afterward; **response shape** belongs here and maps naturally to **serialization/templates**.
-- **Tight coupling to the PR** — Prefer tracing **controller (or API) changes → the domain/reporting layer the ticket cares about** over listing every model the stack touches.
+- **Main flow leads** — Readers should see the ticket’s center of gravity first; secondary flows and edge paths follow.
+- **Infrastructure lives in flows** — Horizontal work (migrations, shared columns, factories) anchors under the flow it enables, typically the main flow, instead of isolated “critical/supporting” buckets.
+- **Action vs Assert** — **Action** traces request then response along the stack; **Assert** records what the test observes afterward.
+- **Tight coupling to the PR** — Prefer the controller/API → domain/reporting chain the ticket cares about over listing every touched file.
 - **Outline vs full walkthrough** — This artifact is for structure and intent; the full `gsm-walkthrough` skill adds per-step citations, fences, and deeper **App change** prose. Save this outline as `{TICKET}-branch-walkthrough-outline.md` (slug **`branch-walkthrough-outline`**); the full walkthrough uses `{TICKET}-branch-walkthrough.md` so both can sit in the same directory.
 
 ## Deliverable
