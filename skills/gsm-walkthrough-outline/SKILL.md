@@ -45,6 +45,8 @@ For each **user- or API-meaningful flow** (e.g. a specific endpoint, import path
 
 **Cross-cutting work belongs inside flows** — Do **not** use separate top-level sections for “critical” or “supporting” infrastructure. Fold schema/migrations, materialized views, config toggles, shared domain shape, factories, test harness refactors, and similar into the **first flow they materially apply to**, which is **usually the main flow**. When something truly serves multiple flows, mention it under the main flow (or earliest flow) and **cross-reference** briefly in later flows if a one-line reminder helps.
 
+**One bullet per locus (split dense cross-cutting)** — When several files or symbols share one story in a flow (especially the **main flow**), prefer **nested bullets** keyed by path or `Class#method` (one intent line each) over a single sentence that chains many behaviors with semicolons. That keeps the outline scannable and maps **1:1** to walkthrough citations later.
+
 Within each flow that has tests, for **each new or materially changed** test case, use this sequence:
 
 #### a. Setup
@@ -96,6 +98,7 @@ Add a short **Narrative focus** note at the flow level when the branch has a cle
 - **Action vs Assert** — **Action** traces request then response along the stack; **Assert** records what the test observes afterward.
 - **Tight coupling to the PR** — Prefer the controller/API → domain/reporting chain the ticket cares about over listing every touched file.
 - **Outline vs full walkthrough** — This artifact is for structure and intent; the full `gsm-walkthrough` skill adds per-step citations, fences, and deeper **App change** prose. Save this outline as `{TICKET}-branch-walkthrough-outline.md` (slug **`branch-walkthrough-outline`**); the full walkthrough uses `{TICKET}-branch-walkthrough.md` so both can sit in the same directory.
+- **Handoff to gsm-walkthrough** — When expanding to the full document, place prose **directly after each** app citation it describes; follow that skill’s **Prose next to citations** subsection (avoid a single pre-stack paragraph for many fences).
 
 ## Deliverable
 

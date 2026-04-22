@@ -55,6 +55,7 @@ When the walkthrough is complete, **persist the full markdown document to disk**
 
 - **Mirror the outline’s headings and order.** Promote or demote markdown heading levels only as needed so the saved file has a sensible hierarchy (e.g. one top-level `#` document title is optional; avoid skipping levels).
 - Expand each outline bullet into prose plus **Visible citations**, fences, and **App change** paragraphs as needed. Do **not** insert extra top-level buckets (such as “Critical infrastructure” / “Supporting infrastructure”) unless they appear in the outline or the user asked for them.
+- When the outline lists **cross-cutting** points or **multiple files** for one flow, expand them using **per-citation** prose: **immediately after each** app `**Source:**` / fence triplet for the snippet that bullet describes—not one long paragraph before a run of unrelated fences (see **Prose next to citations** below).
 - When there is **no** outline file, structure the document like a written-out [`gsm-walkthrough-outline`](/home/gsmendoza/.cursor/skills/gsm-walkthrough-outline/SKILL.md) artifact (Meta → flows → Unrelated), still using the mechanical rules below for each test case.
 
 ### Per-step layout (within each test case)
@@ -81,6 +82,14 @@ Whenever you refer to **application** code (models, services, controllers, queri
 - Apply at the **first substantive mention** of each app class or module within the current walkthrough section (per test case or outline subsection).
 - For every **App change:** paragraph that names a specific method (e.g. `FooController#update`, `BarService#call`), include a citation to that method's definition (`def ...`).
 - Prose may still name the constant normally; the citation block is what makes it clickable in Cursor. **Do not** put `file://` URLs or absolute host paths inside citation **fences**—keep fences repo-relative only. **`file://` markdown links are allowed on the `**Source:**` line** for copy-link and viewers that support local file URLs.
+
+### Prose next to citations
+
+When several **app** citations appear in sequence in the same section (typical in a **flow intro** or a stretch of cross-cutting code):
+
+- Place **short explanatory prose immediately after each navigable fence**, scoped only to that snippet (a bold one-line label is fine). Do **not** write one paragraph that describes behavior across many files and then stack fences—the pairing is lost when scrolling or exporting to HTML.
+- You may use **at most one** section-level orienter **before** the first fence in that run when it applies equally to **all** following blocks (e.g. “No migrations on this surface”) and **does not** duplicate the per-fence text.
+- If [`gsm-walkthrough-outline`](/home/gsmendoza/.cursor/skills/gsm-walkthrough-outline/SKILL.md) lists cross-cutting bullets, **split** them across the matching citations when expanding; do not paste the full list verbatim above only the first fence.
 
 **Convention:** **`Source:`** uses full absolute paths as link text and `file://` URLs; **navigable fences** use paths relative to the repository root; **Lines** ranges are inclusive.
 
