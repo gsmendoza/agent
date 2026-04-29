@@ -3,10 +3,11 @@ name: gsm-walkthrough-outline
 description: >-
   Builds a branch walkthrough outline from test diffs: Meta, main flow first,
   per-flow Setup / Action (Request + Response) / Assert, and unrelated changes.
-  Saves as *-branch-walkthrough-outline.md; run gsm-walkthrough next for citations.
-  Use when the user wants a reorganizable outline (nested list or markdown)
-  before a full GSM walkthrough, or when they ask for a branch walkthrough
-  outline, test-to-app map at high level, or /gsm-walkthrough-outline.
+  Saves as *-branch-walkthrough-outline.md then applies gsm-save (same body under
+  /tmp automatically); run gsm-walkthrough next for citations. Use when the user
+  wants a reorganizable outline (nested list or markdown) before a full GSM
+  walkthrough, or when they ask for a branch walkthrough outline, test-to-app map
+  at high level, or /gsm-walkthrough-outline.
 ---
 
 # GSM: Walkthrough outline
@@ -104,8 +105,8 @@ Add a short **Narrative focus** note at the flow level when the branch has a cle
 
 - Write the outline to disk in the **current working directory** (typically the repo root) as `./<basename>.md`.
 - **Filename:** follow the project’s plan-artifact naming rules when a ticket id is available. Use descriptive slug **`branch-walkthrough-outline`** (e.g. `ATC-2363-branch-walkthrough-outline.md` when the branch supplies `ATC-2363`). The sibling full walkthrough from `gsm-walkthrough` uses slug **`branch-walkthrough`**.
-- Confirm the saved path in the reply.
+- **Automatic [`gsm-save`](/home/gsmendoza/.cursor/skills/gsm-save/SKILL.md)** — Right after the repo file is written, **write the same full markdown body** again under **`/tmp`** using [`gsm-save`](/home/gsmendoza/.cursor/skills/gsm-save/SKILL.md) path and timestamp rules: e.g. **`/tmp/gsm-save-{YYYYMMDD}-{HHMMSS}-branch-walkthrough-outline.md`**. Confirm **both** the repo-relative path and the **`/tmp`** absolute path in the reply (one short line each is enough).
 
 ## Optional: outline-only reply
 
-If the user asks for **only** an outline in chat (no file), render it as a **nested list** for easy copy and reorganize; still offer to persist the same content to a file if they want it recorded.
+If the user asks for **only** an outline in chat (no repo file), render it as a **nested list** for easy copy and reorganize; still apply **[`gsm-save`](/home/gsmendoza/.cursor/skills/gsm-save/SKILL.md)** by writing that substantive outline markdown to **`/tmp/gsm-save-{YYYYMMDD}-{HHMMSS}-branch-walkthrough-outline.md`**, and confirm that path. Offer to persist the same content under the repo root filename if they want it recorded there too.

@@ -3,8 +3,9 @@ name: gsm-walkthrough
 description: >-
   Full branch walkthrough from updated tests: follow gsm-walkthrough-outline
   structure with navigable Cursor citations, visible Source/Lines for HTML export,
-  and App change prose; write markdown to the current working directory. Prefer
-  running gsm-walkthrough-outline first when both outline and walkthrough are wanted.
+  and App change prose; write markdown to the current working directory; then apply
+  gsm-save (same body under /tmp automatically). Prefer running gsm-walkthrough-outline
+  first when both outline and walkthrough are wanted.
 ---
 
 # GSM: Walkthrough
@@ -46,6 +47,8 @@ When the walkthrough is complete, **persist the full markdown document to disk**
 
 - After saving, briefly confirm the path (relative or absolute) in your reply.
 - **Filename:** follow @rules/plan-artifact-filenames.mdc. Use descriptive slug **`branch-walkthrough`** for the full document (e.g. `ATC-2363-branch-walkthrough.md` when the branch supplies `ATC-2363`). The **outline** sibling uses slug **`branch-walkthrough-outline`** so both files can live in the same directory.
+
+**Automatic [`gsm-save`](/home/gsmendoza/.cursor/skills/gsm-save/SKILL.md)** — Right after the repo file is written, **write the same full markdown body** again under **`/tmp`** using [`gsm-save`](/home/gsmendoza/.cursor/skills/gsm-save/SKILL.md) path and timestamp rules: e.g. **`/tmp/gsm-save-{YYYYMMDD}-{HHMMSS}-branch-walkthrough.md`**. Confirm **both** the repo-relative path and the **`/tmp`** absolute path in the reply (one short line each is enough).
 
 **Source:** lines use **absolute** paths as markdown link text and `file://` URLs so readers can **right-click → Copy link** and paste into an editor Open File dialog. **Navigable citation fences** stay **repo-relative** paths as under **Output Format**; the saved file usually lives at the repo root when `pwd` is the repo.
 
