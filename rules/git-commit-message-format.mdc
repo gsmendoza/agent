@@ -1,8 +1,8 @@
 ---
 description: >-
   Git commit format: TICKET TYPE subject (≤72 chars per line); optional body
-  as tight bullets wrapped to 72 columns; brief commit-shaped summaries in chat
-  when summarizing commits.
+  as tight bullets or, for FIX, PR-style sections; 72 columns; brief
+  commit-shaped summaries in chat when summarizing commits.
 alwaysApply: true
 ---
 
@@ -20,7 +20,7 @@ When the user **does** ask for a commit, use this **subject line** shape (one li
 - **`<TYPE>`** — Short uppercase category, e.g. `FEATURE`, `FIX`, `REFACTOR`, `MODEL`, `DEV ENV`, `INTERNAL`, `DOCS`, `TEST`. Match types already used on the branch when obvious.
 - **`<description>`** — Imperative, specific, no trailing period unless it is a full sentence the team already uses.
 
-## Examples
+### Subject line examples
 
 ```text
 ATC-2363 FEATURE: Activity History - Telemarketer Dropdown
@@ -39,8 +39,8 @@ ATC-2363 MODEL: Add telemarketer associations on computed and fact models
 ## Brevity
 
 - For **commit messages** and for **summaries of a commit** in chat, treat the **subject as the whole story** when it can stand alone.
-- Avoid multi-paragraph prose unless the user asks for more depth.
-- If you need more than the subject, prefer a short **body** (see below)—about **3–6 tight bullets** of what changed, not narrative.
+- For types other than **FIX**, avoid multi-paragraph prose unless the user asks for more depth.
+- If you need more than the subject, prefer a short **body** (see below)—about **3–6 tight bullets** of what changed, not narrative—unless the commit is a **bug fix** (see **FIX commits**).
 
 ## Body (optional)
 
@@ -48,4 +48,56 @@ ATC-2363 MODEL: Add telemarketer associations on computed and fact models
 - Each bullet: **imperative**, narrow scope (area or file + behavior). No trailing period unless a full sentence is required.
 - **Omit the body** when the subject is enough; keep the subject line compliant with the format above and within the **line width** limit.
 
-When wrapping up right after a commit, mirror this style (**subject + optional bullets**), not a mini–pull-request essay.
+When wrapping up right after a commit, mirror this style (**subject + optional body**). For **FIX** commits, a structured PR-style body is preferred when the fix is non-trivial (see below).
+
+## FIX commits (bug fixes)
+
+When **`<TYPE>`** is **`FIX`**, use the **subject** format unchanged, then a **blank line**, then a body written like a **short PR description** so reviewers see **symptom**, **why**, and **what changed**.
+
+Use **section headers** on their own line (no markdown `##` in the commit—plain text words only), each followed by a blank line, then wrapped prose or bullets at **72 columns**:
+
+1. **`Problem`** — What was wrong for the user or system (symptom, failing behavior, or the test/contract that broke). Not a dump of stack traces.
+2. **`Root cause`** — Why it happened; narrow and technical enough to be actionable.
+3. **`Fix`** — What you changed; use `- ` bullets if several files or behaviors; imperative, scoped.
+4. **`Verification`** — How you proved it: test command(s), manual check, or “covers scenario X”. One line is fine if obvious.
+
+**Omit a section** only when it would be empty or redundant (e.g. root cause equals fix in a one-liner fix).
+
+Same **line width** rule: wrap all body lines to **72 characters**. Skip trailers such as `Made-with:` unless the user or repo tooling requires them.
+
+## Examples
+
+### Subject-only (any type)
+
+```text
+ATC-2423 FIX: Null-safe quote lookup when policy number missing
+```
+
+### FIX with PR-description body
+
+```text
+ATC-2423 FIX: Stabilize lead_activity tests with Time.zone locals
+
+Problem
+
+Lead activity system tests froze time with DateTime.new(...) and assumed
+the app’s calendar day and lead-activity windows would line up with those
+moments. Under config.time_zone (Central Time), that assumption was wrong.
+
+Root cause
+
+In Ruby, DateTime.new without a zone uses offset +00:00. travel_to anchored
+“now” in UTC while Time.zone and dashboards use the application zone, so
+frozen “today” and ranking windows diverged.
+
+Fix
+
+- travel_to and quick_import dates: Time.zone.local(...) for the same
+  instants.
+- Manual leads: explicit next-day received_date where counts must stay out
+  of window.
+
+Verification
+
+bin/rails test test/system/importers/lead_activity_test.rb
+```
