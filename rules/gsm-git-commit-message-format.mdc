@@ -1,25 +1,30 @@
 ---
 name: git-commit-message-format
 description: >-
-  Commit subject shape (<TICKET> <TYPE>: …), 72-column wrapping, optional
-  body. Message substance (why not just what) is in
-  rules/ao-git-workflow-and-versioning-rule.mdc.
+  Mechanical commit layout: subject `<TICKET> <TYPE>: …`, 72-column wrap, optional body. Use when drafting commit messages, proposing git commits, or summarizing a commit in chat. Message substance (why not just what) is in rules/ao-git-workflow-and-versioning-rule.mdc.
 alwaysApply: true
 ---
 
 # Git commit message format
 
-**Content** — what the message should *say* (e.g. commit messages explain the
-*why*, not just the *what*, intent of the body): follow
-**`rules/ao-git-workflow-and-versioning-rule.mdc`**, especially **Descriptive
-Messages**.
+## Overview
 
-This file defines **mechanical format** only. For **subject-line shape** and
-**72-column layout**, it **supersedes** Conventional Commits examples (`feat:`,
-`fix:`) elsewhere when they conflict.
+This rule defines **mechanical** commit layout only (subject shape, line width, body bullets). It keeps subjects consistent with branch/ticket naming and avoids mixing in unrelated formats unless the user opts in.
 
-When the user **does** ask for a commit, use this **subject line** shape (one
-line, **72 characters or fewer** when practical):
+## When to Use
+
+- The user asks for a commit message, subject line, or formatted commit text.
+- You are proposing `git commit` wording after completing a change.
+- You summarize a commit in chat (mirror the same shape and width).
+
+**When not to use** (defer elsewhere)
+
+- **What the message should argue or explain** — intent, context, risk: follow **`rules/ao-git-workflow-and-versioning-rule.mdc`**, especially **Descriptive Messages**.
+- Repos or tasks where the user explicitly requests a **different** convention for that commit.
+
+This file **supersedes** Conventional Commits examples (`feat:`, `fix:`) elsewhere when they conflict with **subject-line shape** and **72-column layout** here.
+
+When the user **does** ask for a commit, use this **subject line** shape (one line, **72 characters or fewer** when practical):
 
 ```text
 <TICKET> <TYPE>: <short imperative description>
@@ -27,14 +32,9 @@ line, **72 characters or fewer** when practical):
 
 ## Parts
 
-- **`<TICKET>`** — Issue id from context (e.g. `ATC-2363`). Prefer the branch
-  name (`ATC-2363-FEATURE-…`) or what the user/Jira ticket states. If unknown,
-  ask once instead of inventing a number.
-- **`<TYPE>`** — Short uppercase category, e.g. `FEATURE`, `FIX`, `REFACTOR`,
-  `MODEL`, `DEV ENV`, `INTERNAL`, `DOCS`, `TEST`. Match types already used on
-  the branch when obvious.
-- **`<description>`** — Imperative, specific; trailing period only if the team
-  already uses full sentences there.
+- **`<TICKET>`** — Issue id from context (e.g. `ATC-2363`). Prefer the branch name (`ATC-2363-FEATURE-…`) or what the user/Jira ticket states. If unknown, ask once instead of inventing a number.
+- **`<TYPE>`** — Short uppercase category, e.g. `FEATURE`, `FIX`, `REFACTOR`, `MODEL`, `DEV ENV`, `INTERNAL`, `DOCS`, `TEST`. Match types already used on the branch when obvious.
+- **`<description>`** — Imperative, specific; trailing period only if the team already uses full sentences there.
 
 ### Subject line examples
 
@@ -45,14 +45,11 @@ ATC-2363 REFACTOR: Extract quote activity history edit policy load
 ATC-2363 MODEL: Add telemarketer associations on computed and fact models
 ```
 
-**Do not** switch to unrelated formats (e.g. Conventional Commits `feat:` only)
-unless the user explicitly requests that repo’s alternate convention for this
-task.
+**Do not** switch to unrelated formats (e.g. Conventional Commits `feat:` only) unless the user explicitly requests that repo’s alternate convention for this task.
 
 ## Line width
 
-- **72 characters** maximum per line for the subject and for every body line
-  (including wrapped continuation lines of a bullet).
+- **72 characters** maximum per line for the subject and for every body line (including wrapped continuation lines of a bullet).
 - Wrap long lines at word boundaries when a line would exceed 72 characters.
 
 ## Body layout (optional)
@@ -60,11 +57,9 @@ task.
 - Use a **blank line** after the subject when there is a body.
 - **Bullets** start with `- ` when the body is a list; wrap to 72 columns.
 
-Whether and how much body to add is **content** — see
-**`rules/ao-git-workflow-and-versioning-rule.mdc`**.
+Whether and how much body to add is **content** — see **`rules/ao-git-workflow-and-versioning-rule.mdc`**.
 
-When summarizing a commit in chat, mirror the same **shape** and **line
-width**.
+When summarizing a commit in chat, mirror the same **shape** and **line width**.
 
 ## Format examples
 
@@ -74,3 +69,28 @@ width**.
 ATC-2423 FIX: Null-safe quote lookup when policy number missing
 ```
 
+## Common Rationalizations
+
+| Rationalization | Reality |
+|---|---|
+| "I'll use `feat:` — it's standard." | Here, **`<TICKET> <TYPE>:`** wins unless the user asked for another convention for this task. |
+| "I'll guess the ticket id." | **Ask once** if unknown; do not invent ids. |
+| "Subject can run long." | Hard-wrap at **72 columns** (subject and body lines). |
+| "I'll skip bullets and wrapping in chat summaries." | Chat summaries of commits should still match **shape** and **width**. |
+| "Format is enough; no need for why." | Format does not replace **`ao-git-workflow-and-versioning`** on substance. |
+
+## Red Flags
+
+- Subject missing ticket or type token, or type not uppercase-style when this rule applies.
+- Conventional Commits-only subject without user opt-in.
+- Lines longer than 72 characters without word-boundary wrapping.
+- Invented ticket numbers.
+
+## Verification
+
+After drafting or editing commit text under this rule, confirm:
+
+- [ ] Subject matches `<TICKET> <TYPE>: <imperative description>` (or user-approved alternate for this task).
+- [ ] No line exceeds **72 characters** (subject and body).
+- [ ] Ticket sourced from branch/context/user; **no invented** id.
+- [ ] Substance (why, risk, pointers) aligns with **`rules/ao-git-workflow-and-versioning-rule.mdc`** when a body is used.
