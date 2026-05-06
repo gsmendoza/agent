@@ -1,0 +1,9 @@
+---
+name: always-invoke-using-agent-skills
+description: Meta rule that always applies. Invokes rules/ao-using-agent-skills-rule.mdc for skill discovery and core agent behaviors.
+alwaysApply: true
+---
+
+# Always invoke Using Agent Skills
+
+For every session and task, read and fully follow **`rules/ao-using-agent-skills-rule.mdc`**. Use it for skill discovery, which `ao-*` guidance applies, and the non-negotiable behaviors it defines. If it is not already in context, load it before starting substantive work.
