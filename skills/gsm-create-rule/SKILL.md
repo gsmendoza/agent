@@ -19,6 +19,13 @@ lives under `rules/`. Read **`gsm-create-skill`** for the generic workflow and
 section pattern; use **this skill** for paths, rule frontmatter, activation
 scope, and `@` pairing with `SKILL.md`.
 
+**Imported vs custom (this repository):** Rules (and sibling skills) whose
+names start with `ao-` are **imported** from
+[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills). Do
+**not** use the `ao-` prefix or upstream naming for **custom** rules you
+author here (for example `gsm-*` or another project-specific prefix). Add or
+rename `ao-*` rules only when maintaining that import.
+
 ## When to Use
 
 - Adding a new `*.mdc` rule or rewriting an existing one (structure, scope, or
@@ -60,13 +67,16 @@ When creating or updating a rule, follow these steps in order.
      keep the rule focused).
 
 3. **Choose path and filename**
-   - **This repository:** `rules/<topic>-rule.mdc`, using existing `ao-*-rule`
-     and `gsm-*-rule` prefixes to match sibling files (e.g.
-     `ao-incremental-implementation-rule.mdc`).
+   - **This repository:** `rules/<prefix>-<topic>-rule.mdc`.
+   - **Custom** rules: use your project prefix (e.g. `gsm-my-topic-rule.mdc`),
+     **not** `ao-`, unless you are updating an imported agent-skills rule.
+   - **`ao-*` rules:** only for files **imported** from
+     [agent-skills](https://github.com/addyosmani/agent-skills); keep their
+     names aligned with that upstream set.
    - **Other Cursor projects:** typically `.cursor/rules/<name>.mdc`.
    - The **`@` reference** in `Apply @…` uses the rule filename **stem**
-     (no `.mdc`). Example: file `rules/ao-foo-rule.mdc` is invoked as
-     `Apply @ao-foo-rule`.
+     (no `.mdc`). Example: `rules/gsm-my-topic-rule.mdc` is invoked as
+     `Apply @gsm-my-topic-rule`.
 
 4. **Author YAML frontmatter**
    - Include a clear **`description`** (discovery / rule picker); align with
@@ -75,8 +85,10 @@ When creating or updating a rule, follow these steps in order.
      when not file-scoping; omit or set `alwaysApply: false` when the rule is
      not universal.
    - **This repository** also uses a **`name`** key in rule frontmatter (short
-     identifier, often without the `ao-` filename prefix). Keep local files
-     consistent with neighboring rules rather than inventing a new scheme.
+     identifier). For **imported** `ao-*` rules, `name` often omits the `ao-`
+     filename prefix (upstream style). For **custom** rules, stay consistent
+     with neighboring rules of the same prefix (e.g. other `gsm-*` files)
+     rather than inventing a new scheme.
 
 5. **Draft the rule body**
    - Prefer **one primary concern** per rule; split when the file grows hard to
@@ -107,7 +119,8 @@ When creating or updating a rule, follow these steps in order.
 
 ```
 rules/
-  <prefix>-<topic>-rule.mdc
+  ao-<topic>-rule.mdc    # imported from agent-skills only
+  <custom-prefix>-<topic>-rule.mdc   # e.g. gsm-* for custom work
 ```
 
 **Typical Cursor project:**
@@ -138,6 +151,7 @@ Rules are Markdown bodies after the frontmatter; file extension is **`.mdc`**.
 | "`Apply @my-rule` is close enough to the filename." | The `@` stem must match the **filename without `.mdc`** or references break. |
 | "One 400-line rule file is easier than many." | Harder to apply and review; split by concern and cross-link. |
 | "I’ll duplicate `gsm-create-skill` here so the agent sees it once." | Duplication drifts; reference **`gsm-create-skill`** and keep this file rule-specific. |
+| "Custom rule should use `ao-*` to look like the rest of rules/." | `ao-` marks **imported** agent-skills content here; use `gsm-*` (or similar) for custom rules. |
 
 ## Red Flags
 
@@ -150,6 +164,8 @@ Rules are Markdown bodies after the frontmatter; file extension is **`.mdc`**.
   conflicting guidance).
 - Second copy of the same guidance in both `rules/` and `SKILL.md` without a
   clear single source of truth.
+- A **new custom** rule uses the `ao-` filename prefix (reserved for
+  agent-skills imports in this repository).
 
 ## Verification
 
@@ -168,3 +184,6 @@ After creating or changing a rule with this document, confirm:
   when the rule defines a process). **Evidence:** section scan.
 - [ ] No large duplicate of **`gsm-create-skill`** text; rule-specific only.
   **Evidence:** diff or read-through.
+- [ ] For **custom** rules in cursor-global, the filename is **not**
+  `ao-*-rule.mdc` unless the change is part of an agent-skills import update.
+  **Evidence:** `rules/*.mdc` path.

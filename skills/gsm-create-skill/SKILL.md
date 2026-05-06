@@ -15,6 +15,13 @@ Structured skills steer agents with discoverable metadata, explicit workflows,
 and anti-rationalization guardrails. This skill defines that anatomy and
 prescribes how to apply it when you author or change a `SKILL.md`.
 
+**Imported vs custom (this repository):** Skills whose directory and
+frontmatter `name` start with `ao-` are **imported** from
+[addyosmani/agent-skills](https://github.com/addyosmani/agent-skills). Do
+**not** use the `ao-` prefix for **custom** skills you add or edit here (use
+for example `gsm-` or another project-specific prefix). Touch `ao-*` skills
+only when updating that upstream import.
+
 ## When to Use
 
 - Creating a new skill directory and `SKILL.md`.
@@ -26,7 +33,8 @@ prescribes how to apply it when you author or change a `SKILL.md`.
 **When not to use**
 
 - Executing domain work (features, bugs, refactors) where the task is not
-  shaping a skill file — use the relevant `ao-*` or project skill instead.
+  shaping a skill file — use the relevant imported workflow skill (`ao-*`
+  from agent-skills) or a **custom** / project skill instead.
 - One-line typo fixes that do not change structure or metadata (no need to
   run the full workflow below).
 
@@ -41,6 +49,8 @@ When creating or updating a skill, follow these steps in order.
      same file rules apply. Use the project’s conventional path.
    - Directory name: `lowercase-hyphen-separated`, must match the `name` in
      frontmatter (see [Naming Conventions](#naming-conventions)).
+   - **cursor-global:** new **custom** skills must **not** use the `ao-`
+     prefix; reserve `ao-*` for files imported from agent-skills.
 
 2. **Add required YAML frontmatter**
    - Include `name` and `description` exactly as specified under
@@ -205,6 +215,9 @@ Keep patterns and principles inline when under 50 lines.
 - Skill files: `SKILL.md` (always uppercase)
 - Supporting files: `lowercase-hyphen-separated.md`
 - References: stored in `references/` at the project root, not inside skill directories
+- **`ao-*` in this repo:** reserved for skills imported from
+  [agent-skills](https://github.com/addyosmani/agent-skills); custom skills
+  use another prefix (e.g. `gsm-*`).
 
 ## Cross-Skill References
 
@@ -227,6 +240,7 @@ Don't duplicate content between skills — reference and link instead.
 | "Verification can say 'make sure it works'." | That is not evidence-backed; each item needs a concrete proof (output path, command, artifact). |
 | "I'll split the first draft into five small files." | Progressive disclosure means *main* file stays canonical; only split per [Supporting Files](#supporting-files) thresholds. |
 | "This overlaps another skill; I'll copy the section." | Duplication drifts apart; reference the other skill per [Cross-Skill References](#cross-skill-references). |
+| "I'll prefix my custom skill `ao-*` so it matches the others." | `ao-` denotes imported agent-skills assets here; custom work should use its own prefix (e.g. `gsm-*`). |
 
 ## Red Flags
 
@@ -240,6 +254,8 @@ Don't duplicate content between skills — reference and link instead.
 - Large copied blocks from another skill instead of a named cross-reference.
 - Extra markdown files in the skill dir without meeting [Supporting
   Files](#supporting-files) criteria.
+- A **new custom** skill uses the `ao-` prefix (reserved for agent-skills
+  imports in this repository).
 
 ## Verification
 
@@ -259,3 +275,6 @@ After creating or changing a skill using this document, confirm:
   **Evidence:** file list in skill directory.
 - [ ] Naming follows [Naming Conventions](#naming-conventions). **Evidence:**
   path and filenames.
+- [ ] For **custom** skills in cursor-global, `name` and directory are **not**
+  `ao-*` unless the change is part of an agent-skills import update.
+  **Evidence:** path and frontmatter `name`.
