@@ -1,0 +1,76 @@
+---
+name: git-commit-message-format
+description: >-
+  Commit subject shape (<TICKET> <TYPE>: …), 72-column wrapping, optional
+  body. Message substance (why not just what) is in
+  rules/ao-git-workflow-and-versioning-rule.mdc.
+alwaysApply: true
+---
+
+# Git commit message format
+
+**Content** — what the message should *say* (e.g. commit messages explain the
+*why*, not just the *what*, intent of the body): follow
+**`rules/ao-git-workflow-and-versioning-rule.mdc`**, especially **Descriptive
+Messages**.
+
+This file defines **mechanical format** only. For **subject-line shape** and
+**72-column layout**, it **supersedes** Conventional Commits examples (`feat:`,
+`fix:`) elsewhere when they conflict.
+
+When the user **does** ask for a commit, use this **subject line** shape (one
+line, **72 characters or fewer** when practical):
+
+```text
+<TICKET> <TYPE>: <short imperative description>
+```
+
+## Parts
+
+- **`<TICKET>`** — Issue id from context (e.g. `ATC-2363`). Prefer the branch
+  name (`ATC-2363-FEATURE-…`) or what the user/Jira ticket states. If unknown,
+  ask once instead of inventing a number.
+- **`<TYPE>`** — Short uppercase category, e.g. `FEATURE`, `FIX`, `REFACTOR`,
+  `MODEL`, `DEV ENV`, `INTERNAL`, `DOCS`, `TEST`. Match types already used on
+  the branch when obvious.
+- **`<description>`** — Imperative, specific; trailing period only if the team
+  already uses full sentences there.
+
+### Subject line examples
+
+```text
+ATC-2363 FEATURE: Activity History - Telemarketer Dropdown
+ATC-2363 DEV ENV: Add telemarketer seeds
+ATC-2363 REFACTOR: Extract quote activity history edit policy load
+ATC-2363 MODEL: Add telemarketer associations on computed and fact models
+```
+
+**Do not** switch to unrelated formats (e.g. Conventional Commits `feat:` only)
+unless the user explicitly requests that repo’s alternate convention for this
+task.
+
+## Line width
+
+- **72 characters** maximum per line for the subject and for every body line
+  (including wrapped continuation lines of a bullet).
+- Wrap long lines at word boundaries when a line would exceed 72 characters.
+
+## Body layout (optional)
+
+- Use a **blank line** after the subject when there is a body.
+- **Bullets** start with `- ` when the body is a list; wrap to 72 columns.
+
+Whether and how much body to add is **content** — see
+**`rules/ao-git-workflow-and-versioning-rule.mdc`**.
+
+When summarizing a commit in chat, mirror the same **shape** and **line
+width**.
+
+## Format examples
+
+### Subject-only
+
+```text
+ATC-2423 FIX: Null-safe quote lookup when policy number missing
+```
+

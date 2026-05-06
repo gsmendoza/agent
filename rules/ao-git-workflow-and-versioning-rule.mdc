@@ -68,42 +68,27 @@ Commit messages explain the *why*, not just the *what*:
 
 ```
 # Good: Explains intent
-feat: add email validation to registration endpoint
+ATC-1234 FEATURE: Add email validation to registration endpoint
 
 Prevents invalid email formats from reaching the database.
 Uses Zod schema validation at the route handler level,
 consistent with existing validation patterns in auth.ts.
 
 # Bad: Describes what's obvious from the diff
-update auth.ts
+ATC-1234 FEATURE: Update auth.ts
 ```
-
-**Format:**
-```
-<type>: <short description>
-
-<optional body explaining why, not what>
-```
-
-**Types:**
-- `feat` — New feature
-- `fix` — Bug fix
-- `refactor` — Code change that neither fixes a bug nor adds a feature
-- `test` — Adding or updating tests
-- `docs` — Documentation only
-- `chore` — Tooling, dependencies, config
 
 ### 4. Keep Concerns Separate
 
 Don't combine formatting changes with behavior changes. Don't combine refactors with features. Each type of change should be a separate commit — and ideally a separate PR:
 
 ```
-# Good: Separate concerns
-git commit -m "refactor: extract validation logic to shared utility"
-git commit -m "feat: add phone number validation to registration"
+# Good: Separate concerns (messages use TICKET TYPE: shape per gsm-git-commit-message-format)
+git commit -m "ATC-1234 REFACTOR: Extract validation logic to shared utility"
+git commit -m "ATC-1234 FEATURE: Add phone number validation to registration"
 
 # Bad: Mixed concerns
-git commit -m "refactor validation and add phone number field"
+git commit -m "ATC-1234 REFACTOR: Refactor validation and add phone number field"
 ```
 
 **Separate refactoring from feature work.** A refactoring change and a feature change are two different changes — submit them separately. This makes each change easier to review, revert, and understand in history. Small cleanups (renaming a variable) can be included in a feature commit at reviewer discretion.
@@ -293,7 +278,7 @@ git log --grep="validation" --oneline
 For every commit:
 
 - [ ] Commit does one logical thing
-- [ ] Message explains the why, follows type conventions
+- [ ] Message explains the why; subject follows gsm-git-commit-message-format
 - [ ] Tests pass before committing
 - [ ] No secrets in the diff
 - [ ] No formatting-only changes mixed with behavior changes
