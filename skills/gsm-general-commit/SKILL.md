@@ -20,7 +20,7 @@ user_invocable: true
       - Parts
         - TICKET_NUMBER
           - Usually JIRA ticket number.
-          - Infer from branch. Exclude if cannot be inferred
+          - Infer from branch. Exclude if cannot be inferred.
 
         - TYPE
           - Type of commit. Examples:
@@ -43,26 +43,32 @@ user_invocable: true
           - FEATURE: Add export
 
   - Body
-    - Include
-      - In general
-        - Reason/Goal/Intent
-          - Explanation of reason behind commit.
+    - Structure
+      - Include
+        - In general
+          - Goal
+            - Explanation of reason behind commit.
 
-        - Implementation details
-          - Optional
-          - Explanation of the commit's implementation.
-          - Include if the implementation is complex.
+            - For bugs, can be split into
+              - Expected behavior
+              - Actual behavior
+              - Cause
 
-      - For bugs
-        - Expected behavior
-        - Actual behavior
-        - Cause
+          - Implementation
+            - Optional. Include if the implementation is complex.
+
+      - Add a header for each section
+        - Why: Makes the commit message easier to scan.
+        - Example: "## Goal"
 
     - Writing style
       - Keep it short. Write as overview/summary.
         - Why: long commit messages are hard to comprehend.
 
       - Prefer bullet points over prose.
+
+    - Format
+      - Apply 72-character line limit.
 
 ## Scope
 
