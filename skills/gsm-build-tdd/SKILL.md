@@ -29,7 +29,7 @@ user_invocable: true
 
   - Commit the failing test. Include in the commit message the relevant excerpt of the test output.
     - Prefer the minimal excerpt that proves the failure: assertion message, expected vs actual, first failing test name — not full tracebacks or unrelated logs unless needed.
-    - Why: This would allow the user to verify that the reproduction test did fail before a fix was applied.
+    - Why: This would allow the user to verify that the test did fail before a change was applied.
 
   - Update the code to pass the test.
     - If updating the code requires creating/updating a test for a smaller piece of code, apply this skill (gsm-build-tdd) recursively to that piece of code.
@@ -43,7 +43,7 @@ user_invocable: true
 
   - Commit the change.
 
-  - If we want that the change committed can be refactored,
+  - If the change committed can be refactored,
     - Apply the refactoring.
     - Confirm that the refactoring passes the relevant tests.
     - Commit the refactoring.
