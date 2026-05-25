@@ -50,8 +50,7 @@ user_invocable: true
 
 ## Workflow rules
 
-- No need to follow /gsm-general-commit for commits generated in this workflow.
-  - Why: These are temporary commits which are expected to be squashed later.
+- Follow /gsm-general-commit for commits generated in this workflow.
 
 ## Output
 
