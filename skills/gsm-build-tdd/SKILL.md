@@ -31,9 +31,7 @@ user_invocable: true
   - Run the test to confirm that it is failing.
     - Verify that it is failing as expected.
 
-  - Commit the failing test. Include in the commit message the relevant excerpt of the test output.
-    - Prefer the minimal excerpt that proves the failure: assertion message, expected vs actual, first failing test name — not full tracebacks or unrelated logs unless needed.
-    - Why: This would allow the user to verify that the test did fail before a change was applied.
+  - Commit the failing test.
 
   - Update the code to pass the test.
     - If updating the code requires creating/updating a test for a smaller piece of code, apply this skill (gsm-build-tdd) recursively to that piece of code.
@@ -55,6 +53,9 @@ user_invocable: true
 ## Workflow rules
 
 - Follow /gsm-general-commit for commits generated in this workflow.
+  - However, for the failing test commit, include in the commit message the relevant excerpt of the test output.
+     - Prefer the minimal excerpt that proves the failure: assertion message, expected vs actual, first failing test name — not full tracebacks or unrelated logs unless needed.
+        - Why: This would allow the user to verify that the test did fail before a change was applied.
 
 ## Output
 
