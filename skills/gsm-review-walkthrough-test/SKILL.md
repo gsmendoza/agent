@@ -35,9 +35,9 @@ user_invocable: true
   - Action
   - Assert
 
-- For each section, present:
+- For each section, show:
   - The section of the test.
-  - An explanation of what the test is doing, and the reason behind it
+  - An explanation of the test.
 
   - The exercised code in the order that the test flows through it
     - Focus on the changes made within the scope given.
@@ -70,12 +70,9 @@ user_invocable: true
         - Focus on the most relevant path through the code.
         - Do not trace every possible call or unchanged layer unless it is needed to explain the behavior.
 
-    - For each exercised code
-      - Show the code
-
-      - Explain
-        - What the code is doing, and
-        - The reason behind it.
+    - For each exercised code, show
+      - The code snippet.
+      - An explanation of the code.
 
 ## Output
 
