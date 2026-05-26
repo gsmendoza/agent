@@ -10,6 +10,10 @@ user_invocable: true
   - Why: Keeps TDD commits scoped only to the red/green/refactor steps and avoids mixing unrelated diffs or surprise conflicts when creating the temporary branch.
   - If there are, ask the user to clean the working tree e.g., by committing, resetting, or stashing the uncommitted changes.
 
+- Pass tests relevant to the planned change.
+  - Why: We want to ensure that the current branch is stable.
+    - If there are failing tests, ask the user how to handle them.
+
 ## Input
 
 - The user expects some change to be made.
@@ -38,8 +42,8 @@ user_invocable: true
 
   - Run the test again to confirm that it is now passing.
 
-  - Run other tests relevant to the fix.
-    - Why: We want to ensure that the fix didn't break other tests.
+  - Run other tests relevant to the change.
+    - Why: We want to ensure that the change didn't break other tests.
 
   - Commit the change.
 
