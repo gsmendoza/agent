@@ -47,11 +47,16 @@ bin/rails runner ../resources/seeds/TICKET_NUMBER.rb
       - Tests import.rb
       - Needed so that the user and agent can test the service class without having to run the scripts in development.
 
-      - Why is the test file in same directory as import.rb?
-        - For convenience. Once I'm done with a ticket, I want to move the import files (with the test) to the archive directory in one go.
+      - Why is the test file in same dilrectory as import.rb?
+        - For convenience. Once I'm done with a ticket, I want to move the ticket files (including the test) to the archive directory in one go.
+
+    - Upload fixtures (optional)
+      - Some features require the user to upload files in the UI after seeding.
+      - Store these in the ticket directory (or in `uploads/`) for manual testing and demos.
+      - Do not add tests for upload flows for now; they can get complicated.
 
   - TICKET_NUMBER.rb
-    - Wrapper script. Does
+    - Wrapper script. It:
       - Resets the database with `bin/reset_db`
       - Uses `bin/rails runner` to call the ticket's `import.rb` class
 
@@ -64,7 +69,7 @@ bin/rails runner ../resources/seeds/TICKET_NUMBER.rb
 
 - The Toolchest Rails app is in /home/gsmendoza/workspaces/admin-agencytoolchest/toolchest-rails.
 
-- The ticket script Ruby code and tests are supposed to run within the context of the Toolchest Rails app. This can be done with a relative path form toolchest-rails. Example:
+- The ticket script Ruby code and tests are supposed to run within the context of the Toolchest Rails app. This can be done with a relative path from toolchest-rails. Example:
   - e.g. `bin/rails runner ../resources/seeds/<TICKET_NUMBER>.rb`
 
 ## Workflow
@@ -75,7 +80,7 @@ bin/rails runner ../resources/seeds/TICKET_NUMBER.rb
 
 ### Input
 
-- The user will create the initial CSV file within the seed directory i.e. he'll create the `resources/seeds/<ticket>/import.csv` path.
+- The user will create the initial CSV file within the seed directory: `resources/seeds/<TICKET_NUMBER>/import.csv`.
 
 ### Process
 
@@ -85,15 +90,19 @@ bin/rails runner ../resources/seeds/TICKET_NUMBER.rb
       - Why: /gsm-build-tdd has a commit process that is not applicable here.
 
     - Test command (from toolchest-rails)
-      - `bin/rails test ../resources/seeds/<ticket>/import_test.rb`
+      - `bin/rails test ../resources/seeds/<TICKET_NUMBER>/import_test.rb`
 
 - Update the import.csv file if it is missing data for seeding the database.
+
+- Add upload fixture files when the ticket requires post-seed file upload in the UI.
 
 - Create the TICKET_NUMBER.rb convenience script.
 
 ### Post-Process
 
 - Print out the account admin email for logging in to the account.
+
+- If there are upload fixtures, print out how to upload them.
 
 ## Related skills
 
