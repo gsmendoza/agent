@@ -22,3 +22,14 @@
     - Avoid bikeshedding: implementing all skills as invocable simplifies the process of defining them.
       - No need to bother about whether a skill is invocable or not.
       - Making skills non-invocable does not appear to bring much benefit.
+
+## Writing style
+
+- Use headers to define each section.
+
+- Organize skill instructions as a bullet-point outline.
+  - Why: this breaks the skill into a hierarchy that helps both humans and agents understand it.
+
+- Use bold and italic formatting sparingly.
+  - Why: bold and italic text can help agents identify important highlights, but heavy formatting makes the text look cluttered.
+    - Heavy formatting can be hard for humans to read, especially when the text is viewed in plain ASCII.
