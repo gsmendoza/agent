@@ -10,21 +10,26 @@ user_invocable: true
 
 - The user is reviewing an existing branch.
 
-- The user wants a temporary branch that recreates one vertical slice from that review branch using strict TDD commits.
-  - A "slice" is one independently testable behavior, usually represented by one test or a small set of closely related tests.
+- The user maintains a recreation branch where the review branch is being rebuilt slice by slice.
+  - Each invocation creates a temporary branch (via /gsm-build-tdd) that recreates one vertical slice using strict TDD commits.
+  - Over time, repeated invocations move the recreation branch closer to the review branch's implementation.
+
+- A "slice" is one independently testable behavior, usually represented by one test or a small set of closely related tests.
 
 ## Inputs
 
 - Review branch: the branch being reviewed.
 
+- Recreation branch: the branch where the review branch is being recreated.
+
 - Slice test: the test from the review branch that verifies the slice.
 
-- If either input is unclear, ask the user before changing files.
+- If any input is unclear, ask the user before changing files.
 
 ## Workflow
 
 - Follow /gsm-build-tdd, with the additional constraints in this skill.
-  - Create and check out a temporary branch that will receive the recreated TDD history.
+  - Check out the recreation branch, then create and check out a temporary branch that will receive the recreated TDD history.
     - Do NOT modify the review branch.
 
   - Copy only the slice test from the review branch.
