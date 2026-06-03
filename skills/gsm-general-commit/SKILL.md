@@ -48,11 +48,15 @@ user_invocable: true
         - In general
           - Goal
             - Summary of the reason behind the commit.
+              - Ascertain if the commit is an atomic change. If it is, then this summary should show only one reason for that change.
 
             - For bugs, can be split into
               - Expected behavior
               - Actual behavior
               - Cause
+
+          - Additional changes
+            - If the commit is NOT an atomic change, this should list the other changes in the commit.
 
       - Add a header for each section
         - Why: Makes the commit message easier to scan.
