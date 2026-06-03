@@ -47,7 +47,7 @@ user_invocable: true
       - Include
         - In general
           - Goal
-            - Explanation of reason behind commit.
+            - Summary of the reason behind the commit.
 
             - For bugs, can be split into
               - Expected behavior
