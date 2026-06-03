@@ -54,9 +54,6 @@ user_invocable: true
               - Actual behavior
               - Cause
 
-          - Implementation
-            - Optional. Include if the implementation is complex.
-
       - Add a header for each section
         - Why: Makes the commit message easier to scan.
         - Example: "## Goal"
