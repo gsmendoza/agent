@@ -1,6 +1,6 @@
 # README
 
-- This is a repo of Cursor user skills.
+- This is a repo of agent user skills.
 
 ## Scope
 
@@ -8,4 +8,4 @@
 
 ## Usage
 
-- ~/.cursor/skills and rules are supposed to symlink to this repo's skills and rules directories.
+- ~/.<agent>/skills and rules are supposed to symlink to this repo's skills and rules directories.
