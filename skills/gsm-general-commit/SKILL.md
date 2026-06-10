@@ -20,10 +20,13 @@ user_invocable: true
   - `Title`: Short imperative summary of the changes.
 
 - Structure the body using markdown headers:
-  - `## Goal`: Describe the reason for the commit.
+  - `Goal`: Describe the reason for the commit.
     - If the change is atomic, describe the single reason.
     - For bugs, split this section into: Expected behavior, Actual behavior, Cause.
-  - `## Additional changes`: List other changes if the commit is not atomic.
+
+  - `Additional changes`: List other changes if the commit is not atomic.
+
+  - Use `--` instead of `##` for the headers since lines starting with `#` are treated by `git commit` as comments.
 
 - Style instructions for the body:
   - Keep it short and concise.
@@ -36,7 +39,9 @@ user_invocable: true
   ```
   PROJ-123 FEATURE: Add export button to dashboard
 
-  ## Goal
+  Goal
+  ----
+
   - Allow users to download dashboard data as a CSV.
   ```
 
@@ -44,7 +49,9 @@ user_invocable: true
   ```
   REFACTORING: Extract logic into service object
 
-  ## Goal
+  Goal
+  ----
+
   - Simplify the main controller.
   ```
 
