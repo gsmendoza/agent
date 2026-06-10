@@ -1,14 +1,14 @@
 ---
-name: gsm-meta-proofread-skill
-description: Proofread a skill so an agent can understand when and how to use it. Use when reviewing or editing a SKILL.md file for clarity, structure, triggers, and actionable instructions.
+name: gsm-meta-copyedit-skill
+description: Copyedit a skill so an agent can understand when and how to use it. Use when reviewing or editing a SKILL.md file for clarity, structure, triggers, and actionable instructions.
 user_invocable: true
 ---
 
-# GSM > Meta > Proofread skill
+# GSM > Meta > Copyedit skill
 
 ## Goal
 
-- Proofread a skill so an agent can understand when to use it, what task it supports, and how to follow its instructions.
+- Copyedit a skill so an agent can understand when to use it, what task it supports, and how to follow its instructions.
 
 ## Input
 
