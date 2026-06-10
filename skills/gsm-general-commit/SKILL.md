@@ -12,48 +12,66 @@ user_invocable: true
 
 ## Guidelines
 
-- Structure the commit message with a header line and a body, separated by a blank line.
+- Structure:
+  - Use a header line, followed by a blank line, followed by the body.
 
-- Format the header line as: `<TICKET_NUMBER> <TYPE>: <Title>`
-  - `TICKET_NUMBER`: JIRA ticket number. Infer this from the git branch name, or omit it if it cannot be inferred.
-  - `TYPE`: Commit type in ALL CAPS (e.g., `FEATURE`, `REFACTORING`, `BUGFIX`).
-  - `Title`: Short imperative summary of the changes.
+- Header line format:
+  - `<TICKET_NUMBER> <TYPE>: <Title>`
+    - `TICKET_NUMBER`: JIRA ticket number (infer from git branch name, or omit if none).
+    - `TYPE`: Commit type in ALL CAPS (e.g., `FEATURE`, `REFACTORING`, `BUGFIX`).
+    - `Title`: Short imperative summary of the changes.
 
-- Structure the body using markdown headers:
-  - `Goal`: Describe the reason for the commit.
-    - If the change is atomic, describe the single reason.
-    - For bugs, split this section into: Expected behavior, Actual behavior, Cause.
+- Body structure:
+  - Use `--` underline headers instead of `##` (lines starting with `#` are treated as comments by git).
 
-  - `Additional changes`: List other changes if the commit is not atomic.
+  - For standard commits, use a `Goal` section:
+    - Write a sentence or a short paragraph that elaborates on the commit title in more detail.
+      - Think of how the first paragraph of a news story summarizes the story with more detail than the headline.
+    - Do not list the specific changes in the commit.
+      - Why: Listing changes makes the commit message hard to update when amending the commit.
 
-  - Use `--` instead of `##` for the headers since lines starting with `#` are treated by `git commit` as comments.
+  - For bug tickets (e.g., `BUGFIX`), replace the `Goal` section with:
+    - `Expected behavior`
+    - `Actual behavior`
+    - `Cause`
 
-- Style instructions for the body:
+- Body styling:
   - Keep it short and concise.
-  - Prefer bullet points over prose.
   - Wrap lines at 72 characters.
 
 ## Examples
 
-- With JIRA ticket number:
-  ```
-  PROJ-123 FEATURE: Add export button to dashboard
+### Feature Commit
 
-  Goal
-  ----
+```
+PROJ-123 FEATURE: Add export button to dashboard
 
-  - Allow users to download dashboard data as a CSV.
-  ```
+Goal
+----
 
-- Without JIRA ticket number:
-  ```
-  REFACTORING: Extract logic into service object
+Add an "Export" button to the main dashboard view, allowing users to download their metrics as a CSV file for offline analysis.
+```
 
-  Goal
-  ----
+### Bugfix Commit
 
-  - Simplify the main controller.
-  ```
+```
+PROJ-456 BUGFIX: Resolve session timeout redirect loop
+
+Expected behavior
+-----------------
+
+Users should be redirected to the login page when their session expires.
+
+Actual behavior
+---------------
+
+Users get stuck in an infinite redirect loop between the home page and the authentication callback handler.
+
+Cause
+-----
+
+The redirect URL logic in the auth middleware did not strip expired session cookies before redirecting to the login handler.
+```
 
 ## Scope
 
