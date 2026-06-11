@@ -8,7 +8,8 @@ user_invocable: true
 
 ## Workflow
 
-- Run `gsm-rubocop` on the modified Ruby files.
+- Run the project's `./gsm-rubocop` script on the modified Ruby files.
+  - The gsm-rubocop script is my personal linter.
   - Example: `gsm-rubocop path/to/file.rb`
 
 - Run the project's Ruby linter on the same files.
