@@ -24,13 +24,14 @@ user_invocable: true
 - Body structure:
   - Use `--` underline headers instead of `##` (lines starting with `#` are treated as comments by git).
 
-  - For standard commits, use a `Goal` section:
+  - For standard commits, use a `Description` section:
     - Write a sentence or a short paragraph that elaborates on the commit title in more detail.
       - Think of how the first paragraph of a news story summarizes the story with more detail than the headline.
+
     - Do not list the specific changes in the commit.
       - Why: Listing changes makes the commit message hard to update when amending the commit.
 
-  - For bug tickets (e.g., `BUGFIX`), replace the `Goal` section with:
+  - For bug tickets (e.g., `BUGFIX`), replace the `Description` section with:
     - `Expected behavior`
     - `Actual behavior`
     - `Cause`
@@ -46,8 +47,8 @@ user_invocable: true
 ```
 PROJ-123 FEATURE: Add export button to dashboard
 
-Goal
-----
+Description
+-----------
 
 Add an "Export" button to the main dashboard view, allowing users to download their metrics as a CSV file for offline analysis.
 ```
