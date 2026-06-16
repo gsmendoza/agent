@@ -22,14 +22,13 @@ user_invocable: true
     - `Title`: Short imperative summary of the changes.
 
 - Body structure:
-  - Use `--` underline headers instead of `##` (lines starting with `#` are treated as comments by git).
+  - Use `--` underlines for headers instead of `##` (since git treats `#` as comments).
 
   - For standard commits, use a `Description` section:
-    - Write a sentence or a short paragraph that elaborates on the commit title in more detail.
-      - Think of how the first paragraph of a news story summarizes the story with more detail than the headline.
-
-    - Do not list the specific changes in the commit.
-      - Why: Listing changes makes the commit message hard to update when amending the commit.
+    - Write a sentence or short paragraph that elaborates on the commit title.
+    - Do not list specific changes (keeps the message easy to update when amending).
+    - Omit test changes that only support application changes.
+      - Only document test changes if they are the primary focus of the commit (e.g., adding tests for an existing feature).
 
   - For bug tickets (e.g., `BUGFIX`), replace the `Description` section with:
     - `Expected behavior`
