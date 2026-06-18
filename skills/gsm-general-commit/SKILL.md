@@ -16,7 +16,14 @@ user_invocable: true
 
 - Format the header line as `<TICKET_NUMBER> <TYPE>: <Title>`:
   - `TICKET_NUMBER`: JIRA ticket number (infer from git branch name, or omit if none).
-  - `TYPE`: Commit type in ALL CAPS (e.g., `FEATURE`, `REFACTORING`, `BUGFIX`).
+  - `TYPE`: Commit type in ALL CAPS. Use one of the following:
+    - `FEATURE`: New features or new business logic functionality.
+    - `BUGFIX`: Fixes to broken or incorrect behavior.
+    - `REFACTORING`: Code improvements or cleanups without changing external behavior.
+    - `PERFORMANCE`: Performance optimizations or improvements.
+    - `CHORE`: Dependency updates, config changes, or routine tasks.
+    - `TEST`: Test-only changes.
+    - `DOCS`: Documentation-only changes.
   - `Title`: Short imperative summary of the changes.
 
 - Format the body based on the commit type:
