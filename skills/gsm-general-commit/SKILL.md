@@ -28,7 +28,7 @@ user_invocable: true
 
 - Format the body based on the commit type:
   - For standard commits (e.g., `FEATURE`, `REFACTORING`):
-    - Write a sentence or short paragraph that elaborates on the commit title.
+    - Write a sentence or short paragraph that summarizes the commit.
     - Do not add a section header.
     - Do not list specific changes.
     - Omit test changes unless they are the primary focus of the commit.
