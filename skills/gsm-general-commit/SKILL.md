@@ -47,7 +47,8 @@ user_invocable: true
 ```
 PROJ-123 FEATURE: Add export button to dashboard
 
-Add an "Export" button to the main dashboard view, allowing users to download their metrics as a CSV file for offline analysis.
+Add an "Export" button to the main dashboard view, allowing users to
+download their metrics as a CSV file for offline analysis.
 ```
 
 ### Bugfix Commit
@@ -58,15 +59,18 @@ PROJ-456 BUGFIX: Resolve session timeout redirect loop
 Expected behavior
 -----------------
 
-Users should be redirected to the login page when their session expires.
+Users should be redirected to the login page when their session
+expires.
 
 Actual behavior
 ---------------
 
-Users get stuck in an infinite redirect loop between the home page and the authentication callback handler.
+Users get stuck in an infinite redirect loop between the home page
+and the authentication callback handler.
 
 Cause
 -----
 
-The redirect URL logic in the auth middleware did not strip expired session cookies before redirecting to the login handler.
+The redirect URL logic in the auth middleware did not strip expired
+session cookies before redirecting to the login handler.
 ```
