@@ -6,105 +6,57 @@ user_invocable: true
 
 # GSM > Toolchest Rails > Create Seed Script
 
-## Meta
+## Goal
 
-- As this skill implements a new workflow, I'm leaving room for the agent to use its best judgement in building the ticket seed scripts.
-  - I'll update this skill as I gain more experience with this workflow.
+- Create a personal seed script and test suite for a specific ticket to enable local testing and demos.
 
-## Expected outcome
+## Expected Outcome
 
-- The user would be able to seed a Toolchest Rails ticket from the toolchest-rails directory:
-
-```sh
-bin/rails runner ../resources/seeds/TICKET_NUMBER.rb
-```
-
-## Personal seed script structure
-
-- /home/gsmendoza/workspaces/admin-agencytoolchest/resources/seeds
-  - 0-archive directory
-    - Historical only: for keeping old ticket directories.
-    - Don't copy unless specified.
-
-  - TICKET_NUMBER directory
-    - Naming convention: atc1234
-
-    - import.rb
-      - Service class
-      - When called, creates an account for testing the ticket.
-      - Loads data from import.csv
-
-    - import.csv
-      - Two purposes:
-        - Provides the data for seeding the database.
-        - Used as a guide when testing and demoing the ticket.
-
-      - Contents
-        - Scenario column
-          - Describes the scenario being tested by the spreadsheet row.
-
-    - import_test.rb
-      - Tests import.rb
-      - Needed so that the user and agent can test the service class without having to run the scripts in development.
-
-      - Why is the test file in same dilrectory as import.rb?
-        - For convenience. Once I'm done with a ticket, I want to move the ticket files (including the test) to the archive directory in one go.
-
-    - Upload fixtures (optional)
-      - Some features require the user to upload files in the UI after seeding.
-      - Store these in the ticket directory (or in `uploads/`) for manual testing and demos.
-      - Do not add tests for upload flows for now; they can get complicated.
-
-  - TICKET_NUMBER.rb
-    - Wrapper script. It:
-      - Resets the database with `bin/reset_db`
-      - Uses `bin/rails runner` to call the ticket's `import.rb` class
-
-## Scope
-
-- resources/seeds are private and personal seeds.
-  - They're not shared with the team in toolchest-rails/db/seeds
-
-## Toolchest Rails app as working directory
-
-- The Toolchest Rails app is in /home/gsmendoza/workspaces/admin-agencytoolchest/toolchest-rails.
-
-- The ticket script Ruby code and tests are supposed to run within the context of the Toolchest Rails app. This can be done with a relative path from toolchest-rails. Example:
-  - e.g. `bin/rails runner ../resources/seeds/<TICKET_NUMBER>.rb`
+- A runnable wrapper script at `../resources/seeds/<TICKET>.rb` that:
+  - Resets the database using `bin/reset_db`.
+  - Runs the ticket's `import.rb` using `bin/rails runner`.
 
 ## Workflow
 
-### Pre-Process
+### 1. Input
+- The user will create the initial CSV file at `/home/gsmendoza/workspaces/admin-agencytoolchest/resources/seeds/<TICKET>/import.csv`.
 
-- The user will archive old ticket directories if they're no longer needed.
+### 2. Implementation
+- Create `import.rb` in the ticket directory to load scenario data from `import.csv`.
+- Create `import_test.rb` in the same directory to test `import.rb`.
+  - Do NOT use the `gsm-build-tdd` skill (as its commit process does not apply here).
+  - Run the test from the `toolchest-rails` directory using:
+    ```sh
+    bin/rails test ../resources/seeds/<TICKET>/import_test.rb
+    ```
+- Update `import.csv` if additional columns or rows are needed for seeding.
+- Add upload fixture files in the ticket directory (or a subdirectory like `uploads/`) if the ticket requires post-seed file upload in the UI.
+- Create the convenience wrapper script `../resources/seeds/<TICKET>.rb`.
 
-### Input
+### 3. Post-Process
+- Print the admin account email for logging in.
+- If there are upload fixtures, print instructions on how to upload them in the UI.
 
-- The user will create the initial CSV file within the seed directory: `resources/seeds/<TICKET_NUMBER>/import.csv`.
+## Script & Directory Structure
 
-### Process
+- **Base Directory**: `/home/gsmendoza/workspaces/admin-agencytoolchest/resources/seeds`
+  - **`0-archive/`**: Archive for old/completed ticket folders. Do not touch or copy unless explicitly requested.
+  - **`<TICKET>/`** (e.g., `atc_2580_retention_reset_status_on_reimport/`):
+    - `import.csv`: Raw scenario data for seeding and guide for manual testing.
+    - `import.rb`: Service class to create accounts and import data from `import.csv`.
+    - `import_test.rb`: Test for `import.rb` (kept here for easy archiving).
+    - `uploads/` (optional): Upload fixtures for manual testing/demos.
+  - **`<TICKET>.rb`** (e.g., `atc_2580_retention_reset_status_on_reimport.rb`):
+    - Wrapper script to reset database and run the `import.rb` script.
 
-- Create import.rb for loading the scenario data from the import.csv file.
-  - Test-drive import.rb by creating an import_test.rb file for the class.
-    - No need to use /gsm-build-tdd in creating the test file.
-      - Why: /gsm-build-tdd has a commit process that is not applicable here.
+## Directory Context & Environment
 
-    - Test command (from toolchest-rails)
-      - `bin/rails test ../resources/seeds/<TICKET_NUMBER>/import_test.rb`
+- **Working Directory**: `/home/gsmendoza/workspaces/admin-agencytoolchest/toolchest-rails`
+- Scripts must run in the context of the Rails app. Reference paths relative to this directory:
+  - E.g., `bin/rails runner ../resources/seeds/<TICKET>.rb`
+- Private Scope: These seed scripts are personal tools and should not be added to the project's shared `db/seeds`.
 
-- Update the import.csv file if it is missing data for seeding the database.
+## Related Skills
 
-- Add upload fixture files when the ticket requires post-seed file upload in the UI.
+- `gsm-toolchest-rails-bin-over-docker`: For running Rails commands in the development environment.
 
-- Create the TICKET_NUMBER.rb convenience script.
-
-### Post-Process
-
-- Print out the account admin email for logging in to the account.
-
-- If there are upload fixtures, print out how to upload them.
-
-## Related skills
-
-- gsm-toolchest-rails-bin-over-docker
-  - For running toolchest-rails commands.
