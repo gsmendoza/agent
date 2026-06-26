@@ -6,13 +6,13 @@ user_invocable: true
 
 ## Prerequisites
 
-- The working tree is clean i.e., there are no uncommitted changes.
+- The working tree is clean (i.e., there are no uncommitted changes).
   - Why: Keeps TDD commits scoped only to the red/green/refactor steps and avoids mixing unrelated diffs or surprise conflicts when creating the temporary branch.
-  - If there are, ask the user to clean the working tree e.g., by committing, resetting, or stashing the uncommitted changes.
+  - If there are uncommitted changes, ask the user how to handle them (e.g., commit, reset, or stash).
 
-- Pass tests relevant to the planned change.
+- Confirm that tests relevant to the planned change pass.
   - Why: We want to ensure that the current branch is stable.
-    - If there are failing tests, ask the user how to handle them.
+    - If there are existing failing tests, ask the user how to handle them.
 
 ## Input
 
@@ -20,23 +20,14 @@ user_invocable: true
 
 ## Workflow
 
-- Create and check out a temporary branch based on the current one.
-  - Derive the name of the temporary branch from the current one. Just add a suffix.
-
-  - Why: this allows the user to later on squash the temporary branch onto its source branch.
-
-- Repeat this process for every "path" (independently testable behavior or scenario) of the change
+- Repeat this process for every "path" (independently testable behavior or scenario) of the change:
   - Create/update the smallest viable test to test-drive the path.
 
   - Run the test to confirm that it is failing.
     - Verify that it is failing as expected.
 
-  - Commit the failing test.
-
   - Update the code to pass the test.
-    - If updating the code requires creating/updating a test for a smaller piece of code, apply this skill (gsm-build-tdd) recursively to that piece of code.
-      - Do not create a new branch for this new TDD recursion step.
-        - Why: Creating new branches might produce too many branches.
+    - If updating the code requires creating or updating a test for a smaller component, recursively apply this skill (gsm-build-tdd) to that component.
 
   - Run the test again to confirm that it is now passing.
 
@@ -45,7 +36,7 @@ user_invocable: true
 
   - Commit the change.
 
-  - If the change committed can be refactored,
+  - If the committed change can be refactored:
     - Apply the refactoring.
     - Confirm that the refactoring passes the relevant tests.
     - Commit the refactoring.
@@ -53,18 +44,3 @@ user_invocable: true
 ## Workflow rules
 
 - Follow /gsm-general-commit for commits generated in this workflow.
-  - However, for the failing test commit, include in the commit message the relevant excerpt of the test output.
-     - Prefer the minimal excerpt that proves the failure: assertion message, expected vs actual, first failing test name — not full tracebacks or unrelated logs unless needed.
-        - Why: This would allow the user to verify that the test did fail before a change was applied.
-
-## Output
-
-- A branch containing:
-  - Commits documenting failing tests and their outputs.
-  - Commits applying changes to make those failing tests pass.
-  - Optional commits refactoring those changes.
-
-## Post-workflow steps
-
-- The user verifies the temporary branch and merges it to the source branch if correct.
-- The user then deletes the temporary branch.
