@@ -14,5 +14,7 @@ user_invocable: true
 
 - Break down the plan into a sequence of individual commits.
 
+- For each commit, note whether we need to follow the /gsm-build-tdd skill.
+
 - Note in the plan any best practice skills that must be run before completing a commit.
   - Best practice skills are prefixed with `gsm-build-best-practice`.
