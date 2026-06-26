@@ -6,6 +6,12 @@ user_invocable: true
 
 # GSM > Plan > Save
 
+## Scope
+
+- Do not invoke this skill if:
+  - The agent already provides a link to the plan it generates, or
+  - The plan path can be selected from the agent's output by double-clicking (i.e., the path does not contain spaces).
+
 ## Process
 
 - Save the plan by following the /gsm-general-save skill.
