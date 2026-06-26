@@ -14,26 +14,31 @@ user_invocable: true
 
 - A `SKILL.md` file or draft skill text.
 
-## Process
+## Guidelines
 
-- After writing the changes to a skill, wait for the user's approval before committing the changes.
+- Focus only on the uncommitted changes.
+  - Why: changing copy that is already committed clutters the skill's diff, making it harder for the author to review the changes.
 
-## What to focus on
+- Keep instruction rationale when provided.
+  - Why:
+    - The rationale reinforces the importance of the instruction.
+    - It provides self-documentation for the skill author.
 
-- Focus on personal guidelines and preferences over general usage.
-  - Skills and content here are intended for personal use; they do not need to be designed for general usage.
+- Avoid overwriting the user's changes in version control.
+  - In particular,
+    - If the user's changes are staged, keep your changes unstaged.
 
-  - Do not overspecify: if an agent can be assumed to have general know-how for the task, there is no need to write it into the skill.
-    - By not including general instructions in the skill, it becomes clearer what guidelines and preferences are specific to the user.
+  - Why: we want the author to be able to use `git diff` to see what you've changed from his changes.
 
 - Bias toward invocable skills.
-  - Keep `user_invocable: true` unless the user explicitly wants a non-invocable skill.
-  - Do not spend much time deciding whether a skill should be invocable; the default preference is yes.
+  - Why: the author likes being able to use agent CLI's autocomplete feature to automatically invoke skills.
 
-- Put operational instructions before background context.
-  - Keep development notes only when they explain a durable preference.
+- Consider that these skills are for personal use and are not intended for general usage.
 
-## Preferred structure
+- Do not overspecify: if an agent can be assumed to have general know-how for the task, there is no need to write it into the skill.
+  - Why: By not including general instructions in the skill, it becomes clearer what guidelines and preferences are specific to the user.
+
+### Guidelines - Structure
 
 - Use headers to define each section.
 
@@ -43,14 +48,3 @@ user_invocable: true
 - Use bold and italic formatting sparingly.
   - Why: Bold and italic text can help agents identify important highlights, but heavy formatting makes the text look cluttered.
     - Heavy formatting can be hard for humans to read, especially when the text is viewed in plain ASCII.
-
-## Current development
-
-- I am experimenting with writing everything, including rules, as invocable skills.
-  - Why: Invocable skills may be more portable to other agents because rules apply only to Cursor.
-
-  - CLI ergonomics: Rules do not autocomplete well in Cursor CLI; in the CLI app, `@` is geared toward completing paths and files, not named rules.
-
-  - Simpler defaults: Implementing all skills as invocable simplifies the process of defining them.
-    - There is no need to decide whether each skill should be invocable.
-    - Making skills non-invocable does not appear to bring much benefit.
