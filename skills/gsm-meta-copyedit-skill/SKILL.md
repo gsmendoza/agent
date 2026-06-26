@@ -14,6 +14,10 @@ user_invocable: true
 
 - A `SKILL.md` file or draft skill text.
 
+## Process
+
+- After writing the changes to a skill, wait for the user's approval before committing the changes.
+
 ## What to focus on
 
 - Focus on personal guidelines and preferences over general usage.
