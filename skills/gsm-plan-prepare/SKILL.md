@@ -13,3 +13,6 @@ user_invocable: true
 ## Guidelines
 
 - Break down the plan into a sequence of individual commits.
+
+- Note in the plan any best practice skills that must be run before completing a commit.
+  - Best practice skills are prefixed with `gsm-build-best-practice`.
