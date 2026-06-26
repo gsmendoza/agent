@@ -8,9 +8,8 @@ user_invocable: true
 
 ## Workflow
 
-- Run the project's `./gsm-rubocop` script on the modified Ruby files.
-  - The gsm-rubocop script is my personal linter.
-  - Example: `gsm-rubocop path/to/file.rb`
+- Determine whether the project's linter is `standardrb` or `rubocop`.
 
-- Run the project's Ruby linter on the same files.
-  - Check if the project uses `standardrb` or `rubocop`.
+- For modified Ruby files, run the `./gsm-rubocop` script followed by the project's linter.
+  - Why: The `./gsm-rubocop` script is a personal linter. The project's linter has higher priority and should run last to take precedence.
+
