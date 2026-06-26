@@ -1,10 +1,10 @@
 ---
-name: gsm-build-test-rspec-style
+name: gsm-build-best-practice-rspec-style
 description: Invoke when writing tests in RSpec-style format
 user_invocable: true
 ---
 
-# GSM > Build > Test > RSpec-style
+# GSM > Build > Best Practice > RSpec-style
 
 ## Goal
 
