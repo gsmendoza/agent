@@ -14,9 +14,11 @@ user_invocable: true
 
 - Break down the plan into a sequence of individual atomic, vertical-slice commits.
 
-- For each commit, note whether we need to apply the following skills:
-  - `/gsm-build-tdd`
-  - `/gsm-build-lint-ruby`
+- For each commit, note the following:
+  - Whether we need to apply the following skills:
+    - `/gsm-build-tdd`
+    - `/gsm-build-lint-ruby`
 
-- Identify any best practice skills that must be run before completing a commit and note them in the plan.
-  - Best practice skills are prefixed with `gsm-build-best-practice`.
+  - Any best practice skills (prefixed with `gsm-build-best-practice`) that must be run before completing the commit.
+
+  - A reminder to ask the user for the user's approval before proceeding with the next commit.
