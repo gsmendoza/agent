@@ -18,5 +18,5 @@ user_invocable: true
   - `/gsm-build-tdd`
   - `/gsm-build-lint-ruby`
 
-- Note in the plan any best practice skills that must be run before completing a commit.
+- Identify any best practice skills that must be run before completing a commit and note them in the plan.
   - Best practice skills are prefixed with `gsm-build-best-practice`.
