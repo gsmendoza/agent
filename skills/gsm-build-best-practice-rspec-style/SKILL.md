@@ -55,6 +55,12 @@ user_invocable: true
   - Align the description string with the test body variables and actors.
     - Example: If the description refers to the "second telemarketer", the assertion should reference `telemarketers[1]`.
 
+- Self-explanatory descriptions:
+  - Ensure test descriptions are self-contained and clear, without referencing arbitrary mock data, setup indices, or internal mock labels (e.g., `(Order A, B)`, `(Scenario 1)`).
+  - Describe the business rule, expected behavior, or sorting criteria directly.
+    - Bad: `it "sorts by auto_leads_count descending (Order A, B)"`
+    - Good: `it "sorts by auto_leads_count descending"`
+
 ## Sample Code
 
 Below is an example illustrating the use of parameterised `let` setups to DRY up variations of a single record's state:
