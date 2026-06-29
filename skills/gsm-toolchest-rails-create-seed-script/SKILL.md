@@ -13,7 +13,7 @@ user_invocable: true
 ## Expected Outcome
 
 - A runnable wrapper script at `../resources/seeds/<TICKET>.rb` that:
-  - Resets the database using `bin/reset_db`.
+  - Warns the user to run `bin/reset_db` first for a clean database, unless bypassed by setting `SKIP_RESET_DB=1`.
   - Runs the ticket's `import.rb` using `bin/rails runner`.
 
 ## Workflow
