@@ -12,7 +12,7 @@ user_invocable: true
 
 ## Guidelines
 
-- Break down the plan into a sequence of individual commits.
+- Break down the plan into a sequence of individual atomic, vertical-slice commits.
 
 - For each commit, note whether we need to apply the following skills:
   - `/gsm-build-tdd`
