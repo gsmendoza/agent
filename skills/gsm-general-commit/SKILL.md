@@ -24,6 +24,8 @@ user_invocable: true
     - `CHORE`: Dependency updates, config changes, or routine tasks.
     - `TEST`: Test-only changes.
     - `DOCS`: Documentation-only changes.
+    - `STYLING`: Frontend visual design, CSS, or layout changes.
+    - `STYLE`: Code formatting, linting, or whitespace changes.
   - `Title`: Short imperative summary of the changes.
 
 - Format the body based on the commit type:
