@@ -23,12 +23,22 @@ user_invocable: true
 
 ### 2. Implementation
 - Create `import.rb` in the ticket directory to load scenario data from `import.csv`.
+  - Create a new account specifically for the ticket.
+  - Use these standard logins for the account's owner and agent users:
+    - `dev-seed-owner@allstate.com`
+    - `dev-seed-agent@allstate.com`
+    - Why: Standardizing logins across seed scripts avoids having to remember script-specific user logins.
+
 - Create `import_test.rb` in the same directory to test `import.rb`.
   - Do NOT use the `gsm-build-tdd` skill (as its commit process does not apply here).
   - Run the test from the `toolchest-rails` directory using:
     ```sh
     bin/rails test ../resources/seeds/<TICKET>/import_test.rb
     ```
+  - Verify script correctness primarily via `import_test.rb`.
+    - Avoid testing or executing the wrapper script in the development environment.
+    - Why: Verifying with pre-existing records is difficult, and `bin/reset_db` is run before seeding in practice.
+
 - Update `import.csv` if additional columns or rows are needed for seeding.
 - Add upload fixture files in the ticket directory (or a subdirectory like `uploads/`) if the ticket requires post-seed file upload in the UI.
 - Create the convenience wrapper script `../resources/seeds/<TICKET>.rb`.
