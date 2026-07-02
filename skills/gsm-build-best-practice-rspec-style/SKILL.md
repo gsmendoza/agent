@@ -39,11 +39,17 @@ user_invocable: true
     - Instantiate the record once using a parent `let!` block referencing these helper attributes.
     - In child `context` blocks, override only the specific helper `let` attributes that change. Avoid using nested `before` blocks that create duplicate or additional records.
     - Why: Avoids redundant setup, makes variations declarative, and keeps them easy to scan.
+    - Ensure all helper `let` parameters referenced in the `let!` block are defined with a default value in the parent block. This prevents child contexts that don't override them from raising `NameError`.
 
   - Prefer explicitly declaring setup state inside sibling contexts:
     - Define the relevant helper `let` parameters explicitly in each context block, instead of implicitly assuming or relying on the parent context's default state.
       - Example: Under `context "when the lead belongs to the account"`, specify `let(:lead_account_id) { account.id }` even if it matches the parent's default.
       - Why: Makes nested context blocks contrasting, self-documenting, and resilient to future changes in parent block defaults.
+
+  - Context Naming Coherence:
+    - Keep outer context descriptions broad enough to cover all variations in their nested child contexts. Avoid naming parent contexts with constraints that are contradicted by their children.
+      - Example: Name the parent context `"when the vendor has a single lead"` instead of `"when the vendor has a lead in the past 14 days"` if a child context overrides the date to be older than 14 days.
+      - Why: Prevents logical contradictions between parent and child contexts, making the test suite easy to read and maintain.
 
 ### `it` blocks
 
