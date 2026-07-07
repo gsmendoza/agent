@@ -16,10 +16,11 @@ user_invocable: true
 
 ## Process
 
-- Do a general code review, but be on the lookout for
-  - Performance issues
-  - Dead code
+- Perform a general code review, focusing on:
+  - Correctness
+  - Performance
+  - Security
 
 ## Output
 
-- Report findings and then save the review using the /gsm-general-save skill.
+- Report the findings.
