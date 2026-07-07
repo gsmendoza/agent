@@ -8,11 +8,15 @@ user_invocable: true
 
 ## Input
 
-- Default: diff of the current branch against its parent branch
+- Git diff to review.
+  - Default: Diff of the current branch against its parent branch.
 
-- User might provide a different scope for the review. Examples:
-  - Unstaged commits
-  - The last commit
+  - The user might specify a different review scope. Examples:
+    - Uncommitted changes (unstaged or staged)
+    - The last commit
+
+- Model to use for the review.
+  - If not specified, ask the user.
 
 ## Process
 
