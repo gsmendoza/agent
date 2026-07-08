@@ -14,6 +14,8 @@ user_invocable: true
 
 - Format manual commit messages with a header line, a blank line, and a body.
 
+### Header line formatting
+
 - Format the header line as `<TICKET_NUMBER> <TYPE>: <Title>`:
   - `TICKET_NUMBER`: JIRA ticket number (infer from git branch name, or omit if none).
   - `TYPE`: Commit type in ALL CAPS. Use one of the following:
@@ -28,6 +30,8 @@ user_invocable: true
     - `STYLE`: Code formatting, linting, or whitespace changes.
   - `Title`: Short imperative summary of the changes.
 
+### Body formatting
+
 - Format the body based on the commit type:
   - For standard commits (e.g., `FEATURE`, `REFACTORING`):
     - Write a sentence or short paragraph that summarizes the commit.
@@ -38,9 +42,9 @@ user_invocable: true
     - Replace the standard description with three sections: `Expected behavior`, `Actual behavior`, and `Cause`.
     - Add headers for these sections, underlined with `--` (since git treats `#` as comments).
 
-- Apply these style rules to the body:
-  - Keep it short and concise.
-  - Wrap lines at 72 characters.
+- Keep the body short and concise.
+
+- Wrap lines at 72 characters.
 
 ## Examples
 
