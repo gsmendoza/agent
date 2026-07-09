@@ -12,11 +12,9 @@ user_invocable: true
 
 ## Steps
 
-### Push the branch
+### Verify remote status
 
-```bash
-git push origin <branch-name>
-```
+- If the branch has diverged from the remote branch, do not proceed with PR creation. Inform the user and ask for instructions.
 
 ### Write the PR body
 
