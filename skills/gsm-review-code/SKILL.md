@@ -34,6 +34,8 @@ user_invocable: true
 
     - Exception handling
       - Ensure rescue/catch clauses target the correct exception class scope.
+      - On critical paths or safety checks, enforce fail-fast: do not swallow exceptions silently (e.g., by returning `[]` or `nil`).
+      - Treat failed safety verifications as failures that block the action, rather than assuming success.
 
 ## Output
 
