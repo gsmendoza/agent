@@ -25,6 +25,7 @@ user_invocable: true
   - Performance
   - Security
   - Design & Architecture
+  - Comprehensibility
 
 - See the Guidelines section below for specific rules within these areas.
 
@@ -55,6 +56,11 @@ user_invocable: true
 
 - Enforce fail-fast on critical paths and safety checks
   - When executing critical paths or safety checks, do not swallow exceptions silently (e.g., by returning empty values or nil), so that failures are not mistakenly assumed to be successful.
+
+### Comprehensibility
+
+- Invoke gsm-build-best-practice-rspec-style for RSpec-style tests
+  - When reviewing tests written in RSpec format, invoke gsm-build-best-practice-rspec-style so that they maintain a clean balance of DRYness and readability.
 
 ## Output
 
