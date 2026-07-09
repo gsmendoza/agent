@@ -20,22 +20,26 @@ user_invocable: true
 
 ## Process
 
-- Perform a general code review, focusing on:
+- Perform a general code review, focusing on these areas:
   - Correctness
   - Performance
   - Security
-
   - Design & Architecture
-    - Separation of concerns
-      - Keep core/library code independent of execution contexts (e.g. CLI, UI, process control).
 
-    - Method purity
-      - Prefer pure queries/transformations; push side effects to the caller or wrapper methods.
+- See the Guidelines section below for specific rules within these areas.
 
-    - Exception handling
-      - Ensure rescue/catch clauses target the correct exception class scope.
-      - On critical paths or safety checks, enforce fail-fast: do not swallow exceptions silently (e.g., by returning `[]` or `nil`).
-      - Treat failed safety verifications as failures that block the action, rather than assuming success.
+## Guidelines
+
+### Design & Architecture
+
+- Separate core/library code from execution contexts
+  - When writing core or library logic, keep it independent of execution contexts (e.g., CLI, UI, or process control), so that it can be reused across different runtimes.
+
+- Target specific exception classes when rescuing
+  - When handling errors with rescue or catch blocks, target the narrowest exception class possible, so that unrelated or unexpected exceptions are not silently swallowed.
+
+- Enforce fail-fast on critical paths and safety checks
+  - When executing critical paths or safety checks, do not swallow exceptions silently (e.g., by returning empty values or nil), so that failures are not mistakenly assumed to be successful.
 
 ## Output
 
