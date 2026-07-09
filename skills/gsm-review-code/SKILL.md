@@ -25,6 +25,16 @@ user_invocable: true
   - Performance
   - Security
 
+  - Design & Architecture
+    - Separation of concerns
+      - Keep core/library code independent of execution contexts (e.g. CLI, UI, process control).
+
+    - Method purity
+      - Prefer pure queries/transformations; push side effects to the caller or wrapper methods.
+
+    - Exception handling
+      - Ensure rescue/catch clauses target the correct exception class scope.
+
 ## Output
 
 - Report the findings.
