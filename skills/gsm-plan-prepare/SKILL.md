@@ -19,5 +19,5 @@ user_invocable: true
 
 - For each commit, note:
   - If `/gsm-build-tdd` or `/gsm-build-lint-ruby` should be applied.
-  - Any best practice skills (prefixed with `gsm-build-best-practice`) that must run.
-  - A reminder to request user approval before proceeding to the next commit.
+  - A reminder to invoke `/gsm-review-code` on the uncommitted changes before committing.
+  - A reminder to request user approval after committing.
