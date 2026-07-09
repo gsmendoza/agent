@@ -17,7 +17,8 @@ user_invocable: true
     - Prefer vertical slices that deliver end-to-end testable features. In full-stack apps, combine backend and frontend changes (logic, views, styles, and system tests) so that the user interaction is fully functional.
     - For smaller features, the entire implementation can be a single vertical-slice commit. For larger tasks, slice by user-facing sub-features.
 
-- For each commit, note:
-  - If `/gsm-build-tdd` or `/gsm-build-lint-ruby` should be applied.
-  - A reminder to invoke `/gsm-review-code` on the uncommitted changes before committing.
-  - A reminder to request user approval after committing.
+- For each commit:
+  - Determine if `/gsm-build-tdd`, `/gsm-build-lint-ruby`, or `/gsm-review-code` should be applied.
+
+  - Always yield control to ask for explicit user approval after the commit is made.
+    - Why: this allows the user to inspect the commit and its message before the next step begins. The user prefers small iterations over avoiding turn-taking latency.
