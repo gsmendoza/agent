@@ -22,3 +22,9 @@ user_invocable: true
 
   - Always yield control to ask for explicit user approval after the commit is made.
     - Why: this allows the user to inspect the commit and its message before the next step begins. The user prefers small iterations over avoiding turn-taking latency.
+
+- Provide a link or path to the plan.
+  - Why: so the user can open the plan in an editor.
+
+- When the user asks to update the plan, edit the existing plan file instead of creating a new one.
+  - Why: a new file would force the user to open it again even if they already have the previous version open.
