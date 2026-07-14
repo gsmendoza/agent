@@ -54,6 +54,9 @@ user_invocable: true
 - Target specific exception classes when rescuing
   - When handling errors with rescue or catch blocks, target the narrowest exception class possible, so that unrelated or unexpected exceptions are not silently swallowed.
 
+- Prefer `StandardError` (or bare `rescue`) over `RuntimeError` when catching command/system failures
+  - When rescuing around helpers that run external commands or may raise system-level errors (e.g. `Errno::ENOENT`), rescue `StandardError` or use a bare `rescue` (which defaults to `StandardError`), so that failures such as `Errno::*` are caught. Do not recommend `rescue RuntimeError`: many of those failures inherit from `StandardError` but not from `RuntimeError`, so the rescue is bypassed and the script crashes. Still avoid rescuing `Exception`.
+
 - Enforce fail-fast on critical paths and safety checks
   - When executing critical paths or safety checks, do not swallow exceptions silently (e.g., by returning empty values or nil), so that failures are not mistakenly assumed to be successful.
 
