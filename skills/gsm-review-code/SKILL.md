@@ -26,6 +26,7 @@ user_invocable: true
   - Security
   - Design & Architecture
   - Comprehensibility
+  - Robustness
 
 - See the General Guidelines and Domain-specific Guidelines sections below for specific rules within these areas.
 
@@ -59,6 +60,9 @@ user_invocable: true
 
 - ActiveRecord
   - When reviewing ActiveRecord code, invoke gsm-review-code-active-record so that ActiveRecord-specific security and performance guidelines are applied.
+
+- Scripts & Automation
+  - When reviewing scripts or automation, invoke gsm-review-code-script so that script-specific robustness, design, and performance guidelines are applied.
 
 ## Output
 
