@@ -45,6 +45,7 @@ user_invocable: true
 - Keep the body short and concise.
 
 - Wrap lines at 72 characters.
+  - Why: Makes the body easier to read in gitk.
 
 ## Examples
 
