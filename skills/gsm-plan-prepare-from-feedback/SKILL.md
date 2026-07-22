@@ -1,10 +1,10 @@
 ---
-name: gsm-plan-prepare-for-feedback
+name: gsm-plan-prepare-from-feedback
 description: Invoke when preparing a plan for assessing and addressing PR or review feedback
 user_invocable: true
 ---
 
-# GSM > Plan > Prepare > For Feedback
+# GSM > Plan > Prepare > From Feedback
 
 ## Goal
 
