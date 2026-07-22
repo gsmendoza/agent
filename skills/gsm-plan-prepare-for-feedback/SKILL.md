@@ -25,10 +25,13 @@ user_invocable: true
   - Also consider any responses the user (gsmendoza) has left on the feedback file.
     - This is especially important for GitHub PR feedback.
 
+  - If an item is invalid, note in the plan that it will be skipped and why.
+    - Why: so the user can tell the item was assessed and skipped, not overlooked.
+
 - Invoke `/gsm-plan-prepare` to prepare a new plan addressing the feedback.
   - Plan preferences:
     - Create one commit per feedback item.
-      - Why: this makes it easier for the user to verify the resolution of each feedback.
+      - Why: so the user can verify each item's resolution.
 
     - Create a new plan instead of updating the original plan for the ticket.
-      - Why: this makes it easier for the user to keep track of the ticket's original tasks versus its revisions.
+      - Why: so the user can separate the ticket's original tasks from its post-review revisions.
