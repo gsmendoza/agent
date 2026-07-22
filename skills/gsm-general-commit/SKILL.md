@@ -37,7 +37,10 @@ user_invocable: true
     - Write a sentence or short paragraph that summarizes the commit.
     - Do not add a section header.
     - Do not list specific changes.
+
     - Omit test changes unless they are the primary focus of the commit.
+      - Why: Commits are expected to include tests. Mentioning test changes in the body adds noise.
+
   - For bugfix commits (`BUGFIX`):
     - Replace the standard description with three sections: `Expected behavior`, `Actual behavior`, and `Cause`.
     - Add headers for these sections, underlined with `--` (since git treats `#` as comments).
