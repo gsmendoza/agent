@@ -19,7 +19,8 @@ user_invocable: true
 - Format the header line as `<TICKET_NUMBER> <TYPE>: <Title>`:
   - `TICKET_NUMBER`: JIRA ticket number (infer from git branch name, or omit if none).
   - `TYPE`: Commit type in ALL CAPS. Use one of the following:
-    - `FEATURE`: New features or new business logic functionality.
+    - `FEATURE`: Adds entirely new user capabilities or business logic that did not exist before (e.g., adding a dashboard).
+    - `ENHANCEMENT`: Refines or extends an existing feature without introducing entirely new systems (e.g., adding a CSV export to that dashboard).
     - `BUGFIX`: Fixes to broken or incorrect behavior.
     - `REFACTORING`: Code improvements or cleanups without changing external behavior.
     - `PERFORMANCE`: Performance optimizations or improvements.
@@ -33,7 +34,7 @@ user_invocable: true
 ### Body formatting
 
 - Format the body based on the commit type:
-  - For standard commits (e.g., `FEATURE`, `REFACTORING`):
+  - For standard commits (e.g., `FEATURE`, `ENHANCEMENT`, `REFACTORING`):
     - Write a sentence or short paragraph that summarizes the commit.
     - Do not add a section header.
     - Do not list specific changes.
