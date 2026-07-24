@@ -21,6 +21,7 @@ user_invocable: true
   - `TYPE`: Commit type in ALL CAPS. Use one of the following:
     - `FEATURE`: Adds entirely new user capabilities or business logic that did not exist before (e.g., adding a dashboard).
     - `ENHANCEMENT`: Refines or extends an existing feature without introducing entirely new systems (e.g., adding a CSV export to that dashboard).
+    - `REMOVAL`: Removes an existing feature or capability (e.g., removing CSV export from that dashboard).
     - `BUGFIX`: Fixes to broken or incorrect behavior.
     - `REFACTORING`: Code improvements or cleanups without changing external behavior.
     - `PERFORMANCE`: Performance optimizations or improvements.
