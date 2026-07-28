@@ -54,8 +54,13 @@ TODO
 ```bash
 gh pr create \
   --draft \
+  --base <parent-branch> \
   --title "<TICKET_ID>: <Title description>" \
   --body-file "/path/to/scratch/pr_body.md" \
   --assignee "gsmendoza-narra-labs" \
   --label "CI-Ready"
 ```
+
+- Set `--base` to the parent branch.
+  - Parent branch: the branch this one was cut from (e.g. an upstream feature branch in a stack, not the repo default branch).
+  - Why: Scope the PR to commits on this branch only, not work already covered on the parent.
