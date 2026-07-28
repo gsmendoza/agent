@@ -22,7 +22,8 @@ user_invocable: true
     - `FEATURE`: Adds entirely new user capabilities or business logic that did not exist before (e.g., adding a dashboard).
     - `ENHANCEMENT`: Refines or extends an existing feature without introducing entirely new systems (e.g., adding a CSV export to that dashboard).
     - `REMOVAL`: Removes an existing feature or capability (e.g., removing CSV export from that dashboard).
-    - `BUGFIX`: Fixes to broken or incorrect behavior.
+    - `BUGFIX`: Fixes broken or incorrect behavior in released code. Usually the ticket's primary purpose.
+    - `CORRECTION`: Fixes broken or incorrect behavior in unreleased code, often after review feedback. Use standard body formatting, not the bugfix sections.
     - `REFACTORING`: Code improvements or cleanups without changing external behavior.
     - `PERFORMANCE`: Performance optimizations or improvements.
     - `CHORE`: Dependency updates, config changes, or routine tasks.
