@@ -41,6 +41,8 @@ TODO
 
 - Omit test changes in the summary unless they are the primary focus of the PR.
 
+- Before creating the PR, have the user review and approve the PR description.
+
 ### Create the PR
 
 - Use the GitHub CLI to create a draft pull request:
