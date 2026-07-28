@@ -30,6 +30,10 @@ https://agencytoolchest.atlassian.net/browse/<TICKET_ID>
 
 <High-level summary of what the branch implements.>
 
+## Additional changes
+
+<Changes outside the ticket scope or that cross ticket boundaries. Omit this section if none.>
+
 ## Demo/Screenshots
 
 TODO
