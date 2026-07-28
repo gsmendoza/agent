@@ -9,7 +9,9 @@ user_invocable: true
 ## Input
 
 - Git diff to review.
-  - Default: Diff of the current branch against its parent branch.
+  - Default: Diff of the current branch against its closest parent branch.
+    - Closest parent branch: the branch this one was cut from (e.g. an upstream feature branch in a stack, not the repo default branch).
+    - Why: Scope the review to commits on this branch only, not work already covered on the parent.
 
   - The user might specify a different review scope. Examples:
     - Uncommitted changes (unstaged or staged)
