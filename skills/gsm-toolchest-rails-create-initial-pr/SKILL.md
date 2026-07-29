@@ -55,11 +55,13 @@ TODO
 gh pr create \
   --draft \
   --base <parent-branch> \
-  --title "<TICKET_ID>: <Title description>" \
+  --title "<header-line>" \
   --body-file "/path/to/scratch/pr_body.md" \
   --assignee "gsmendoza-narra-labs" \
   --label "CI-Ready"
 ```
+
+- Set `--title` using the header line format from /gsm-general-commit.
 
 - Set `--base` to the parent branch.
   - Parent branch: the branch this one was cut from (e.g. an upstream feature branch in a stack, not the repo default branch).
