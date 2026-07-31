@@ -30,7 +30,7 @@ https://agencytoolchest.atlassian.net/browse/<TICKET_ID>
 
 ## Summary
 
-<High-level summary of what the branch implements.>
+<Summary from the branch's commit messages.>
 
 ## Additional changes
 
@@ -45,7 +45,8 @@ TODO
 TODO
 ```
 
-- Omit test changes in the summary unless they are the primary focus of the PR.
+- Limit the summary to what the PR's commit messages already say; do not add extra detail.
+  - Why: Keeps the PR description aligned with the commit history and avoids redundant elaboration.
 
 - Before creating the PR, have the user review and approve the PR description.
 
