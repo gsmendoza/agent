@@ -12,9 +12,11 @@ user_invocable: true
 
 ## Steps
 
-### Verify remote status
+### Preflight
 
-- If the branch has diverged from the remote branch, do not proceed with PR creation. Inform the user and ask for instructions.
+- Proceed with PR creation only when all of the following are true. Otherwise, inform the user and ask for instructions.
+  - The branch is up to date with the remote branch.
+  - The user has confirmed they have reviewed the branch.
 
 ### Write the PR body
 
