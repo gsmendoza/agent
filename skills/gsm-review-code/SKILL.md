@@ -66,6 +66,9 @@ user_invocable: true
 - Scripts & Automation
   - When reviewing scripts or automation, invoke gsm-review-code-script so that script-specific robustness, design, and performance guidelines are applied.
 
+- Presentation
+  - When reviewing views and other presentation code, invoke gsm-review-code-presentation so that presentation-specific design guidelines are applied.
+
 ## Output
 
 - Report the findings.
