@@ -19,6 +19,7 @@ user_invocable: true
 - Format the header line as `<TICKET_NUMBER> <TYPE>: <Title>`:
   - `TICKET_NUMBER`: JIRA ticket number (infer from git branch name, or omit if none).
   - `TYPE`: Commit type in ALL CAPS. Use one of the following:
+    - `SCAFFOLD`: Adds boilerplate or skeleton code to support future work, typically generated or copied from an existing feature. Not exposed in production by default.
     - `FEATURE`: Adds entirely new user capabilities or business logic that did not exist before (e.g., adding a dashboard).
     - `ENHANCEMENT`: Refines or extends an existing feature without introducing entirely new systems (e.g., adding a CSV export to that dashboard).
     - `REMOVAL`: Removes an existing feature or capability (e.g., removing CSV export from that dashboard).
