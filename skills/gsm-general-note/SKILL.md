@@ -1,10 +1,10 @@
 ---
-name: gsm-general-take-note
-description: Invoke when the user provides information about the session
+name: gsm-general-note
+description: Invoke when the user provides information to retain for later in the session. Use for preferences, constraints, and context.
 user_invocable: true
 ---
 
-# GSM > General > Take Note
+# GSM > General > Note
 
 ## Goal
 
