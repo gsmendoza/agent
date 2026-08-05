@@ -1,6 +1,6 @@
 ---
 name: gsm-general-assess
-description: Invoke when the user wants an assessment without making workspace changes. Use for evaluations, comparisons, and research-only requests.
+description: Invoke when the user wants an assessment without making workspace changes. Use for evaluations and comparisons.
 user_invocable: true
 ---
 
