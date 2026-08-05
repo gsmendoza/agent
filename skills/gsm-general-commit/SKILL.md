@@ -41,8 +41,13 @@ user_invocable: true
     - Do not add a section header.
     - Do not list specific changes.
 
-    - Omit test changes unless they are the primary focus of the commit.
-      - Why: Commits are expected to include tests. Mentioning test changes in the body adds noise.
+    - Omit supporting changes unless they are the primary focus of the commit.
+      - Examples of supporting changes:
+        - Refactorings
+        - Test additions
+        - User documentation
+
+      - Why: Mentioning supporting changes in the body adds noise.
 
   - For bugfix commits (`BUGFIX`):
     - Replace the standard description with three sections: `Expected behavior`, `Actual behavior`, and `Cause`.
