@@ -36,8 +36,8 @@ user_invocable: true
               - `PERFORMANCE`
 
             - Broken or incorrect behavior?
-              - Is the commit part of the initial PR submission, or is it in response to feedback?
-                - If the commit is part of the initial PR submission:
+              - Is the commit the main purpose of the PR submission, or is it in response to feedback?
+                - If the commit is the main purpose of the PR submission:
                   - `BUGFIX`
 
                 - If the commit is in response to feedback (either from the author or from a reviewer):
