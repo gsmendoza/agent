@@ -18,21 +18,60 @@ user_invocable: true
 
 - Format the header line as `<TICKET_NUMBER> <TYPE>: <Title>`:
   - `TICKET_NUMBER`: JIRA ticket number (infer from git branch name, or omit if none).
-  - `TYPE`: Commit type in ALL CAPS. Use one of the following:
-    - `SCAFFOLD`: Adds boilerplate or skeleton code to support future work, typically generated or copied from an existing feature. Not exposed in production by default.
-    - `FEATURE`: Adds entirely new user capabilities or business logic that did not exist before (e.g., adding a dashboard).
-    - `ENHANCEMENT`: Refines or extends an existing feature without introducing entirely new systems (e.g., adding a CSV export to that dashboard).
-    - `REMOVAL`: Removes an existing feature or capability (e.g., removing CSV export from that dashboard).
-    - `BUGFIX`: Fixes broken or incorrect behavior in released code. Usually the ticket's primary purpose.
-    - `CORRECTION`: Fixes broken or incorrect behavior in unreleased code, often after review feedback. Use standard body formatting, not the bugfix sections.
-    - `REFACTORING`: Code improvements or cleanups without changing external behavior.
-    - `PERFORMANCE`: Performance optimizations or improvements.
-    - `CHORE`: Dependency updates, config changes, or routine tasks.
-    - `TEST`: Test-only changes.
-    - `DOCS`: Documentation-only changes.
-    - `STYLING`: Frontend visual design, CSS, or layout changes.
-    - `STYLE`: Code formatting, linting, or whitespace changes.
+
   - `Title`: Short imperative summary of the changes.
+
+  - `TYPE`: Commit type in ALL CAPS. Base on the following decision tree, prioritized from top to bottom:
+    - Is the commit part of the initial PR submission, or is it in response to feedback?
+      - If the commit is in response to feedback (either from the author or from a reviewer):
+        - `CORRECTION`
+          - Use standard body formatting, not the bugfix sections.
+
+      - If the commit is part of the initial PR submission:
+        - Does the commit affect end users or the development team?
+          - If the commit affects end users, does it:
+            - Remove an existing feature (e.g., removing CSV export from a dashboard)?
+              - `REMOVAL`
+
+            - Fix existing features?
+              - Does the fix address:
+                - Security issues?
+                  - `SECURITY`
+
+                - Performance optimizations or improvements?
+                  - `PERFORMANCE`
+
+                - Broken or incorrect behavior?
+                  - `BUGFIX`
+
+            - Apply design or cosmetic changes without changing underlying functionality?
+              - `UI`
+
+            - Add or change features?
+              - Does the commit add entirely new features or business logic that did not exist before (e.g., adding a dashboard)?
+                - `FEATURE`
+
+              - Does the commit refine or extend an existing feature without introducing entirely new systems (e.g., adding a CSV export to a dashboard)?
+                - `ENHANCEMENT`
+
+          - If the commit affects the development team, does it:
+            - Add boilerplate or skeleton code to support future work (typically generated or copied from an existing feature and not exposed in production by default)?
+              - `SCAFFOLD`
+
+            - Apply dependency updates, config changes, or routine tasks?
+              - `CHORE`
+
+            - Update documentation only?
+              - `DOCS`
+
+            - Update tests only?
+              - `TEST`
+
+            - Update code formatting, linting, or whitespace?
+              - `STYLE`
+
+            - Improve or clean up code without changing external behavior?
+              - `REFACTORING`
 
 ### Body formatting
 
