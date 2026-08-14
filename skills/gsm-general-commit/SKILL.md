@@ -22,56 +22,56 @@ user_invocable: true
   - `Title`: Short imperative summary of the changes.
 
   - `TYPE`: Commit type in ALL CAPS. Base on the following decision tree, prioritized from top to bottom:
-    - Is the commit part of the initial PR submission, or is it in response to feedback?
-      - If the commit is in response to feedback (either from the author or from a reviewer):
-        - `CORRECTION`
-          - Use standard body formatting, not the bugfix sections.
+    - Does the commit affect end users or the development team?
+      - If the commit affects end users, does it:
+        - Remove an existing feature (e.g., removing CSV export from a dashboard)?
+          - `REMOVAL`
 
-      - If the commit is part of the initial PR submission:
-        - Does the commit affect end users or the development team?
-          - If the commit affects end users, does it:
-            - Remove an existing feature (e.g., removing CSV export from a dashboard)?
-              - `REMOVAL`
+        - Fix existing features?
+          - Does the fix address:
+            - Security issues?
+              - `SECURITY`
 
-            - Fix existing features?
-              - Does the fix address:
-                - Security issues?
-                  - `SECURITY`
+            - Performance optimizations or improvements?
+              - `PERFORMANCE`
 
-                - Performance optimizations or improvements?
-                  - `PERFORMANCE`
-
-                - Broken or incorrect behavior?
+            - Broken or incorrect behavior?
+              - Is the commit part of the initial PR submission, or is it in response to feedback?
+                - If the commit is part of the initial PR submission:
                   - `BUGFIX`
 
-            - Apply design or cosmetic changes without changing underlying functionality?
-              - `UI`
+                - If the commit is in response to feedback (either from the author or from a reviewer):
+                  - `CORRECTION`
+                    - Use standard body formatting, not the bugfix sections.
 
-            - Add or change features?
-              - Does the commit add entirely new features or business logic that did not exist before (e.g., adding a dashboard)?
-                - `FEATURE`
+        - Apply design or cosmetic changes without changing underlying functionality?
+          - `UI`
 
-              - Does the commit refine or extend an existing feature without introducing entirely new systems (e.g., adding a CSV export to a dashboard)?
-                - `ENHANCEMENT`
+        - Add or change features?
+          - Does the commit add entirely new features or business logic that did not exist before (e.g., adding a dashboard)?
+            - `FEATURE`
 
-          - If the commit affects the development team, does it:
-            - Add boilerplate or skeleton code to support future work (typically generated or copied from an existing feature and not exposed in production by default)?
-              - `SCAFFOLD`
+          - Does the commit refine or extend an existing feature without introducing entirely new systems (e.g., adding a CSV export to a dashboard)?
+            - `ENHANCEMENT`
 
-            - Apply dependency updates, config changes, or routine tasks?
-              - `CHORE`
+      - If the commit affects the development team, does it:
+        - Add boilerplate or skeleton code to support future work (typically generated or copied from an existing feature and not exposed in production by default)?
+          - `SCAFFOLD`
 
-            - Update documentation only?
-              - `DOCS`
+        - Apply dependency updates, config changes, or routine tasks?
+          - `CHORE`
 
-            - Update tests only?
-              - `TEST`
+        - Update documentation only?
+          - `DOCS`
 
-            - Update code formatting, linting, or whitespace?
-              - `STYLE`
+        - Update tests only?
+          - `TEST`
 
-            - Improve or clean up code without changing external behavior?
-              - `REFACTORING`
+        - Update code formatting, linting, or whitespace?
+          - `STYLE`
+
+        - Improve or clean up code without changing external behavior?
+          - `REFACTORING`
 
 ### Body formatting
 
