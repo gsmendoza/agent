@@ -36,7 +36,7 @@ user_invocable: true
 
 ### Body formatting
 
-- Format the body based on the commit type:
+- Structure the body based on the commit type:
   - For standard commits (e.g., `FEATURE`, `ENHANCEMENT`, `REFACTORING`):
     - Write a sentence or short paragraph that summarizes the commit.
     - Do not add a section header.
@@ -54,10 +54,12 @@ user_invocable: true
     - Replace the standard description with three sections: `Expected behavior`, `Actual behavior`, and `Cause`.
     - Add headers for these sections, underlined with `--` (since git treats `#` as comments).
 
-- Keep the body short and concise.
+- Apply the following formatting to the body:
+  - Apply Markdown formatting.
+    - Why: I often copy commit messages verbatim as responses to code review feedback.
 
-- Wrap lines at 72 characters.
-  - Why: Makes the body easier to read in gitk.
+  - Wrap lines at 72 characters.
+    - Why: Makes the body easier to read in gitk.
 
 ## Examples
 
