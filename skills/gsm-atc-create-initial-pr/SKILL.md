@@ -1,10 +1,10 @@
 ---
-name: gsm-toolchest-rails-create-initial-pr
+name: gsm-atc-create-initial-pr
 description: Invoke when the user requests to create a pull request, draft PR, or push the current branch.
 user_invocable: true
 ---
 
-# GSM > Toolchest Rails > Create Initial PR
+# GSM > ATC > Create Initial PR
 
 ## Goal
 
@@ -45,7 +45,7 @@ TODO
 TODO
 ```
 
-- Limit the summary to what the PR's commit messages already say; do not add extra detail.
+- Limit the summary to what the branch's commit messages already say; do not add extra detail.
   - Why: Keeps the PR description aligned with the commit history and avoids redundant elaboration.
 
 - Before creating the PR, have the user review and approve the PR description.
