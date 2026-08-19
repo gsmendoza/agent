@@ -28,6 +28,11 @@ user_invocable: true
   - If an item is invalid, note in the plan that it will be skipped and why.
     - Why: so the user can tell the item was assessed and skipped, not overlooked.
 
+  - When feedback proposes a defensive guard, consider:
+    - Whether the bad input being guarded against can actually occur in the current codebase.
+    - What happens when the guard is added and that bad input is encountered anyway.
+      - Does it fall back gracefully, or just pass the problem on to another part of the system?
+
 - Invoke `/gsm-plan-prepare` to prepare a new plan addressing the feedback.
   - Plan preferences:
     - Create one commit per feedback item.
