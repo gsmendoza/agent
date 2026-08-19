@@ -36,13 +36,12 @@ user_invocable: true
               - `PERFORMANCE`
 
             - Broken or incorrect behavior?
-              - Is the commit the main purpose of the PR submission, or is it in response to feedback?
-                - If the commit is the main purpose of the PR submission:
-                  - `BUGFIX`
+              - Is fixing the broken behavior the main goal of the branch's ticket?
+                - `BUGFIX`
 
-                - If the commit is in response to feedback (either from the author or from a reviewer):
-                  - `CORRECTION`
-                    - Use standard body formatting, not the bugfix sections.
+              - Was the broken behavior introduced in the branch's own implementation and discovered during review (either by the author or by a reviewer)?
+                - `CORRECTION`
+                  - Use standard body formatting, not the bugfix sections.
 
         - Apply design or cosmetic changes without changing underlying functionality?
           - `UI`
