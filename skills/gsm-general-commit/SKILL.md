@@ -29,7 +29,7 @@ user_invocable: true
 
         - Fix existing features?
           - Does the fix address:
-            - Security issues?
+            - Security issues (e.g., unauthorized access to data or capabilities)?
               - `SECURITY`
 
             - Performance optimizations or improvements?
