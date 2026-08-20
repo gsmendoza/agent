@@ -41,7 +41,8 @@ user_invocable: true
 
               - Was the broken behavior introduced in the branch's own implementation and discovered during review (either by the author or by a reviewer)?
                 - `CORRECTION`
-                  - Use standard body formatting, not the bugfix sections.
+                  - Use standard body formatting instead of the bugfix sections.
+                    - Why: Unlike a bugfix, a correction fixes an issue that has not been released yet. It doesn't tackle a production issue with documented, actual broken behavior whose cause needs investigating. Adding the bugfix sections to a correction would wrongly imply it fixes a production issue.
 
         - Apply design or cosmetic changes without changing underlying functionality?
           - `UI`
@@ -90,6 +91,8 @@ user_invocable: true
 
   - For bugfix commits (`BUGFIX`):
     - Replace the standard description with three sections: `Expected behavior`, `Actual behavior`, and `Cause`.
+      - Why: These sections provide the context needed to understand a bugfix.
+
     - Add headers for these sections, underlined with `--` (since git treats `#` as comments).
 
 - Apply the following formatting to the body:
