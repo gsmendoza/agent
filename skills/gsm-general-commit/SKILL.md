@@ -36,10 +36,10 @@ user_invocable: true
               - `PERFORMANCE`
 
             - Broken or incorrect behavior?
-              - Is fixing the broken behavior the main goal of the branch's ticket?
+              - Is the broken behavior a production issue? Is it the main goal of the branch's ticket?
                 - `BUGFIX`
 
-              - Was the broken behavior introduced in the branch's own implementation and discovered during review (either by the author or by a reviewer)?
+              - Was the broken behavior introduced in the branch's own implementation? Was it discovered during review of the branch (either by the author or by a reviewer)?
                 - `CORRECTION`
                   - Use standard body formatting instead of the bugfix sections.
                     - Why: Unlike a bugfix, a correction fixes an issue that has not been released yet. It doesn't tackle a production issue with documented, actual broken behavior whose cause needs investigating. Adding the bugfix sections to a correction would wrongly imply it fixes a production issue.
