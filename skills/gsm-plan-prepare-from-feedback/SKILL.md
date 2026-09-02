@@ -1,5 +1,5 @@
 ---
-name: gsm-plan-prepare-from-feedback
+name: gsm-plan-from-feedback
 description: Invoke when preparing a plan for assessing and addressing PR or review feedback
 user_invocable: true
 ---
@@ -33,7 +33,7 @@ user_invocable: true
     - What happens when the guard is added and that bad input is encountered anyway.
       - Does it fall back gracefully, or just pass the problem on to another part of the system?
 
-- Invoke `/gsm-plan-prepare` to prepare a new plan addressing the feedback.
+- Invoke `/gsm-plan` to prepare a new plan addressing the feedback.
   - Plan preferences:
     - Create one commit per feedback item.
       - Why: so the user can verify each item's resolution.

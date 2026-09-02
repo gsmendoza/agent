@@ -1,10 +1,10 @@
 ---
-name: gsm-plan-prepare
+name: gsm-plan
 description: Invoke when preparing a plan
 user_invocable: true
 ---
 
-# GSM > Plan > Prepare
+# GSM > Plan
 
 ## Goal
 

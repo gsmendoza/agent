@@ -22,4 +22,4 @@ user_invocable: true
 - If the ticket is part of an epic, fetch the details of the epic too.
   - Why: The epic provides background and acceptance criteria that may not be repeated in the child ticket.
 
-- Invoke `/gsm-plan-prepare` to outline the step-by-step implementation plan.
+- Invoke `/gsm-plan` to outline the step-by-step implementation plan.
