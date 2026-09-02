@@ -1,10 +1,10 @@
 ---
-name: gsm-general-assess
+name: gsm-assess
 description: Invoke when the user wants an assessment without making workspace changes. Use for evaluations and comparisons.
 user_invocable: true
 ---
 
-# GSM > General > Assess
+# GSM > Assess
 
 ## Goal
 
