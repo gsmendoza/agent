@@ -17,3 +17,8 @@ user_invocable: true
 
 - Use EXISTS subqueries for database presence checks
   - When checking for record existence in database queries, use SQL `EXISTS` subqueries instead of `COUNT(*) > 0`, so that the database can short-circuit and return immediately upon finding the first match.
+
+### Migrations
+
+- Avoid referencing live ActiveRecord models inside migrations
+  - When a migration needs to read or update existing rows, define a local stub class scoped to the table (e.g., `class MigrationPolicyActivityTag < ActiveRecord::Base; self.table_name = :policy_activity_tags; end`) instead of referencing the app's real model, so that the migration keeps working when run from scratch even after the model is later renamed, removed, or gains validations/callbacks.
