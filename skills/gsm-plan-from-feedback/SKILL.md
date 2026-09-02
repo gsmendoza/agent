@@ -4,7 +4,7 @@ description: Invoke when preparing a plan for assessing and addressing PR or rev
 user_invocable: true
 ---
 
-# GSM > Plan > Prepare > From Feedback
+# GSM > Plan From feedback
 
 ## Goal
 
@@ -14,7 +14,8 @@ user_invocable: true
 
 - Feedback from the user. Can be:
   - GitHub PR feedback
-    - Usually saved as HTML.
+    - Usually a link to the PR. Use `gh` CLI to fetch the PR.
+      - Note: in the past, I used to manually save the PR and provide the agent the path to the saved HTML. I'm currently experimenting with using `gh` to skip this intermediate step.
 
   - Local agent review
     - Usually saved as Markdown.
