@@ -10,19 +10,10 @@ user_invocable: true
 
 - Initialize a work session for the repository's current branch and set up the directory structure for its epic and ticket artifacts.
 
-## Input
-
-- The repo's current branch.
-
 ## Process
 
 - Preflight
-  - Warn the user that this skill will create a new session based on the repo's current branch.
-  - Proceed only if the user approves.
-
-- Session setup
-  - Start a new session.
-  - Rename the session based on the repo's current branch.
+  - Warn if the session name does not match the repo's current branch.
 
 - Ticket and epic context
   - Identify the ticket number from the current branch name.
