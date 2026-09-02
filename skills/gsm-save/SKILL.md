@@ -1,10 +1,10 @@
 ---
-name: gsm-general-save
+name: gsm-save
 description: Invoke when saving the agent's response
 user_invocable: true
 ---
 
-# GSM > General > Save
+# GSM > Save
 
 ## Input
 

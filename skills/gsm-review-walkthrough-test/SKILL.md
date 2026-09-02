@@ -73,4 +73,4 @@ user_invocable: true
 
 ## Output
 
-- Use /gsm-general-save to save the walkthrough.
+- Use /gsm-save to save the walkthrough.

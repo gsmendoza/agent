@@ -24,7 +24,7 @@ user_invocable: true
   - Always yield control to ask for explicit user approval after the commit is made.
     - Why: this allows the user to inspect the commit and its message before the next step begins. The user prefers small iterations over avoiding turn-taking latency.
 
-- Save the plan using /gsm-general-save.
+- Save the plan using /gsm-save.
   - Why: so the user gets a file they can open in an editor.
 
   - Exception — do not save when the harness is:

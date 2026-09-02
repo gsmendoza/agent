@@ -1,6 +1,6 @@
 ---
 name: gsm-plan-copy
-description: Invoke when the user asks to copy a plan. Copies the plan via gsm-general-save.
+description: Invoke when the user asks to copy a plan. Copies the plan via gsm-save.
 user_invocable: true
 ---
 
@@ -8,7 +8,7 @@ user_invocable: true
 
 ## Process
 
-- Copy the plan by following the [gsm-general-save](file:///home/gsmendoza/repos/gsmendoza/agent/skills/gsm-general-save/SKILL.md) skill.
+- Copy the plan by following the [gsm-save](file:///home/gsmendoza/repos/gsmendoza/agent/skills/gsm-save/SKILL.md) skill.
   - Use the plan from the current conversation as the input content (defaults to the most recently produced plan).
 
 ## Input
@@ -17,7 +17,7 @@ user_invocable: true
 
 ## Output
 
-- Plan saved as a file following the [gsm-general-save](file:///home/gsmendoza/repos/gsmendoza/agent/skills/gsm-general-save/SKILL.md) guidelines.
+- Plan saved as a file following the [gsm-save](file:///home/gsmendoza/repos/gsmendoza/agent/skills/gsm-save/SKILL.md) guidelines.
 
 ## Motivation
 
