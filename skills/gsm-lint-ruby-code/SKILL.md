@@ -1,10 +1,10 @@
 ---
-name: gsm-build-lint-ruby
+name: gsm-lint-ruby-code
 description: Invoke when linting Ruby code
 user_invocable: true
 ---
 
-# GSM > Build > Lint Ruby
+# GSM > Lint > Ruby Code
 
 ## Workflow
 

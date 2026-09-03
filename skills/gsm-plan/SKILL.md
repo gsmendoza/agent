@@ -19,7 +19,7 @@ user_invocable: true
 
 - For each commit:
   - Determine the commit type using `/gsm-commit`.
-  - Determine if `/gsm-apply-tdd`, `/gsm-build-lint-ruby`, or `/gsm-follow-code-guidelines` should be applied.
+  - Determine if `/gsm-apply-tdd`, `/gsm-lint-ruby-code`, or `/gsm-follow-code-guidelines` should be applied.
 
   - Always yield control to ask for explicit user approval after the commit is made.
     - Why: this allows the user to inspect the commit and its message before the next step begins. The user prefers small iterations over avoiding turn-taking latency.
