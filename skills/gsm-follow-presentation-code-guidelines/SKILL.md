@@ -1,10 +1,10 @@
 ---
-name: gsm-follow-code-presentation-guidelines
+name: gsm-follow-presentation-code-guidelines
 description: Invoke when planning, writing, or reviewing views or other presentation code
 user_invocable: true
 ---
 
-# GSM > Follow > Code Guidelines > Presentation
+# GSM > Follow > Presentation > Code Guidelines
 
 ## Guidelines
 

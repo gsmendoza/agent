@@ -1,10 +1,10 @@
 ---
-name: gsm-follow-code-script-guidelines
+name: gsm-follow-script-code-guidelines
 description: Invoke when planning, writing, or reviewing scripts or automation
 user_invocable: true
 ---
 
-# GSM > Follow > Code Guidelines > Script
+# GSM > Follow > Script > Code Guidelines
 
 ## Guidelines
 

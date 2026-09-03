@@ -35,10 +35,10 @@ user_invocable: true
 ## Domain-specific Guidelines
 
 - ActiveRecord
-  - When working with ActiveRecord code, invoke gsm-follow-code-active-record-guidelines so that ActiveRecord-specific security and performance guidelines are applied.
+  - When working with ActiveRecord code, invoke gsm-follow-active-record-code-guidelines so that ActiveRecord-specific security and performance guidelines are applied.
 
 - Scripts & Automation
-  - When working with scripts or automation, invoke gsm-follow-code-script-guidelines so that script-specific robustness, design, and performance guidelines are applied.
+  - When working with scripts or automation, invoke gsm-follow-script-code-guidelines so that script-specific robustness, design, and performance guidelines are applied.
 
 - Presentation
-  - When working with views and other presentation code, invoke gsm-follow-code-presentation-guidelines so that presentation-specific design guidelines are applied.
+  - When working with views and other presentation code, invoke gsm-follow-presentation-code-guidelines so that presentation-specific design guidelines are applied.
