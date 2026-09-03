@@ -29,8 +29,8 @@ user_invocable: true
 
 ### Comprehensibility
 
-- Invoke gsm-build-best-practice-rspec-style for RSpec-style tests
-  - When writing or reviewing tests written in RSpec format, invoke gsm-build-best-practice-rspec-style so that they maintain a clean balance of DRYness and readability.
+- Invoke gsm-follow-rspec-style-code-guidelines for RSpec-style tests
+  - When writing or reviewing tests written in RSpec format, invoke gsm-follow-rspec-style-code-guidelines so that they maintain a clean balance of DRYness and readability.
 
 ## Domain-specific Guidelines
 
