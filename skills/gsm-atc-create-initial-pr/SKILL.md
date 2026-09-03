@@ -30,7 +30,7 @@ https://agencytoolchest.atlassian.net/browse/<TICKET_ID>
 
 ## Summary
 
-<Summary from the branch's commit messages.>
+<Summary from the branch's commit messages. Prefer a bulleted list over paragraphs.>
 
 ## Additional changes
 
