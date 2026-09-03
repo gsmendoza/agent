@@ -1,10 +1,10 @@
 ---
-name: gsm-general-commit
+name: gsm-commit
 description: Commit changes using a structured commit message format.
 user_invocable: true
 ---
 
-# GSM > General > Commit
+# GSM > Commit
 
 ## Goal
 

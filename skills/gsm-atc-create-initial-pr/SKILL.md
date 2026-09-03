@@ -64,7 +64,7 @@ gh pr create \
   --label "CI-Ready"
 ```
 
-- Set `--title` using the header line format from /gsm-general-commit.
+- Set `--title` using the header line format from /gsm-commit.
 
 - Set `--base` to the parent branch.
   - Parent branch: the branch this one was cut from (e.g. an upstream feature branch in a stack, not the repo default branch).

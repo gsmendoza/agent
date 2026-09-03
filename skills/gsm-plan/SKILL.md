@@ -18,7 +18,7 @@ user_invocable: true
     - For smaller features, the entire implementation can be a single vertical-slice commit. For larger tasks, slice by user-facing sub-features.
 
 - For each commit:
-  - Determine the commit type using `/gsm-general-commit`.
+  - Determine the commit type using `/gsm-commit`.
   - Determine if `/gsm-build-tdd`, `/gsm-build-lint-ruby`, or `/gsm-follow-code-guidelines` should be applied.
 
   - Always yield control to ask for explicit user approval after the commit is made.

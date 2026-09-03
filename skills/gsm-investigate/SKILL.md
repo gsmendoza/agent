@@ -1,10 +1,10 @@
 ---
-name: gsm-general-investigate
+name: gsm-investigate
 description: Invoke when the user wants a topic investigated without making workspace changes. Use for research, exploration, information gathering, and factual questions.
 user_invocable: true
 ---
 
-# GSM > General > Investigate
+# GSM > Investigate
 
 ## Goal
 

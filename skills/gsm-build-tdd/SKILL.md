@@ -43,4 +43,4 @@ user_invocable: true
 
 ## Workflow rules
 
-- Follow /gsm-general-commit for commits generated in this workflow.
+- Follow /gsm-commit for commits generated in this workflow.
