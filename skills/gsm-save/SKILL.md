@@ -35,6 +35,8 @@ user_invocable: true
         - Example
           - donald-e-knuth-20260512-1430.md
 
+- Include AI attribution at the end of the file.
+
 - Provide the user a link to the file path once file is saved.
   - Purpose: allows user to copy the path from the agent CLI.
 
