@@ -18,10 +18,11 @@ user_invocable: true
 
 ## Workflow
 
-### 1. Input
-- The user will create the initial CSV file at `/home/gsmendoza/workspaces/admin-agencytoolchest/resources/seeds/<TICKET>/import.csv`.
+### Implementation
 
-### 2. Implementation
+- Create `../resources/seeds/<TICKET>/import.csv` based on the ticket's specifications.
+  - Ask the user to review the file before continuing.
+
 - Create `import.rb` in the ticket directory to load scenario data from `import.csv`.
   - Create a new account specifically for the ticket.
   - Use these standard logins for the account's owner and agent users:
@@ -43,9 +44,9 @@ user_invocable: true
 - Add upload fixture files in the ticket directory (or a subdirectory like `uploads/`) if the ticket requires post-seed file upload in the UI.
 - Create the convenience wrapper script `../resources/seeds/<TICKET>.rb`.
 
-### 3. Post-Process
-- Print the admin account email for logging in.
-- If there are upload fixtures, print instructions on how to upload them in the UI.
+- Update the script to do the following when run:
+  - Print the admin account email for logging in.
+  - If there are upload fixtures, print instructions on how to upload them in the UI.
 
 ## Script & Directory Structure
 
