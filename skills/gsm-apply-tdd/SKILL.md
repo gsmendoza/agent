@@ -1,8 +1,10 @@
 ---
-name: gsm-build-tdd
+name: gsm-apply-tdd
 description: Invoke when applying test-driven development to a change
 user_invocable: true
 ---
+
+# GSM > Apply > TDD
 
 ## Prerequisites
 
@@ -27,7 +29,7 @@ user_invocable: true
     - Verify that it is failing as expected.
 
   - Update the code to pass the test.
-    - If updating the code requires creating or updating a test for a smaller component, recursively apply this skill (gsm-build-tdd) to that component.
+    - If updating the code requires creating or updating a test for a smaller component, recursively apply this skill (gsm-apply-tdd) to that component.
 
   - Run the test again to confirm that it is now passing.
 

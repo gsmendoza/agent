@@ -30,7 +30,7 @@ user_invocable: true
     - Why: Standardizing logins across seed scripts avoids having to remember script-specific user logins.
 
 - Create `import_test.rb` in the same directory to test `import.rb`.
-  - Do NOT use the `gsm-build-tdd` skill (as its commit process does not apply here).
+  - Do NOT use the `gsm-apply-tdd` skill (as its commit process does not apply here).
   - Run the test from the `toolchest-rails` directory using:
     ```sh
     bin/rails test ../resources/seeds/<TICKET>/import_test.rb
