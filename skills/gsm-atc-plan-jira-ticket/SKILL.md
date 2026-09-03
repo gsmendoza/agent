@@ -1,10 +1,10 @@
 ---
-name: gsm-toolchest-rails-plan-jira-ticket
+name: gsm-atc-plan-jira-ticket
 description: Invoke when preparing a plan for a toolchest-rails JIRA ticket
 user_invocable: true
 ---
 
-# GSM > Toolchest Rails > Plan JIRA Ticket
+# GSM > ATC > Plan JIRA Ticket
 
 ## Goal
 
