@@ -4,7 +4,7 @@ description: Invoke when planning, writing, or reviewing ActiveRecord code
 user_invocable: true
 ---
 
-# GSM > Follow > Active Record > Code Guidelines
+# GSM > Follow > Active Record Code Guidelines
 
 ## Guidelines
 

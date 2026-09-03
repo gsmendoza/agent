@@ -4,7 +4,7 @@ description: Invoke when planning, writing, or reviewing scripts or automation
 user_invocable: true
 ---
 
-# GSM > Follow > Script > Code Guidelines
+# GSM > Follow > Script Code Guidelines
 
 ## Guidelines
 

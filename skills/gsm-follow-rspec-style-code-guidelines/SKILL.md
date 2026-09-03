@@ -4,7 +4,7 @@ description: Invoke when writing tests in RSpec-style format
 user_invocable: true
 ---
 
-# GSM > Follow > RSpec-style > Code Guidelines
+# GSM > Follow > RSpec-style Code Guidelines
 
 ## Goal
 

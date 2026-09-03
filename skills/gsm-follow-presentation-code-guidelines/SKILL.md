@@ -4,7 +4,7 @@ description: Invoke when planning, writing, or reviewing views or other presenta
 user_invocable: true
 ---
 
-# GSM > Follow > Presentation > Code Guidelines
+# GSM > Follow > Presentation Code Guidelines
 
 ## Guidelines
 
