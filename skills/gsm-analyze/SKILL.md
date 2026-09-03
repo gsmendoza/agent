@@ -1,10 +1,10 @@
 ---
-name: gsm-inquire
+name: gsm-analyze
 description: Invoke when the user wants an inquiry, investigation, research, analysis, assessment, or question answered without making workspace changes.
 user_invocable: true
 ---
 
-# GSM > Inquire
+# GSM > Analyze
 
 ## Goal
 
