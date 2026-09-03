@@ -68,5 +68,5 @@ user_invocable: true
 
 ## Related Skills
 
-- `gsm-toolchest-rails-bin-over-docker`: For running Rails commands in the development environment.
+- `gsm-toolchest-rails-prefer-bin-over-docker`: For running Rails commands in the development environment.
 
