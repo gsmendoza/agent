@@ -1,10 +1,10 @@
 ---
-name: gsm-review-code-active-record
-description: Invoke when reviewing ActiveRecord code
+name: gsm-follow-code-active-record-guidelines
+description: Invoke when planning, writing, or reviewing ActiveRecord code
 user_invocable: true
 ---
 
-# GSM > Review > Code > Active Record
+# GSM > Follow > Code Guidelines > Active Record
 
 ## Guidelines
 

@@ -1,10 +1,10 @@
 ---
-name: gsm-review-code-script
-description: Invoke when reviewing scripts or automation
+name: gsm-follow-code-script-guidelines
+description: Invoke when planning, writing, or reviewing scripts or automation
 user_invocable: true
 ---
 
-# GSM > Review > Code > Script
+# GSM > Follow > Code Guidelines > Script
 
 ## Guidelines
 
