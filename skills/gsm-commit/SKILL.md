@@ -27,38 +27,38 @@ user_invocable: true
         - Remove an existing feature (e.g., removing CSV export from a dashboard)?
           - `REMOVAL`
 
-        - Fix existing features?
-          - Does the fix address:
-            - Security issues (e.g., unauthorized access to data or capabilities)?
-              - `SECURITY`
+        - Fix broken or incorrect behavior that has been observed or can be observed by users or the system?
+          - Is the broken behavior a production issue? Is it the main goal of the branch's ticket?
+            - `BUGFIX`
 
-            - Performance optimizations or improvements?
-              - `PERFORMANCE`
-
-            - Broken or incorrect behavior?
-              - Is the broken behavior a production issue? Is it the main goal of the branch's ticket?
-                - `BUGFIX`
-
-              - Was the broken behavior introduced in the branch's own implementation? Was it discovered during review of the branch (either by the author or by a reviewer)?
-                - `CORRECTION`
-                  - Use standard body formatting instead of the bugfix sections.
-                    - Why: Unlike a bugfix, a correction fixes an issue that has not been released yet. It doesn't tackle a production issue with documented, actual broken behavior whose cause needs investigating. Adding the bugfix sections to a correction would wrongly imply it fixes a production issue.
-
-        - Apply design or cosmetic changes without changing underlying functionality?
-          - `UI`
+          - Was the broken behavior introduced in the branch's own implementation? Was it discovered during review of the branch (either by the author or by a reviewer)?
+            - `CORRECTION`
+              - Use standard body formatting instead of the bugfix sections.
+                - Why: Unlike a bugfix, a correction fixes an issue that has not been released yet. It doesn't tackle a production issue with documented, actual broken behavior whose cause needs investigating. Adding the bugfix sections to a correction would wrongly imply it fixes a production issue.
 
         - Add or change features?
-          - Does the commit add entirely new features or business logic that did not exist before (e.g., adding a dashboard)?
+          - Does the commit introduce features or business logic that would be new either to the user or to the system (e.g., adding a wizard, adding a database column)?
             - `FEATURE`
 
-          - Does the commit refine or extend an existing feature without introducing entirely new systems (e.g., adding a CSV export to a dashboard)?
-            - `ENHANCEMENT`
+          - Does the commit refine or extend an existing feature without introducing something entirely new to the user/system?
+            - Does the change concern:
+              - Design or aesthetics (e.g., styling, layouts, typography)?
+                - `UI`
+
+              - Security (e.g., proactive hardening, rate limiting, permissions)?
+                - `SECURITY`
+
+              - Performance (e.g., query optimization, caching, payload reductions)?
+                - `PERFORMANCE`
+
+              - Any other type of concern (e.g., reorganizing the steps of a wizard)?
+                - `ENHANCEMENT`
 
       - If the commit affects the development team, does it:
         - Add boilerplate or skeleton code to support future work (typically generated or copied from an existing feature and not exposed in production by default)?
           - `SCAFFOLD`
 
-        - Apply dependency updates, config changes, or routine tasks?
+        - Apply dependency updates, config changes, fixes to build/CI pipelines, or routine tasks?
           - `CHORE`
 
         - Update documentation only?
