@@ -2,6 +2,7 @@
 name: gsm-apply-tdd
 description: Invoke when applying test-driven development to a change
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > Apply > TDD

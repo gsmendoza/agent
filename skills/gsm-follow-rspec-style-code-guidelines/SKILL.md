@@ -2,6 +2,7 @@
 name: gsm-follow-rspec-style-code-guidelines
 description: Invoke when writing tests in RSpec-style format
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > Follow > RSpec-style Code Guidelines

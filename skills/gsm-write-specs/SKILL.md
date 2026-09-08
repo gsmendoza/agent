@@ -2,6 +2,7 @@
 name: gsm-write-specs
 description: Write a ticket's specs as Gherkin scenarios for a non-engineer domain expert to verify. Invoke when asked to formalize, write, or rewrite a ticket's specs/acceptance criteria in Gherkin/BDD format.
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > Write Specs

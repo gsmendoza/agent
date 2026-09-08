@@ -2,6 +2,7 @@
 name: gsm-follow-presentation-code-guidelines
 description: Invoke when planning, writing, or reviewing views or other presentation code
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > Follow > Presentation Code Guidelines

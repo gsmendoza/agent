@@ -2,6 +2,7 @@
 name: gsm-lint-ruby-code
 description: Invoke when linting Ruby code
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > Lint > Ruby Code

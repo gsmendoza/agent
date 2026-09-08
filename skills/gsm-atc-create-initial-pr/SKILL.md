@@ -2,6 +2,7 @@
 name: gsm-atc-create-initial-pr
 description: Invoke when the user requests to create a pull request, draft PR, or push the current branch.
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > ATC > Create Initial PR

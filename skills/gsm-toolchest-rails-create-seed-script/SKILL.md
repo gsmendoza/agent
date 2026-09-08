@@ -2,6 +2,7 @@
 name: gsm-toolchest-rails-create-seed-script
 description: Invoke when user asks for a personal seed script for a ticket
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > Toolchest Rails > Create Seed Script

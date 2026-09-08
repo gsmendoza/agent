@@ -2,6 +2,7 @@
 name: gsm-add-skill
 description: Create a skill following repository conventions. Invoke when adding or creating a new skill.
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > Add Skill

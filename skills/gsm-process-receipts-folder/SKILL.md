@@ -1,6 +1,7 @@
 ---
 name: gsm-process-receipts-folder
 description: Scan receipt images in a folder, extract metadata into a review CSV, then rename and file images after user approval. Use when processing receipts, purchase records, invoices, warranties, or when the user provides a folder of receipt images to catalog.
+disable-model-invocation: true
 ---
 
 # GSM > Process Receipts Folder

@@ -2,6 +2,7 @@
 name: gsm-plan
 description: Invoke when preparing a plan
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > Plan

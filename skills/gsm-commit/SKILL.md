@@ -2,6 +2,7 @@
 name: gsm-commit
 description: Commit changes using a structured commit message format.
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > Commit

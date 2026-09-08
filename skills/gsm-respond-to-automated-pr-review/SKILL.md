@@ -2,6 +2,7 @@
 name: gsm-respond-to-automated-pr-review
 description: Invoke when responding to automated PR review after the agent has assessed the feedback and implemented its recommendations.
 user_invocable: true
+disable-model-invocation: true
 ---
 
 # GSM > Respond to Automated PR Review
