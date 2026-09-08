@@ -2,7 +2,6 @@
 name: gsm-note
 description: Invoke when the user provides information to retain for later in the session. Use for preferences, constraints, and context.
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > Note

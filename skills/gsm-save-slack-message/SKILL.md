@@ -2,7 +2,6 @@
 name: gsm-save-slack-message
 description: Invoke when saving the agent's response formatted for Slack
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > Save Slack message

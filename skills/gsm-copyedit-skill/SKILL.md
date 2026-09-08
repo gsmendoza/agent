@@ -2,7 +2,6 @@
 name: gsm-copyedit-skill
 description: Copyedit a skill so an agent can understand when and how to use it. Use when reviewing or editing a SKILL.md file for clarity, structure, triggers, and actionable instructions.
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > Copyedit skill

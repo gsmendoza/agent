@@ -2,7 +2,6 @@
 name: gsm-atc-init-session
 description: Invoke when initializing a new session based on the current branch in an ATC project.
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > ATC > Init Session

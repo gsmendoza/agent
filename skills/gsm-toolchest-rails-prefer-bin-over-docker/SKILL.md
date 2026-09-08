@@ -2,7 +2,6 @@
 name: gsm-toolchest-rails-prefer-bin-over-docker
 description: Invoke when running rails commands and gems in toolchest-rails repo, like Rails tests, console, migrations, rake, linters.
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > toolchest-rails > Prefer Bin Over Docker

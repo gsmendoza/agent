@@ -2,7 +2,6 @@
 name: gsm-follow-code-guidelines
 description: Invoke when planning, writing, or reviewing code to ensure adherence to general and domain-specific code guidelines
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > Follow > Code Guidelines

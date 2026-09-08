@@ -2,7 +2,6 @@
 name: gsm-plan-from-feedback
 description: Invoke when preparing a plan for assessing and addressing PR or review feedback
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > Plan From feedback

@@ -2,7 +2,6 @@
 name: gsm-review-code
 description: Invoke when user asks for a code review
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > Review > Code

@@ -2,7 +2,6 @@
 name: gsm-save
 description: Invoke when saving the agent's response
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > Save

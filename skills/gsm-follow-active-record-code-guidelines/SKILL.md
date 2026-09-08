@@ -2,7 +2,6 @@
 name: gsm-follow-active-record-code-guidelines
 description: Invoke when planning, writing, or reviewing ActiveRecord code
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > Follow > Active Record Code Guidelines

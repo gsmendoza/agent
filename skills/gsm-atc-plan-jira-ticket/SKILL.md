@@ -2,7 +2,6 @@
 name: gsm-atc-plan-jira-ticket
 description: Invoke when preparing a plan for a toolchest-rails JIRA ticket
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > ATC > Plan JIRA Ticket

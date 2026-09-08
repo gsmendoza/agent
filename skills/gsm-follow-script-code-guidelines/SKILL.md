@@ -2,7 +2,6 @@
 name: gsm-follow-script-code-guidelines
 description: Invoke when planning, writing, or reviewing scripts or automation
 user_invocable: true
-disable-model-invocation: true
 ---
 
 # GSM > Follow > Script Code Guidelines
