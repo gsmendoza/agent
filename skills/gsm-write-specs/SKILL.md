@@ -17,16 +17,17 @@ disable-model-invocation: true
 
 ## Structure
 
-- Background concepts section, in prose, above the Gherkin block.
+- Concepts
   - Define any domain terms or jargon the scenarios rely on, in plain language.
-  - Why: lets a non-engineer read the definitions once instead of decoding terminology scenario by scenario.
+    - Why: lets a non-engineer read the definitions once instead of decoding terminology scenario by scenario.
 
-- The Gherkin block itself, fenced with ```` ```gherkin ```` for syntax clarity.
+  - Do not hard-wrap at a fixed column.
+    - Why: the user would typically copy the specs to a JIRA ticket, where text is not hard-wrapped.
+
+- Scenarios
+  - The Gherkin block itself, fenced with ```` ```gherkin ```` for syntax clarity.
   - Fold contextual detail (e.g., where a feature lives in the UI) into `Given`/`Background` steps rather than a separate prose section.
     - Why: keeps the formal spec self-contained — a reviewer shouldn't need to cross-reference prose outside the Gherkin to know what a step means.
-
-- Write prose (both the concepts section and any non-Gherkin text) as flowing single lines per bullet or paragraph — do not hard-wrap at a fixed column.
-  - Why: the user would typically copy the specs to a JIRA ticket, where text is not hard-wrapped.
 
 ## Handling gaps
 
