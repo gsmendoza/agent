@@ -1,6 +1,6 @@
 ---
 name: gsm-toolchest-rails-create-seed-script
-description: Invoke when user asks for a personal seed script for a ticket
+description: Invoke when user asks for a personal seed script for a ticket, given a reviewed import.csv
 user_invocable: true
 ---
 
@@ -8,7 +8,12 @@ user_invocable: true
 
 ## Goal
 
-- Create a personal seed script and test suite for a specific ticket to enable local testing and demos.
+- Create a personal seed script and test suite for a specific ticket to enable local testing and demos from an `import.csv` file.
+
+## Input
+
+- An existing, user-reviewed `../resources/seeds/<TICKET>/import.csv`.
+  - Usually created by `gsm-toolchest-rails-create-import-csv`.
 
 ## Expected Outcome
 
@@ -19,9 +24,6 @@ user_invocable: true
 ## Workflow
 
 ### Implementation
-
-- Create `../resources/seeds/<TICKET>/import.csv` based on the ticket's specifications.
-  - Ask the user to review the file before continuing.
 
 - Create `import.rb` in the ticket directory to load scenario data from `import.csv`.
   - Create a new account specifically for the ticket.
@@ -40,7 +42,8 @@ user_invocable: true
     - Avoid testing or executing the wrapper script in the development environment.
     - Why: Verifying with pre-existing records is difficult, and `bin/reset_db` is run before seeding in practice.
 
-- Update `import.csv` if additional columns or rows are needed for seeding.
+- If `import.csv` turns out to need additional columns or rows while implementing `import.rb`, update it directly rather than stopping to ask.
+  - Why: this skill assumes the overall scenario was already reviewed; small structural adjustments discovered during implementation don't warrant re-triggering the review step.
 - Add upload fixture files in the ticket directory (or a subdirectory like `uploads/`) if the ticket requires post-seed file upload in the UI.
 - Create the convenience wrapper script `../resources/seeds/<TICKET>.rb`.
 
@@ -69,5 +72,5 @@ user_invocable: true
 
 ## Related Skills
 
+- `gsm-toolchest-rails-create-import-csv`: For creating and getting `import.csv` reviewed before this skill runs.
 - `gsm-toolchest-rails-prefer-bin-over-docker`: For running Rails commands in the development environment.
-
