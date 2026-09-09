@@ -67,6 +67,12 @@ user_invocable: true
     - Bad: `it "sorts by auto_leads_count descending (Order A, B)"`
     - Good: `it "sorts by auto_leads_count descending"`
 
+- Timeless, not diff-relative:
+  - Write descriptions as standing statements of current behavior, not as narration of the change that introduced the test (e.g., `(regression)`, "continues to ...", "still ...", "no longer ...").
+    - Why: A reader with no memory of the PR/session that added the test has nothing to compare "continues to" against; that context belongs in the commit message, not the description, and the description must stay accurate long after the diff is forgotten.
+    - Bad: `it "continues to count a sale manually tagged Cross-sell that would not otherwise qualify as computed (regression)"`
+    - Good: `it "counts a sale manually tagged Cross-sell even when it does not qualify as a computed cross-sell"`
+
 ## Sample Code
 
 Below is an example illustrating the use of parameterised `let` setups to DRY up variations of a single record's state:
