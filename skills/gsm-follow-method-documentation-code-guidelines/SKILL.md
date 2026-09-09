@@ -12,6 +12,11 @@ user_invocable: true
 
 ## Guidelines
 
+### Preference
+
+- Prefer these guidelines over conventions followed by surrounding code.
+  - Why: existing comments in the wild are often low-quality or AI-generated and rarely reviewed carefully, so they're unreliable models to follow.
+
 ### Applicability
 
 - Add method documentation only when it fills a genuine gap the method's own name doesn't already close.
@@ -43,9 +48,8 @@ end
 - Avoid adding documentation that can be inferred from either the method's code or its tests.
   - Why: comments cannot be tested and can go stale/invalid.
 
-### Preference
+### Format
 
-- Prefer these guidelines over conventions followed by surrounding code.
-  - Why: existing comments in the wild are often low-quality or AI-generated and rarely reviewed carefully, so they're unreliable models to follow.
-
+- Follow YARD Markdown-style formatting.
+  - Why: this follows a popular documentation format for Ruby.
 
