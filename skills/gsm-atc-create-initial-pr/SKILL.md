@@ -16,7 +16,6 @@ user_invocable: true
 
 - Proceed with PR creation only when all of the following are true. Otherwise, inform the user and ask for instructions.
   - The branch is up to date with the remote branch.
-  - The user has confirmed they have reviewed the branch.
 
 ### Write the PR body
 
