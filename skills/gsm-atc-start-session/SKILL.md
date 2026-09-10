@@ -1,14 +1,14 @@
 ---
-name: gsm-atc-init-session
-description: Invoke when initializing a new session based on the current branch in an ATC project.
+name: gsm-atc-start-session
+description: Invoke when starting a new session based on the current branch in an ATC project.
 user_invocable: true
 ---
 
-# GSM > ATC > Init Session
+# GSM > ATC > Start Session
 
 ## Goal
 
-- Initialize a work session for the repository's current branch and set up the directory structure for its epic and ticket artifacts.
+- Start a work session for the repository's current branch and set up the directory structure for its epic and ticket artifacts.
 
 ## Process
 
