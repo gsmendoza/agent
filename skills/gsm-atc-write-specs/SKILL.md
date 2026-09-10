@@ -46,5 +46,4 @@ user_invocable: true
 
 ## Output
 
-- Using /gsm-save, save the specs as a file next to the ticket's other planning docs, under its epic folder (`resources/epics/<epic>/<ticket>/`).
-  - Why: this makes it easy for the user to directly modify the file.
+- Use /gsm-atc-save to save the specs as a file.
