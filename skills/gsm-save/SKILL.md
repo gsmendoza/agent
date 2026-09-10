@@ -14,7 +14,9 @@ user_invocable: true
 
 - Response saved as a file.
   - Defaults
-    - Path: ~/Downloads
+    - Path (from highest priority):
+      - The `GSM_TICKETS_PATH` environment variable
+      - `~/`
 
     - Format - markdown
 

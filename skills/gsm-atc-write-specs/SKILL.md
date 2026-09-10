@@ -46,4 +46,4 @@ user_invocable: true
 
 ## Output
 
-- Use /gsm-atc-save to save the specs as a file.
+- Use /gsm-save to save the specs as a file.
