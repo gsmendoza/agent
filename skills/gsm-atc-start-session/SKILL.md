@@ -8,18 +8,17 @@ user_invocable: true
 
 ## Goal
 
-- Start a work session for the repository's current branch and set up the directory structure for its epic and ticket artifacts.
+- Start a work session for the repository's current branch and set up the directory structure for its ticket artifacts.
 
 ## Process
 
 - Preflight
   - Warn if the session name does not match the repo's current branch.
 
-- Ticket and epic context
+- Ticket context
   - Identify the ticket number from the current branch name.
-  - Use `jira` CLI to fetch the ticket details and its parent epic.
+  - Use `jira` CLI to fetch the ticket details.
     - Use `JIRA_API_TOKEN` from `.env` to authenticate.
 
 - Artifact storage
-  - Find or create the folder for the epic in `../resources/epics/`.
-  - Under the epic's folder, find or create the folder for the ticket.
+  - Find or create the folder for the ticket in `../resources/tickets/`.
