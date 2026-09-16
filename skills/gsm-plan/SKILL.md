@@ -27,9 +27,5 @@ user_invocable: true
 - Save the plan using /gsm-save.
   - Why: so the user gets a file they can open in an editor.
 
-  - Exception — do not save when the harness is:
-    - agy (Antigravity CLI)
-      - Why: Antigravity CLI already has an /artifacts command which allows users to conveniently view generated files (including plans) in the CLI.
-
 - Provide a link or path to the plan.
   - Why: so the user can open the plan in an editor.
