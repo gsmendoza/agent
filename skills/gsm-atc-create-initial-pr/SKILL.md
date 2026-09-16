@@ -17,6 +17,24 @@ user_invocable: true
 - Proceed with PR creation only when all of the following are true. Otherwise, inform the user and ask for instructions.
   - The branch is up to date with the remote branch.
 
+### Retrieve ticket asset links
+
+- Check the remote Google Drive destination (`narralabs:home/tickets`) for uploaded demo videos and seed script bundles (from `gsm-atc-upload-ticket-assets`).
+- Locate the remote ticket directory matching `<TICKET_ID>*` or the branch name:
+  ```bash
+  rclone lsf "narralabs:home/tickets" --dirs-only
+  ```
+- Inside the remote ticket directory (`narralabs:home/tickets/<ticket-folder>`):
+  - Find the demo video (`*demo*.mp4` or `*.mp4`, choosing the most recent if multiple exist):
+    ```bash
+    rclone link "narralabs:home/tickets/<ticket-folder>/<demo-file>"
+    ```
+  - Find the seed script bundle directory (e.g. `atc_<ticket_num>_*` or snake-cased branch name):
+    ```bash
+    rclone link "narralabs:home/tickets/<ticket-folder>/<seed-bundle-dir>"
+    ```
+- If an asset is not found on Google Drive, fall back to `TODO` for that section.
+
 ### Write the PR body
 
 - Write the PR description to a temporary file in the scratch directory (e.g. `/home/gsmendoza/.gemini/antigravity-cli/brain/<conversation-id>/scratch/pr_body.md`).
@@ -37,11 +55,11 @@ https://agencytoolchest.atlassian.net/browse/<TICKET_ID>
 
 ## Demo/Screenshots
 
-TODO
+<Google Drive link on its own line, or TODO>
 
 ## Seed Data
 
-TODO
+<Google Drive link on its own line, or TODO>
 ```
 
 - Limit the summary to what the branch's commit messages already say; do not add extra detail.
