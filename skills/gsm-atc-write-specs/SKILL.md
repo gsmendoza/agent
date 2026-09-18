@@ -28,6 +28,7 @@ user_invocable: true
 
 - Scenarios
   - The Gherkin block itself, fenced with ```` ```gherkin ```` for syntax clarity.
+
   - Fold contextual detail (e.g., where a feature lives in the UI) into `Given`/`Background` steps rather than a separate prose section.
     - Why: keeps the formal spec self-contained — a reviewer shouldn't need to cross-reference prose outside the Gherkin to know what a step means.
 
@@ -38,6 +39,9 @@ user_invocable: true
 
   - When a scenario's purpose is to confirm existing/pre-change behavior still holds (rather than verify new behavior), label it distinctly, e.g. `Scenario (Regression check): ...`.
     - Why: signals to the reviewer that this scenario is a safety net for behavior that already worked, not a new acceptance criterion.
+
+  - Hard-wrap lines within the Gherkin block at a fixed column.
+    - Why: code blocks are usually rendered without wrapping, making long lines difficult to read.
 
 ## Handling gaps
 
