@@ -42,3 +42,8 @@ user_invocable: true
 
 - Presentation
   - When working with views and other presentation code, invoke gsm-follow-presentation-code-guidelines so that presentation-specific design guidelines are applied.
+
+## Project-specific Guidelines
+
+- Toolchest Rails
+  - When working with Toolchest Rails, invoke gsm-follow-toolchest-rails-code-guidelines so that Toolchest Rails-specific code guidelines are applied.
