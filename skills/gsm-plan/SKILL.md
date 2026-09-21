@@ -8,28 +8,31 @@ user_invocable: true
 
 ## Goal
 
-- Outline a step-by-step implementation plan before writing code.
+- Write a step-by-step implementation plan before writing code.
+
+## Input
+
+- Usually a ticket with specs written using `/gsm-write-specs`.
 
 ## Guidelines
 
-- Break down the plan into a sequence of individual atomic, vertical-slice commits.
-    - Avoid horizontal slices (e.g., database, API controller, and CSS styling in separate commits) because they result in incomplete, untestable interim commits.
-    - Prefer vertical slices that deliver end-to-end testable features. In full-stack apps, combine backend and frontend changes (logic, views, styles, and system tests) so that the user interaction is fully functional.
-    - For smaller features, the entire implementation can be a single vertical-slice commit. For larger tasks, slice by user-facing sub-features.
+- In the plan:
+  - Break down the ticket into a sequence of individual atomic, vertical-slice commits.
+    - Prefer vertical slices that deliver end-to-end testable features. In full-stack apps, combine backend and frontend changes (logic, views, styles, and system tests).
+      - Why: This results in a complete and testable commit.
+      - Why not horizontal slices (e.g., database, API controller, and CSS styling in separate commits):
+        - They result in incomplete, untestable interim commits.
 
-- For each commit:
-  - Determine the commit type using `/gsm-commit`.
+  - For each commit:
+    - Indicate the commit type based on `/gsm-commit`.
 
-  - Determine if any of these skills need to be invoked when implementing the commit:
-    - `/gsm-apply-tdd`
-    - `/gsm-lint-ruby-code`
-    - `/gsm-follow-code-guidelines`
+    - List which of these skills need to be invoked when implementing the commit:
+      - Skills to consider:
+        - `/gsm-apply-tdd`
+        - `/gsm-lint-ruby-code`
+        - `/gsm-follow-code-guidelines` and other `/gsm-follow-*-guidelines` skills.
 
-  - Always yield control to ask for explicit user approval after the commit is made.
-    - Why: this allows the user to inspect the commit and its message before the next step begins. The user prefers small iterations over avoiding turn-taking latency.
+      - Why: this allows the user to evaluate how well the agent is able to find the right skills and guidelines for the commit.
 
-- Save the plan using /gsm-save.
-  - Why: so the user gets a file they can open in an editor.
-
-- Provide a link or path to the plan.
-  - Why: so the user can open the plan in an editor.
+- Save the plan using `/gsm-save` and provide a link or path to it.
+  - Why: so the user can read the plan in an editor.
