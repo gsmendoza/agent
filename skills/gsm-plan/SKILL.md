@@ -13,6 +13,9 @@ user_invocable: true
 ## Input
 
 - Usually a ticket with specs written using `/gsm-write-specs`.
+  - If the ticket conflicts with the current codebase, flag the conflict to the user.
+    - Trust the codebase more than the ticket.
+      - Why: tickets are usually written with incomplete information and tend to oversimplify scenarios.
 
 ## Guidelines
 
