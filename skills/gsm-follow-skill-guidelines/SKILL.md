@@ -1,43 +1,29 @@
 ---
-name: gsm-add-skill
-description: Create a skill following repository conventions. Invoke when adding or creating a new skill.
+name: gsm-follow-skill-guidelines
+description: Ensure skills follow repository conventions and guidelines. Invoke when creating, updating, or reviewing a skill.
 user_invocable: true
 ---
 
-# GSM > Add Skill
+# GSM > Follow Skill Guidelines
 
-## Goal
+## Instructions
 
-- Create a skill so an agent can understand when to use it, what task it supports, and how to follow its instructions.
-
-## Input
-
-- Requirements, topic, or instructions for the new skill.
-
-## Process
-
-- Create a skill following the guidelines below.
-
-- Mark the skill as invocable.
-  - In particular, set `user_invocable: true` in the frontmatter.
-  - Why: the author likes being able to use agent CLI's autocomplete feature to automatically invoke skills.
+- When a skill is changed, ensure that it meets the guidelines specified.
 
 ## Guidelines
 
-### Naming
+### Frontmatter
 
-- `gsm-<optional_namespace>-<command>`
-  - `optional_namespace`
-    - Will be provided by the user if needed.
-  - `command`
-    - Written in imperative style (i.e. do something) as a command to the agent.
+- Mark the skill as invocable.
+  - In particular, set `user_invocable: true` in the frontmatter.
+  - Why: I like being able to use agent CLI's autocomplete feature to automatically invoke skills.
 
 ### Content
 
-- Consider that these skills are for personal use and are not intended for general usage.
+- Start with an Instructions section.
+  - Why: it should be clear at the start what the agent has to do when the skill is invoked.
 
-- Include a description in the frontmatter explaining what the skill does and when to invoke it.
-  - Why: An agent uses the description to determine when the skill is relevant.
+- Consider that these skills are for personal use and are not intended for general usage.
 
 - Provide rationale for instructions where helpful.
   - Why:
@@ -57,3 +43,9 @@ user_invocable: true
 - Use bold and italic formatting sparingly.
   - Why: Bold and italic text can help agents identify important highlights, but heavy formatting makes the text look cluttered.
     - Heavy formatting can be hard for humans to read, especially when the text is viewed in plain ASCII.
+
+### Deprecated patterns
+
+- No longer enforce these patterns:
+  - Adding a Goal section
+    - Why: I historically started skills with Goal. In hindsight, it's not clear what it should mean: is it the goal for why the skill exists, or the goal the agent has to meet when executing a skill?

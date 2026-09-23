@@ -16,7 +16,7 @@ user_invocable: true
 
 ## Guidelines
 
-- Follow guidelines from /gsm-add-skill.
+- Follow guidelines from /gsm-follow-skill-guidelines.
 
 - Focus only on the uncommitted changes.
   - Why: changing copy that is already committed clutters the skill's diff, making it harder for the author to review the changes.
