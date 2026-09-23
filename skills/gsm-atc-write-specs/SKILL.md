@@ -40,7 +40,10 @@ user_invocable: true
   - When a scenario's purpose is to confirm existing/pre-change behavior still holds (rather than verify new behavior), label it distinctly, e.g. `Scenario (Regression check): ...`.
     - Why: signals to the reviewer that this scenario is a safety net for behavior that already worked, not a new acceptance criterion.
 
-  - Hard-wrap lines within the Gherkin block at a fixed column.
+  - Hard-wrap lines within the Gherkin block at 100 characters, except for table rows (`| ... |`):
+    - Indent continuation lines by 2 additional spaces so keywords like `Given`/`When`/`Then` remain easily scannable on the left margin.
+    - Keep scenario titles concise so they fit on a single line without wrapping.
+    - Do not wrap table rows, as breaking rows across lines destroys table structure.
     - Why: code blocks are usually rendered without wrapping, making long lines difficult to read.
 
 ## Handling gaps
