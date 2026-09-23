@@ -10,6 +10,12 @@ user_invocable: true
 
 - Save the agent's response formatted for compatibility with Slack messages.
 
+## Prerequisites
+
+- In Slack, the user has "Preferences > Advanced > Format messages with markup" enabled.
+  - Why: the user prefers this option since it allows him to copy markdown text to the editor.
+  - Warning: This option is incompatible with Slack mrkdwn syntax.
+
 ## Input
 
 - Follow /gsm-save.
@@ -36,3 +42,7 @@ user_invocable: true
   - **Indentation**: Use 4 spaces for indentation.
     - Example: Indent nested list items with 4 spaces instead of 2.
     - Why: Slack parses nested lists properly with 4-space indentation.
+
+  - **Links**: Use standard Markdown link syntax (`[label](url)`) instead of Slack mrkdwn syntax (`<url|label>`).
+    - Example: `[Link text](https://example.com)` instead of `<https://example.com|Link text>`
+    - Why: The `<url|label>` Slack mkdwn hyperlink syntax is incompatible with the "Format messages with markup" input option.
