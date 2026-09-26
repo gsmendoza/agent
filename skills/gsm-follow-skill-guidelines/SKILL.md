@@ -6,9 +6,9 @@ user_invocable: true
 
 # GSM > Follow Skill Guidelines
 
-## Instructions
+## Description
 
-- When a skill is changed, ensure that it meets the guidelines specified.
+- Ensure skills follow repository conventions and guidelines. Invoke when creating, updating, or reviewing a skill.
 
 ## Guidelines
 
@@ -20,10 +20,10 @@ user_invocable: true
 
 ### Content
 
-- Start with an Instructions section.
-  - Why: it should be clear at the start what the agent has to do when the skill is invoked.
+- Start with a Description section, mirroring the frontmatter description.
+  - Why: This ensures the main body of the skill can stand alone even if the frontmatter is stripped.
 
-- Consider that these skills are for personal use and are not intended for general usage.
+- Consider that skills in this repo are for personal use and are not intended for general usage.
 
 - Provide rationale for instructions where helpful.
   - Why:
@@ -47,5 +47,6 @@ user_invocable: true
 ### Deprecated patterns
 
 - No longer enforce these patterns:
-  - Adding a Goal section
-    - Why: I historically started skills with Goal. In hindsight, it's not clear what it should mean: is it the goal for why the skill exists, or the goal the agent has to meet when executing a skill?
+  - Starting with a Goal/Instructions/Summary section
+    - Why: I experimented with various ways to start a skill body. Ultimately, these mostly just restate the frontmatter description, so I reason that it's simplest to just mirror the description.
+    - It's acceptable to use these headers (notably Instructions) in subsequent sections.
