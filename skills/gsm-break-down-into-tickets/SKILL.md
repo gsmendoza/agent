@@ -13,6 +13,9 @@ user_invocable: true
 ## Instructions
 
 - Given a requirements doc, break it down into tickets. For each ticket, determine each of these attributes:
+  - ID
+    - Sequential number (e.g., 1, 2, 3) for referencing the ticket within the spreadsheet.
+
   - Grouping
     - A generic term to group tickets in the resulting file.
 
@@ -67,6 +70,13 @@ user_invocable: true
       - 1 - Small (S)
       - 2 - Medium (M)
       - 4 - Large (L)
+
+  - Review + Updates Estimate (Days)
+    - Geometric scale mapped to T-Shirt size:
+      - 0.125 - Extra small (XS)
+      - 0.25 - Small (S)
+      - 0.5 - Medium (M)
+      - 0.5 - Large (L)
 
 ## Output
 
