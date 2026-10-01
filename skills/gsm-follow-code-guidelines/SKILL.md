@@ -29,6 +29,11 @@ user_invocable: true
 
 ### Comprehensibility
 
+- Describe current behavior, not removed behavior (avoid tombstones)
+  - When removing, refactoring, or replacing code, delete its associated documentation, comments, and tests rather than leaving notes or skipped tests explaining what used to exist (e.g., "feature removed", "obsolete", "we no longer use X", or `@skip("feature removed")`).
+    - Why: Code and docs describe current contracts, while Git history tracks changes. Tombstones clutter the codebase, confuse future developers, and cause AI agents in future sessions to retrieve and hallucinate obsolete designs.
+    - Test: If deleting a comment or test line removes zero understanding of how the system works today, it is a tombstone and should be removed.
+
 - Invoke gsm-follow-rspec-style-code-guidelines for RSpec-style tests
   - When writing or reviewing tests written in RSpec format, invoke gsm-follow-rspec-style-code-guidelines so that they maintain a clean balance of DRYness and readability.
 

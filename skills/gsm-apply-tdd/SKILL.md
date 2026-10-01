@@ -44,6 +44,14 @@ user_invocable: true
     - Refactoring
       - Refactoring must also proceed incrementally (one unit or extraction at a time) with test verification between changes.
 
+## Cleanup
+
+- Remove stepping-stone tombstone tests
+  - If any tests were written solely to test-drive the removal, deprecation, or refactoring of functionality, delete those tests once the removal is verified.
+    - Follow the tombstone guideline in `/gsm-follow-code-guidelines`.
+    - Why: While a negative test (e.g. asserting an old element or route is gone) can be useful as temporary scaffolding during the TDD red-green cycle, keeping it permanently creates a tombstone that clutters the test suite and memorializes dead architecture.
+    - Clarification: Do not delete active negative contracts (e.g., tests verifying authorization boundaries, input validations, or active business constraints). Only delete tests whose sole purpose was verifying that a retired feature no longer exists.
+
 ## Example TDD run
 
 - As a prerequisite, the agent runs all the relevant tests for the new feature. They pass, ensuring a stable baseline.
@@ -60,4 +68,5 @@ user_invocable: true
 - The agent runs the controller action test again. This time it passes.
 - The agent runs the system test again. It also passes.
 - The agent repeats this cycle for each remaining planned scenario.
-- Once all scenarios pass, the agent runs all relevant test suites to confirm no regressions.
+- The agent prunes any stepping-stone tests created specifically to drive removals.
+- Once all scenarios pass and stepping-stone tests are pruned, the agent runs all relevant test suites to confirm no regressions.
