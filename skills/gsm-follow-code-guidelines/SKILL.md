@@ -32,6 +32,9 @@ user_invocable: true
 - Invoke gsm-follow-rspec-style-code-guidelines for RSpec-style tests
   - When writing or reviewing tests written in RSpec format, invoke gsm-follow-rspec-style-code-guidelines so that they maintain a clean balance of DRYness and readability.
 
+- Invoke gsm-follow-paragraph-style-layout-guidelines for paragraph-style layout and spacing
+  - When formatting, writing, or reviewing code and document layouts, invoke gsm-follow-paragraph-style-layout-guidelines so that lines and blocks follow consistent blank line separation and paragraph-style structure.
+
 ## Domain-specific Guidelines
 
 - ActiveRecord
