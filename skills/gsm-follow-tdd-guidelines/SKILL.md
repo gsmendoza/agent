@@ -1,16 +1,18 @@
 ---
-name: gsm-apply-tdd
-description: Invoke when applying test-driven development to a change
+name: gsm-follow-tdd-guidelines
+description: Ensure changes adhere to test-driven development guidelines. Invoke when planning, writing, or refactoring code using outside-in TDD.
 user_invocable: true
 ---
 
-# GSM > Apply > TDD
+# GSM > Follow > TDD Guidelines
 
-## Goal
+## Description
 
-- Implement all planned scenarios for the change using outside-in test-driven development.
+- Ensure changes adhere to test-driven development guidelines. Invoke when planning, writing, or refactoring code using outside-in TDD.
 
-## Prerequisites
+## Guidelines
+
+### Prerequisites
 
 - The working tree is clean (i.e., there are no uncommitted changes).
   - Why: Ensures the TDD cycle starts from a clean baseline and avoids mixing preexisting uncommitted diffs with the new implementation.
@@ -20,9 +22,9 @@ user_invocable: true
   - Why: We want to ensure that the current branch is stable.
   - If there are existing failing tests, ask the user how to handle them.
 
-## Constraint
+### Constraints
 
-- When in the process of test-driving development, the agent should limit itself to changing either a single test or single unit of code at a time
+- When in the process of test-driving development, the agent should limit itself to changing either a single test or single unit of code at a time.
   - Why: this prevents the anti-pattern of writing either all of the tests, or all of the implementation code, in a single step.
     - Doing so negates the main benefit of TDD: letting the tests determine what is implemented, which generally ensures that the implementation is minimal, that is, including only the code needed to pass the tests.
 
@@ -44,7 +46,7 @@ user_invocable: true
     - Refactoring
       - Refactoring must also proceed incrementally (one unit or extraction at a time) with test verification between changes.
 
-## Cleanup
+### Cleanup
 
 - Remove stepping-stone tombstone tests
   - If any tests were written solely to test-drive the removal, deprecation, or refactoring of functionality, delete those tests once the removal is verified.
@@ -52,7 +54,9 @@ user_invocable: true
     - Why: While a negative test (e.g. asserting an old element or route is gone) can be useful as temporary scaffolding during the TDD red-green cycle, keeping it permanently creates a tombstone that clutters the test suite and memorializes dead architecture.
     - Clarification: Do not delete active negative contracts (e.g., tests verifying authorization boundaries, input validations, or active business constraints). Only delete tests whose sole purpose was verifying that a retired feature no longer exists.
 
-## Example TDD run
+## Examples
+
+### Outside-in TDD run
 
 - As a prerequisite, the agent runs all the relevant tests for the new feature. They pass, ensuring a stable baseline.
 - The agent then updates a single system test. It fails on a view template.

@@ -22,7 +22,7 @@ user_invocable: true
 ## Process
 
 - Implement the next commit from the plan:
-  - Follow any skills and guidelines specified for the commit in the plan (e.g. `/gsm-apply-tdd`, `/gsm-lint-ruby-code`, `/gsm-follow-code-guidelines`).
+  - Follow any skills and guidelines specified for the commit in the plan (e.g. `/gsm-follow-tdd-guidelines`, `/gsm-lint-ruby-code`, `/gsm-follow-code-guidelines`).
   - Commit the changes using `/gsm-commit`.
 
 - Stop after the commit is made and yield control to the user.

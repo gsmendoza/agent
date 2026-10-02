@@ -31,7 +31,7 @@ user_invocable: true
 
     - List which of these skills need to be invoked when implementing the commit:
       - Skills to consider:
-        - `/gsm-apply-tdd`
+        - `/gsm-follow-tdd-guidelines`
         - `/gsm-lint-ruby-code`
         - `/gsm-follow-code-guidelines` and other `/gsm-follow-*-guidelines` skills.
 
