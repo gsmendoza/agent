@@ -15,7 +15,7 @@ user_invocable: true
 - Response saved as a file.
   - Defaults
     - Path (from highest priority):
-      - The `GSM_TICKETS_PATH` environment variable
+      - Given `GSM_TICKETS_PATH` environment variable, find or create the folder for the ticket in that path.
       - `~/`
 
     - Format - markdown
