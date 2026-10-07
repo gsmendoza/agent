@@ -80,6 +80,7 @@ user_invocable: true
 
 ## Output
 
-- Display a markdown summary table in the response.
+- Do not display a markdown summary table in the response.
+  - Why: The table can be too long, and I'll check the generated file anyway.
 
 - With `/gsm-save`, save the results in a CSV file with the above attributes as columns.
