@@ -139,8 +139,8 @@ end
 
 demo_file = nil
 if ticket_dir && Dir.exist?(ticket_dir)
-  demo_candidates = Dir.glob(File.join(ticket_dir, "*demo*.mp4"))
-  demo_candidates = Dir.glob(File.join(ticket_dir, "*.mp4")) if demo_candidates.empty?
+  demo_candidates = Dir.glob(File.join(ticket_dir, "**", "*demo*.mp4"))
+  demo_candidates = Dir.glob(File.join(ticket_dir, "**", "*.mp4")) if demo_candidates.empty?
 
   demo_file = demo_candidates.max_by { |f| File.mtime(f) }
 end
