@@ -54,3 +54,6 @@ user_invocable: true
 ## Output
 
 - Use /gsm-save to save the specs as a file.
+
+- Format diagrams and formulas in plain ASCII.
+  - Why: the user copies the rendered HTML to Jira tickets, where Mermaid and MathJax aren't supported.
