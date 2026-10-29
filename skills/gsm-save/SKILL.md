@@ -16,7 +16,7 @@ user_invocable: true
   - Defaults
     - Path (from highest priority):
       - Given `GSM_TICKETS_PATH` environment variable, find or create the folder for the ticket in that path.
-      - `~/`
+      - The current directory of the session.
 
     - Format - markdown
 
