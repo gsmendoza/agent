@@ -15,8 +15,7 @@ user_invocable: true
 - Response saved as a file.
   - Defaults
     - Path (from highest priority):
-      - Given `GSM_TICKETS_PATH` environment variable, find or create the folder for the ticket in that path.
-      - The current directory of the session.
+      - Given the current directory where the harness is running, find or create the subdirectory for the session.
 
     - Format - markdown
 
@@ -40,7 +39,7 @@ user_invocable: true
 - Include AI attribution at the end of the file.
 
 - Provide the user a link to the file path once file is saved.
-  - Purpose: allows user to copy the path from the agent CLI.
+  - Purpose: allows user to copy the path from the harness.
 
 ## Exception handling
 
