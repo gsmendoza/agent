@@ -1,0 +1,43 @@
+---
+name: gsm-plan-from-feedback
+description: Invoke when preparing a plan for assessing and addressing PR or review feedback
+user_invocable: true
+---
+
+# GSM > Plan From feedback
+
+## Goal
+
+- Prepare a plan for assessing and addressing feedback.
+
+## Input
+
+- Feedback from the user. Can be:
+  - GitHub PR feedback
+    - Usually a link to the PR. Use `gh` CLI to fetch the PR.
+      - Note: in the past, I used to manually save the PR and provide the agent the path to the saved HTML. I'm currently experimenting with using `gh` to skip this intermediate step.
+
+  - Local agent review
+    - Usually saved as Markdown.
+
+## Process
+
+- Assess whether each item of feedback is valid.
+  - Also consider any responses the user (gsmendoza) has left on the feedback file.
+    - This is especially important for GitHub PR feedback.
+
+  - If an item is invalid, note in the plan that it will be skipped and why.
+    - Why: so the user can tell the item was assessed and skipped, not overlooked.
+
+  - When feedback proposes a defensive guard, consider:
+    - Whether the bad input being guarded against can actually occur in the current codebase.
+    - What happens when the guard is added and that bad input is encountered anyway.
+      - Does it fall back gracefully, or just pass the problem on to another part of the system?
+
+- Invoke `/gsm-plan` to prepare a new plan addressing the feedback.
+  - Plan preferences:
+    - Create one commit per feedback item.
+      - Why: so the user can verify each item's resolution.
+
+    - Create a new plan instead of updating the original plan for the ticket.
+      - Why: so the user can separate the ticket's original tasks from its post-review revisions.
