@@ -1,5 +1,5 @@
 ---
-name: tailor-resume
+name: gsm-tailor-resume
 description: Tailor a copy of the latest resume to a job posting. Use when the user wants to apply to a job and provides a job posting and tailoring instructions.
 user_invocable: true
 ---
